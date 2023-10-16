@@ -1,0 +1,19 @@
+{
+  "Auth": {
+    "fullname": "Full Name",
+    "email": "Email",
+    "signup": "Sign Up",
+    "login": "Login",
+    "phoneNumber": "Phone Number",
+    "gender": "Gender",
+    "dateOfBirth": "Date Of Birth",
+    "male": "Male",
+    "female": "Female",
+    "other": "Other",
+    "password": "Password",
+    "confirmPassword" : "Confirm Password",
+    "accept": "Accept",
+    "termsAndConditions": "Terms and conditions",
+    "haveAccount": "Already have an account ?"
+  }
+}
