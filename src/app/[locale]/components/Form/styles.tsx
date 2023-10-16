@@ -8,7 +8,7 @@ import { Select, Input } from "@mantine/core";
 import { DatePickerInput } from "@mantine/dates";
 import { InputPropsType } from "./types";
 
-type Types = {
+type Types = any & {
   error?: boolean;
   variant?: "filled" | "outlined";
   dashed?: boolean;
@@ -42,17 +42,17 @@ export const Wrapper = styled(Flex)`
 export const CheckboxWrapper = styled(Flex)`
   label: Checkbox-wrapper;
   margin: 0.5rem 0;
-  .mantine-Checkbox-body{
+  .mantine-Checkbox-body {
     align-items: center;
   }
-  
-  .mantine-Checkbox-input{
-    &:checked{
+
+  .mantine-Checkbox-input {
+    &:checked {
       background-color: ${theme.colors.primaryColor};
     }
     color: ${theme.colors.primaryColor};
-    border-color: ${theme.colors.primaryColor}
-  } 
+    border-color: ${theme.colors.primaryColor};
+  }
 `;
 export const StyledInput = styled(Input)<any>`
   height: 100%;
@@ -70,7 +70,7 @@ export const StyledInput = styled(Input)<any>`
     &:focus,
     &:focus-visible,
     &:active,
-    &::focus-within{
+    &::focus-within {
       --_input-bd: none;
       outline: none;
     }
@@ -89,8 +89,8 @@ export const StyledInput = styled(Input)<any>`
 export const DateWrapper = styled.div<Types>`
   label: date-input;
   width: 100%;
-  .mantine-DatePickerInput-input{
-    border: none
+  .mantine-DatePickerInput-input {
+    border: none;
   }
 `;
 export const StyledSelectInput = styled(Select)<Types>`

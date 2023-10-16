@@ -22,7 +22,7 @@ export default function LoadMoreButton({
   const [loading, setLoading] = useState(false);
 
   const [page, setPage] = useState(1);
-  
+
   const [hasRecords, setHasRecords] = useState(true);
 
   const loadMore = () => {
@@ -33,7 +33,7 @@ export default function LoadMoreButton({
     service(page + 1).then((results) => {
       setRecords([...oldRecords, ...results.data.records]);
 
-      setHasRecords(!Is.empty(results.data.records))
+      setHasRecords(!Is.empty(results.data.records));
 
       setLoading(false);
     });

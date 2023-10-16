@@ -1,15 +1,24 @@
 "use client";
-import { StyledInput, StyledSelectInput, Wrapper, WrapperInput } from "../styles";
+import {
+  StyledInput,
+  StyledSelectInput,
+  Wrapper,
+  WrapperInput,
+} from "../styles";
 import InputError from "../InputError";
 import InputLabel from "../InputLabel";
 import { Flex } from "../../Grids";
 import { useTranslations } from "next-intl";
 import { InputPropsType } from "../types";
-import { useFormControl, FormControlProps } from "@mongez/react-form";
+import {
+  maxLengthRule,
+  minLengthRule,
+  useFormControl,
+} from "@mongez/react-form";
+import { requiredRule } from "@mongez/react-form";
 
 function TextInput({
   placeholder,
-  required,
   label,
   icon,
   id,
@@ -22,12 +31,8 @@ function TextInput({
   const trans = useTranslations("Auth");
 
   return (
-    <Flex
-      direction="column"
-      gap="0"
-      fullWidth
-    >
-      <InputLabel htmlFor={id} required={required}>
+    <Flex direction="column" gap="0" fullWidth>
+      <InputLabel htmlFor={id} required={props.required}>
         {trans(label)}
       </InputLabel>
       <WrapperInput>
@@ -42,7 +47,7 @@ function TextInput({
           />
         </Wrapper>
       </WrapperInput>
-      {/* <InputError name={name} /> */}
+      <InputError error={error} />
     </Flex>
   );
 }
@@ -51,6 +56,5 @@ export default TextInput;
 
 TextInput.defaultProps = {
   type: "text",
+  rules: [requiredRule, minLengthRule, maxLengthRule],
 };
-
-

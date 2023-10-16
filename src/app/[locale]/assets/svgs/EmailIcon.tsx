@@ -1,7 +1,7 @@
 import React from "react";
 import { SvgsTypes } from "./types";
 
-const EmailIcon = ({size, color}: SvgsTypes) => {
+const EmailIcon = ({ size, color }: SvgsTypes) => {
   return (
     <>
       <svg

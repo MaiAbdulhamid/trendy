@@ -21,6 +21,5 @@ export const Label = styled("label")<InputType>`
   }
 
   &:focus-within {
-
   }
 `;

@@ -5,11 +5,10 @@ import InputLabel from "../InputLabel";
 import { Flex } from "../../Grids";
 import { useTranslations } from "next-intl";
 import { InputPropsType } from "../types";
+import { requiredRule, useFormControl } from "@mongez/react-form";
+
 function SelectInput({
-  name,
   placeholder,
-  onChange,
-  required,
   label,
   icon,
   id,
@@ -17,15 +16,13 @@ function SelectInput({
   clearable,
   ...props
 }: InputPropsType) {
+  const { value, changeValue, error } = useFormControl(props);
+
   const trans = useTranslations("Auth");
 
   return (
-    <Flex
-      direction="column"
-      gap="0"
-      fullWidth
-    >
-      <InputLabel htmlFor={id} required={required}>
+    <Flex direction="column" gap="0" fullWidth>
+      <InputLabel htmlFor={id} required={props.required}>
         {trans(label)}
       </InputLabel>
       <WrapperInput>
@@ -34,14 +31,20 @@ function SelectInput({
             placeholder={placeholder}
             defaultValue={defaultValue}
             clearable={clearable}
+            value={value}
+            onChange={(e: any) => {
+              changeValue(e.target.value);
+            }}
             {...props}
           />
         </Wrapper>
       </WrapperInput>
-      <InputError name={name} />
+      <InputError error={name} />
     </Flex>
   );
 }
 
 export default SelectInput;
-
+SelectInput.defaultProps = {
+  rules: [requiredRule],
+};

@@ -1,19 +1,13 @@
-'use client'
-import { useSearchParams } from 'next/navigation'
-import Register from './register'
-import Login from './login/Login';
+'use client';
+import Register from "./register";
+import Login from "./login";
 
 export default function Home(props: any) {
-  console.log(props)
-  let pageMode = useSearchParams().get('mode');
+  let pageMode = props.searchParams.mode;
   return (
     <>
-      {pageMode === 'signup' && (
-        <Register />
-      )}
-      {pageMode === 'login' && (
-        <Login />
-      )}
+      {pageMode === "signup" && <Register />}
+      {pageMode === "login" && <Login />}
     </>
-  )
+  );
 }

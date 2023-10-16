@@ -1,7 +1,7 @@
 import React from "react";
 import { SvgsTypes } from "./types";
 
-const FlagIcon = ({ size, color }: SvgsTypes) => {
+const FlagIcon = ({ size }: SvgsTypes) => {
   return (
     <>
       <svg

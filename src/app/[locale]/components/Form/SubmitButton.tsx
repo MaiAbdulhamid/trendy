@@ -1,6 +1,6 @@
-import { useForm } from '@mongez/react-form';
-import { useEffect, useState } from 'react';
-import Button from '../Button/Button';
+import { useForm } from "@mongez/react-form";
+import { useEffect, useState } from "react";
+import Button from "../Button/Button";
 
 type SubmitButtonProps = {
   children: React.ReactNode;
@@ -11,14 +11,13 @@ export default function SubmitButton({
   children,
   ...props
 }: SubmitButtonProps) {
-
   return (
     <>
       <Button
         type="submit"
         loading={props.isSubmitting}
         disabled={props.isDisabled}
-        variant='primary'
+        variant="primary"
         {...props}
       >
         {children}

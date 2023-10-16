@@ -1,6 +1,5 @@
-
 const colors = {
-  primaryColor: '#DEB156',
+  primaryColor: "#DEB156",
 
   primary: {
     400: "#DEB156",
@@ -35,15 +34,15 @@ const colors = {
     500: "rgba(252, 252, 252, 0.2)",
   },
 
-  lightGrey:  "#e6e2e2",
-  
+  lightGrey: "#e6e2e2",
+
   dark: {
     100: "rgba(52, 52, 52, 0.1)",
-    200: 'rgba(52, 52, 52, 0.2)',
-    300: '#343434'
+    200: "rgba(52, 52, 52, 0.2)",
+    300: "#343434",
   },
 
-  rate: "#BF9D22"
+  rate: "#BF9D22",
 };
 
 export default colors;

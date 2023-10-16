@@ -5,7 +5,7 @@ import Image from "next/image";
 
 const SideImage = () => {
   return (
-    <div className={classes['side-img-container']}>
+    <div className={classes["side-img-container"]}>
       <Image src={authSideImg} alt="Auth Side image" />
     </div>
   );

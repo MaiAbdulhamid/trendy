@@ -1,9 +1,13 @@
 import "@mantine/core/styles.css";
-import '@mantine/dates/styles.css';
+import "@mantine/dates/styles.css";
 
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import { MantineProvider, ColorSchemeScript, DirectionProvider } from "@mantine/core";
+import {
+  MantineProvider,
+  ColorSchemeScript,
+  DirectionProvider,
+} from "@mantine/core";
 import { Container } from "@mantine/core";
 import { Grid } from "@mantine/core";
 import SideImage from "./components/SideImage";
@@ -32,8 +36,8 @@ const universeFont = localFont({
 });
 
 export const metadata: Metadata = {
-  title: process.env.REACT_APP_NAME,
-  description: process.env.REACT_APP_DESCRIPTION,
+  title: process.env.NEXT_PUBLIC_NAME,
+  description: process.env.NEXT_PUBLIC_DESCRIPTION,
 };
 
 export default async function RootLayout({
@@ -59,18 +63,18 @@ export default async function RootLayout({
           <NextIntlClientProvider locale={locale} messages={messages}>
             <MantineProvider>
               {/* <ModalsProvider> */}
-                {/* <RootStyleRegistry> */}
-                  <main>
-                    <Container fluid>
-                      <Grid gutter={{ base: 3, xs: 'md', md: 'xl', xl: 50 }}>
-                        <Col span={{ base: 12, md: 6 }}>
-                          <SideImage />
-                        </Col>
-                        <Col span={{ base: 12, md: 6 }}>{children}</Col>
-                      </Grid>
-                    </Container>
-                  </main>
-                {/* </RootStyleRegistry> */}
+              {/* <RootStyleRegistry> */}
+              <main>
+                <Container fluid>
+                  <Grid gutter={{ base: 3, xs: "md", md: "xl", xl: 50 }}>
+                    <Col span={{ base: 12, md: 6 }}>
+                      <SideImage />
+                    </Col>
+                    <Col span={{ base: 12, md: 6 }}>{children}</Col>
+                  </Grid>
+                </Container>
+              </main>
+              {/* </RootStyleRegistry> */}
               {/* </ModalsProvider> */}
             </MantineProvider>
           </NextIntlClientProvider>
@@ -79,4 +83,3 @@ export default async function RootLayout({
     </DirectionProvider>
   );
 }
-

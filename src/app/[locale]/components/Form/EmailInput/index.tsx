@@ -6,41 +6,45 @@ import { Flex } from "../../Grids";
 import { useTranslations } from "next-intl";
 import { EmailIcon } from "../../../assets/svgs";
 import { InputPropsType } from "../types";
+import { emailRule, requiredRule, useFormControl } from "@mongez/react-form";
 
 function EmailInput({
-  name,
   placeholder,
-  onChange,
-  required,
   label,
   icon,
   id,
   ...props
 }: InputPropsType) {
+  const { value, changeValue, error } = useFormControl(props);
+
   const trans = useTranslations("Auth");
 
   return (
-    <Flex
-      direction="column"
-      gap="0"
-      fullWidth
-    >
-      <InputLabel htmlFor={id} required={required}>
+    <Flex direction="column" gap="0" fullWidth>
+      <InputLabel htmlFor={id} required={props.required}>
         {trans(label)}
       </InputLabel>
       <WrapperInput>
         <Wrapper>
           {icon && <EmailIcon />}
           <StyledInput
-            type="email"
             placeholder={placeholder}
+            value={value}
+            onChange={(e: any) => {
+              changeValue(e.target.value);
+            }}
             {...props}
           />
         </Wrapper>
       </WrapperInput>
-      <InputError name={name} />
+      <InputError error={error} />
     </Flex>
   );
 }
 
 export default EmailInput;
+
+EmailInput.defaultProps = {
+  type: "email",
+  rules: [requiredRule, emailRule],
+};

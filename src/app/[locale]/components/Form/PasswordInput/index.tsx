@@ -8,28 +8,31 @@ import { useState } from "react";
 import { EyeIcon } from "../../../assets/svgs";
 import Button from "../../Button/Button";
 import { InputPropsType } from "../types";
+import {
+  matchRule,
+  minLengthRule,
+  minRule,
+  requiredRule,
+  useFormControl,
+} from "@mongez/react-form";
 
 function PasswordInput({
-  name,
   placeholder,
-  onChange,
   required,
   label,
   icon,
   id,
   ...props
 }: InputPropsType) {
+  const { value, changeValue, error } = useFormControl(props);
+
   const trans = useTranslations("Auth");
-  const [showPassword, setShowPassword] = useState(false) 
+  const [showPassword, setShowPassword] = useState(false);
   const showPasswordHandler = () => {
     setShowPassword((prev) => !prev);
-  }
+  };
   return (
-    <Flex
-      direction="column"
-      fullWidth
-      gap="0"
-    >
+    <Flex direction="column" fullWidth gap="0">
       <InputLabel htmlFor={id} required={required}>
         {trans(label)}
       </InputLabel>
@@ -38,6 +41,10 @@ function PasswordInput({
           <StyledInput
             type={showPassword ? "text" : "password"}
             placeholder={placeholder}
+            value={value}
+            onChange={(e: any) => {
+              changeValue(e.target.value);
+            }}
             {...props}
           />
           {icon && (
@@ -49,10 +56,12 @@ function PasswordInput({
           )}
         </Wrapper>
       </WrapperInput>
-      <InputError name={name} />
+      <InputError error={error} />
     </Flex>
   );
 }
 
 export default PasswordInput;
-
+PasswordInput.defaultProps = {
+  rules: [requiredRule, matchRule, minLengthRule, minRule],
+};

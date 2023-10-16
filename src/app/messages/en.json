@@ -11,9 +11,14 @@
     "female": "Female",
     "other": "Other",
     "password": "Password",
-    "confirmPassword" : "Confirm Password",
+    "confirmPassword": "Confirm Password",
     "accept": "Accept",
     "termsAndConditions": "Terms and conditions",
-    "haveAccount": "Already have an account ?"
+    "haveAccount": "Already have an account ?",
+    "createAnewAccount" : "Create new account in",
+    "helloAgain": "Hello Again In",
+    "notHaveAccount": "Don't have an account ?",
+    "welcomeLogin": "Welcome back , please enter your details",
+    "forgotPassword": "Forget password ?"
   }
 }

@@ -2,7 +2,7 @@ const URLS = {
   home: "/",
   auth: {
     login: "?mode=login",
-    register: "?mode=register",
+    signup: "?mode=signup",
     forgotPassword: "/forgot-password",
     verificationCode: "/verification-code",
     registerVerifyCode: "/register-verify-code",

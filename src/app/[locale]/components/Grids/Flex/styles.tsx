@@ -1,12 +1,12 @@
 import isPropValid from "@emotion/is-prop-valid";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-import flexGapCalculator  from "./flexGapCalculator";
+import flexGapCalculator from "./flexGapCalculator";
 import { StyledFlexWrapper } from "./type";
 import devices from "../../../utils/devices";
 
 const Wrapper = styled("div", {
-  shouldForwardProp: prop =>
+  shouldForwardProp: (prop) =>
     isPropValid(prop) &&
     !["gap", "width", "height", "direction"].includes(prop),
 })<StyledFlexWrapper>`

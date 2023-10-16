@@ -1,7 +1,7 @@
-import { css } from '@emotion/react';
-import { Property } from 'csstype';
-import { FontSizeType, HoverType } from './types';
-import devices from '../../utils/devices';
+import { css } from "@emotion/react";
+import { Property } from "csstype";
+import { FontSizeType, HoverType } from "./types";
+import devices from "../../utils/devices";
 
 export const configureTruncation = (truncationWidth: Property.Width) => css`
   white-space: nowrap;
@@ -12,30 +12,30 @@ export const configureTruncation = (truncationWidth: Property.Width) => css`
 
 export const configureAdornment = (
   content: string,
-  direction: 'before' | 'after',
-  localCode: 'en' | 'ar'
+  direction: "before" | "after",
+  localCode: "en" | "ar",
 ) => {
-  if (direction === 'before') {
+  if (direction === "before") {
     return css`
       &::before {
-        content: '${content}';
+        content: "${content}";
         position: relative;
-        right: ${localCode === 'ar' ? '-0.5ch' : '0.5ch'};
+        right: ${localCode === "ar" ? "-0.5ch" : "0.5ch"};
       }
     `;
   }
   return css`
     &::after {
-      content: '${content}';
+      content: "${content}";
       position: relative;
-      left: ${localCode === 'ar' ? '-0.5ch' : '0.5ch'};
+      left: ${localCode === "ar" ? "-0.5ch" : "0.5ch"};
     }
   `;
 };
 
 export const manageFontSize = (
   fontSize: FontSizeType,
-  length: number
+  length: number,
 ): FontSizeType => {
   let fontSizeRatio = 1;
   // this handles the font size of headers in case the text length increased

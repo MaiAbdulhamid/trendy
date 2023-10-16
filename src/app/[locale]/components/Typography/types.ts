@@ -1,7 +1,15 @@
 import { Property } from "csstype";
 import React from "react";
 
-export type weightType = "100" | "200" | "300" | "400" | "500" | "700" | "800" | "bold"
+export type weightType =
+  | "100"
+  | "200"
+  | "300"
+  | "400"
+  | "500"
+  | "700"
+  | "800"
+  | "bold";
 export type ResponsiveSettings = {
   xs: string;
   sm?: string;

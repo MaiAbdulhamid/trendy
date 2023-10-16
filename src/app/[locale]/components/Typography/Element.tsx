@@ -156,7 +156,7 @@ export const P1 = ({ text, children, ...rest }: TypographyPropsType) => {
     </Text>
   );
 };
-export const P2 = ({ text, children,  ...rest }: TypographyPropsType) => {
+export const P2 = ({ text, children, ...rest }: TypographyPropsType) => {
   const trans = useTranslations();
   const textLength = `${text}`.length;
   const { p2 } = typography;
@@ -172,7 +172,7 @@ export const P2 = ({ text, children,  ...rest }: TypographyPropsType) => {
     </Text>
   );
 };
-export const P3 = ({ text, children,  ...rest }: TypographyPropsType) => {
+export const P3 = ({ text, children, ...rest }: TypographyPropsType) => {
   const trans = useTranslations();
   const textLength = `${text}`.length;
   const { p3 } = typography;
@@ -212,7 +212,7 @@ export const P4 = ({
   );
 };
 
-export const Small = ({ text, children,  ...rest }: TypographyPropsType) => {
+export const Small = ({ text, children, ...rest }: TypographyPropsType) => {
   const textLength = `${text}`.length;
   const { small } = typography;
 

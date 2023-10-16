@@ -3,19 +3,16 @@ import theme from "../../../utils/theme";
 import { Small } from "../../Typography";
 
 export type Props = {
-  name: string;
+  error: any;
 };
 
-export default function InputError({ name }: Props) {
+export default function InputError({ error }: Props) {
   const { colors } = theme;
-  const {
-    formState: { errors },
-  } = useForm();
 
   return (
-    errors[name]?.message && (
+    error && (
       <Small color={colors.error[200]} weight="bold">
-        errors[name]?.message
+        {error}
       </Small>
     )
   );

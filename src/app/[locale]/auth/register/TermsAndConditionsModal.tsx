@@ -1,4 +1,4 @@
-'use client';
+"use client";
 import React, { useEffect, useState } from "react";
 import Modal from "../../components/Modal";
 import { useTranslations } from "next-intl";
@@ -10,17 +10,16 @@ interface ModalProps {
 const TermsAndConditionsModal = ({ opened, close }: ModalProps) => {
   const trans = useTranslations("Auth");
 
-  const [termsData, setTermsData] = useState<any>()
+  const [termsData, setTermsData] = useState<any>();
   const getTermsAndConditions = async () => {
     try {
       const response = await fetch(
-        "https://trendy.yourproject-app.com/api/setting?setting_type=terms",
+        process.env.NEXT_PUBLIC_API_URL + "setting?setting_type=terms",
         {
           method: "GET",
-        }
+        },
       );
       const data = await response.json();
-      console.log(data.data)
       setTermsData(data.data);
     } catch (error) {
       console.log(error);
@@ -28,14 +27,17 @@ const TermsAndConditionsModal = ({ opened, close }: ModalProps) => {
   };
 
   useEffect(() => {
-    getTermsAndConditions()
-  }, [])
+    getTermsAndConditions();
+  }, []);
 
   return (
-    <Modal opened={opened} close={close} title={trans("termsAndConditions")} size="xxl">
-      <div
-        dangerouslySetInnerHTML={{__html: termsData?.content}}
-      />
+    <Modal
+      opened={opened}
+      close={close}
+      title={trans("termsAndConditions")}
+      size="xxl"
+    >
+      <div dangerouslySetInnerHTML={{ __html: termsData?.content }} />
     </Modal>
   );
 };

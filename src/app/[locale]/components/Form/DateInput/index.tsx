@@ -5,37 +5,30 @@ import { Flex } from "../../Grids";
 import { useTranslations } from "next-intl";
 import { InputPropsType } from "../types";
 import { DateIcon } from "../../../assets/svgs";
-import { DatePickerInput } from '@mantine/dates';
+import { DatePickerInput } from "@mantine/dates";
 import InputLabel from "../InputLabel";
+import { useFormControl } from "@mongez/react-form";
 
-function DateInput({
-  name,
-  placeholder,
-  onChange,
-  required,
-  label,
-  icon,
-  id,
-  ...props
-}: InputPropsType) {
+function DateInput({ placeholder, label, icon, id, ...props }: InputPropsType) {
+  const { value, changeValue, error } = useFormControl(props);
   const trans = useTranslations("Auth");
 
   return (
-    <Flex
-      direction="column"
-      fullWidth
-      gap="0"
-    >
-      <InputLabel htmlFor={id} required={required}>
+    <Flex direction="column" fullWidth gap="0">
+      <InputLabel htmlFor={id} required={props.required}>
         {trans(label)}
       </InputLabel>
-      <WrapperInput >
+      <WrapperInput>
         <Wrapper>
           <DateWrapper>
             <DatePickerInput
               placeholder={placeholder}
               dateFormat="yyyy-MM-dd"
               wrapperClassName="datePicker"
+              value={value}
+              onChange={(e: any) => {
+                changeValue(e.target.value);
+              }}
               {...props}
             />
           </DateWrapper>
@@ -46,7 +39,7 @@ function DateInput({
           )}
         </Wrapper>
       </WrapperInput>
-      <InputError name={name} />
+      <InputError error={error} />
     </Flex>
   );
 }

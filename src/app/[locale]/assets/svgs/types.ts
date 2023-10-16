@@ -1,4 +1,4 @@
 export interface SvgsTypes {
   size?: number;
-  color?: string
+  color?: string;
 }

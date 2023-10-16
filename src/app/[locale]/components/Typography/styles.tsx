@@ -13,7 +13,7 @@ import theme from "../../utils/theme";
 import { isRtl } from "../../utils/general";
 
 export const Text = styled("span", {
-  shouldForwardProp: prop =>
+  shouldForwardProp: (prop) =>
     isPropValid(prop) && !["fontSize", "height", "color"].includes(prop),
 })<StyledTextType>`
   ${({
@@ -24,7 +24,7 @@ export const Text = styled("span", {
     textAlign,
     lineHeight,
   }) => css`
-    font-family: ${fontFamily ? fontFamily : 'inherit'};
+    font-family: ${fontFamily ? fontFamily : "inherit"};
     font-weight: ${weight || "normal"};
     text-decoration: ${textDecoration};
     text-align: ${textAlign};

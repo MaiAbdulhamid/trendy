@@ -1,6 +1,6 @@
-import React from 'react'
-import Heading from './Heading'
-import RegisterForm from './RegisterForm'
+import React from "react";
+import Heading from "./Heading";
+import RegisterForm from "./RegisterForm";
 
 const Register = () => {
   return (
@@ -8,7 +8,7 @@ const Register = () => {
       <Heading />
       <RegisterForm />
     </>
-  )
-}
+  );
+};
 
-export default Register
+export default Register;
