@@ -19,6 +19,9 @@
     "helloAgain": "Hello Again In",
     "notHaveAccount": "Don't have an account ?",
     "welcomeLogin": "Welcome back , please enter your details",
-    "forgotPassword": "Forget password ?"
+    "forgotPasswordQ": "Forget password ?",
+    "forgotPassword": "Forget password",
+    "enterEmail" : "Remember & input your Email or phone number below"
+
   }
 }

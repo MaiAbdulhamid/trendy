@@ -1,13 +1,8 @@
 import React, { useState } from "react";
-import TextInput from "../../components/Form/TextInput";
 import EmailInput from "../../components/Form/EmailInput";
 import SubmitButton from "../../components/Form/SubmitButton";
 import { useTranslations } from "next-intl";
-import PhoneNumberInput from "../../components/Form/PhoneNumberInput";
-import SelectInput from "../../components/Form/SelectInput";
-import DateInput from "../../components/Form/DateInput";
 import PasswordInput from "../../components/Form/PasswordInput";
-import CheckboxInput from "../../components/Form/CheckboxInput";
 import { Flex } from "../../components/Grids";
 import { P4 } from "../../components/Typography";
 import Button from "../../components/Button/Button";
@@ -17,12 +12,6 @@ import { useDisclosure } from "@mantine/hooks";
 import { Form } from "@mongez/react-form";
 import ForgotPasswordModal from "./ForgotPasswordModal";
 
-interface FormInputs {
-  full_name: string;
-  email: string;
-  phone: string;
-  gender: string;
-}
 const LoginForm = () => {
   const [opened, { open, close }] = useDisclosure(false);
 
@@ -52,11 +41,7 @@ const LoginForm = () => {
             required
           />
           <Flex>
-            <Button
-              type="button"
-              noStyle 
-              onClick={open}           
-            >
+            <Button type="button" noStyle onClick={open}>
               <P4 color={theme.colors.black[300]}>{trans("forgotPassword")}</P4>
             </Button>
           </Flex>

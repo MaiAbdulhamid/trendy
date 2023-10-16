@@ -1,11 +1,11 @@
 import React from "react";
-import Heading from "./Heading";
 import LoginForm from "./LoginForm";
+import Heading from "../components/Heading";
 
 const Login = () => {
   return (
     <>
-      <Heading />
+      <Heading title="helloAgain" appName subTitle="welcomeLogin" />
       <LoginForm />
     </>
   );

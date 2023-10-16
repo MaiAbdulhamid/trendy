@@ -8,15 +8,19 @@ interface ModalProps {
   close: () => void;
   title?: string;
   size?: "xs" | "md" | "lg" | "xl" | "xxl";
+  withCloseButton?: boolean;
+  centered?: boolean
 }
 
-const Modal = ({ children, opened, close, title, size }: ModalProps) => {
+const Modal = ({ children, opened, close, title, size, withCloseButton, centered }: ModalProps) => {
   return (
     <MantineModal
       opened={opened}
       onClose={close}
       title={title ?? ""}
       size={size}
+      withCloseButton={withCloseButton}
+      centered={centered}
     >
       {children}
     </MantineModal>

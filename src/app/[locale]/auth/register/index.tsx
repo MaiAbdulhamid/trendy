@@ -1,11 +1,11 @@
 import React from "react";
-import Heading from "./Heading";
 import RegisterForm from "./RegisterForm";
+import Heading from "../components/Heading";
 
 const Register = () => {
   return (
     <>
-      <Heading />
+      <Heading title="createAnewAccount" appName />
       <RegisterForm />
     </>
   );
