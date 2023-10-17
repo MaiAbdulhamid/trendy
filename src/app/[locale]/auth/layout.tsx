@@ -14,8 +14,7 @@ import SideImage from "./components/SideImage";
 import Col from "../components/Grids/Grid";
 import { NextIntlClientProvider } from "next-intl";
 import { notFound } from "next/navigation";
-import Document from "./Document";
-import { ScrollableElement } from "./Body";
+import RootStyleRegistry from "./RootStyleRegistry";
 
 export function generateStaticParams() {
   return [{ locale: "en" }, { locale: "ar" }];
@@ -55,15 +54,15 @@ export default async function RootLayout({
   }
   return (
     <DirectionProvider detectDirection>
-      <Document locale={locale}>
+      <html lang={locale} dir={locale === "en" ? "ltr" : "rtl" }>
         <head>
           <ColorSchemeScript defaultColorScheme="auto" />
         </head>
-        <ScrollableElement className={universeFont.className}>
+        <body className={universeFont.className}>
           <NextIntlClientProvider locale={locale} messages={messages}>
             <MantineProvider>
               {/* <ModalsProvider> */}
-              {/* <RootStyleRegistry> */}
+              <RootStyleRegistry>
               <main>
                 <Container fluid>
                   <Grid gutter={{ base: 3, xs: "md", md: "xl", xl: 50 }}>
@@ -74,12 +73,13 @@ export default async function RootLayout({
                   </Grid>
                 </Container>
               </main>
-              {/* </RootStyleRegistry> */}
+              </RootStyleRegistry>
               {/* </ModalsProvider> */}
             </MantineProvider>
           </NextIntlClientProvider>
-        </ScrollableElement>
-      </Document>
+        </body>
+      </html>
     </DirectionProvider>
   );
 }
+

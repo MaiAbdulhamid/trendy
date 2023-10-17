@@ -2,7 +2,7 @@
 import Register from "./register";
 import Login from "./login";
 
-export default function Home(props: any) {
+function Auth(props: any) {
   let pageMode = props.searchParams.mode;
   return (
     <>
@@ -11,3 +11,4 @@ export default function Home(props: any) {
     </>
   );
 }
+export default Auth;

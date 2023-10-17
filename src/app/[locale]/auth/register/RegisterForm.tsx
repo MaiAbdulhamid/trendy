@@ -51,6 +51,7 @@ const RegisterForm = () => {
             icon
             label="phoneNumber"
             required
+            min={0}
           />
           <SelectInput
             name="gender"
@@ -66,6 +67,7 @@ const RegisterForm = () => {
             icon
             label="password"
             required
+            minLength={6}
           />
           <PasswordInput
             name="confirmPassword"
@@ -73,6 +75,7 @@ const RegisterForm = () => {
             placeholder="******"
             icon
             label="confirmPassword"
+            minLength={6}
             required
           />
           <CheckboxInput

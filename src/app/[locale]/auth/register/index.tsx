@@ -5,7 +5,7 @@ import Heading from "../components/Heading";
 const Register = () => {
   return (
     <>
-      <Heading title="createAnewAccount" appName />
+      <Heading title="createAnewAccount" appName extraPadding />
       <RegisterForm />
     </>
   );

@@ -42,7 +42,7 @@ const LoginForm = () => {
           />
           <Flex>
             <Button type="button" noStyle onClick={open}>
-              <P4 color={theme.colors.black[300]}>{trans("forgotPassword")}</P4>
+              <P4 color={theme.colors.black[300]}>{trans("forgotPasswordQ")}</P4>
             </Button>
           </Flex>
           <Flex direction="column" fullWidth gap="0.5rem">

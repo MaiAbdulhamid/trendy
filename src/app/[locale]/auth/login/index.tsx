@@ -5,7 +5,12 @@ import Heading from "../components/Heading";
 const Login = () => {
   return (
     <>
-      <Heading title="helloAgain" appName subTitle="welcomeLogin" />
+      <Heading
+        title="helloAgain"
+        appName
+        subTitle="welcomeLogin"
+        extraPadding
+      />
       <LoginForm />
     </>
   );

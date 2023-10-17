@@ -1,6 +1,5 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-import PhoneInput from "react-phone-input-2";
 import { Flex } from "../Grids";
 import theme from "../../utils/theme";
 import devices from "../../utils/devices";
@@ -101,58 +100,58 @@ export const StyledSelectInput = styled(Select)<Types>`
     width: 100%;
   }
 `;
-export const PhoneInputStyled = styled(PhoneInput)<Types>`
-  direction: ltr;
-  height: 100%;
-  flex: 1;
-  padding: 0;
-  text-align: start;
-  border: none;
-  outline: none;
-  font-family: inherit;
-  margin-top: -4px;
-  ${({ error }) => css`
-    color: ${error ? theme.colors.error[200] : theme.colors.black};
-  `}
-  font-size: 16px;
-  &::placeholder {
-    font-weight: normal;
-  }
-  ${devices.large} {
-    font-size: 18px;
-    padding: 0;
-  }
+// export const PhoneInputStyled = styled(PhoneInput)<Types>`
+//   direction: ltr;
+//   height: 100%;
+//   flex: 1;
+//   padding: 0;
+//   text-align: start;
+//   border: none;
+//   outline: none;
+//   font-family: inherit;
+//   margin-top: -4px;
+//   ${({ error }) => css`
+//     color: ${error ? theme.colors.error[200] : theme.colors.black};
+//   `}
+//   font-size: 16px;
+//   &::placeholder {
+//     font-weight: normal;
+//   }
+//   ${devices.large} {
+//     font-size: 18px;
+//     padding: 0;
+//   }
 
-  &.react-tel-input {
-    .form-control {
-      border: 0;
-      height: 100%;
-      width: 100%;
-      padding-bottom: 0;
-      padding-top: 0;
-      :focus,
-      :active,
-      :focus-visible {
-        border: 0;
-        box-shadow: none;
-        outline: none;
-      }
-    }
+//   &.react-tel-input {
+//     .form-control {
+//       border: 0;
+//       height: 100%;
+//       width: 100%;
+//       padding-bottom: 0;
+//       padding-top: 0;
+//       :focus,
+//       :active,
+//       :focus-visible {
+//         border: 0;
+//         box-shadow: none;
+//         outline: none;
+//       }
+//     }
 
-    .special-label {
-      display: none;
-    }
+//     .special-label {
+//       display: none;
+//     }
 
-    .search-box {
-      border: 0 !important;
-    }
+//     .search-box {
+//       border: 0 !important;
+//     }
 
-    .flag-dropdown {
-      background: none;
-      border: none;
-    }
-  }
-`;
+//     .flag-dropdown {
+//       background: none;
+//       border: none;
+//     }
+//   }
+// `;
 
 export const StyledTextArea = styled("textarea")<Types>`
   height: 100%;

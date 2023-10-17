@@ -21,7 +21,13 @@
     "welcomeLogin": "Welcome back , please enter your details",
     "forgotPasswordQ": "Forget password ?",
     "forgotPassword": "Forget password",
-    "enterEmail" : "Remember & input your Email or phone number below"
-
+    "enterEmail" : "Remember & input your Email or phone number below",
+    "resetPassword": "Reset password",
+    "codeExpire": "Code expire in :",
+    "notReceivedCode": "Didn't receive code :",
+    "resendCode": "Resend Code",
+    "verify": "Verify",
+    "verifyTitle": "Verify your Email",
+    "verifySubTitle": "We have sent the code to the Email "
   }
 }

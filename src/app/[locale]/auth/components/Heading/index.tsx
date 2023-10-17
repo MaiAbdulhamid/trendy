@@ -7,14 +7,15 @@ import theme from "../../../utils/theme";
 interface PropsTypes {
   title: string;
   subTitle?: string;
-  appName?: boolean
+  appName?: boolean;
+  extraPadding?: boolean
 }
 
-const Heading = ({title, subTitle, appName} : PropsTypes) => {
+const Heading = ({title, subTitle, appName, extraPadding} : PropsTypes) => {
   const trans = useTranslations("Auth");
 
   return (
-    <HeadingWrapper>
+    <HeadingWrapper extraPadding={extraPadding}>
       <H3 textAlign="center">{trans(title)} {appName && <span>Trendy</span>}</H3>
       {subTitle &&       
         <P4 textAlign="center" weight="400" color={theme.colors.black[300]}>

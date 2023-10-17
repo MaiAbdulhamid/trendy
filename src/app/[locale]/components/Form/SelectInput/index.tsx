@@ -39,7 +39,7 @@ function SelectInput({
           />
         </Wrapper>
       </WrapperInput>
-      <InputError error={name} />
+      <InputError error={error} />
     </Flex>
   );
 }

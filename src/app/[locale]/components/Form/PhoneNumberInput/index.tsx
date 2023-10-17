@@ -1,6 +1,5 @@
 "use client";
 import {
-  PhoneInputStyled,
   StyledInput,
   Wrapper,
   WrapperInput,
@@ -11,7 +10,7 @@ import { Flex } from "../../Grids";
 import { useTranslations } from "next-intl";
 import { EmailIcon, FlagIcon, LineIcon } from "../../../assets/svgs";
 import { InputPropsType } from "../types";
-import { numberRule, requiredRule, useFormControl } from "@mongez/react-form";
+import { minRule, numberRule, requiredRule, useFormControl } from "@mongez/react-form";
 
 function PhoneNumberInput({
   placeholder,
@@ -38,7 +37,7 @@ function PhoneNumberInput({
               <LineIcon />
             </Flex>
           )}
-          <PhoneInputStyled
+          <StyledInput
             placeholder={placeholder}
             value={value}
             onChange={(e: any) => {
@@ -55,5 +54,6 @@ function PhoneNumberInput({
 
 export default PhoneNumberInput;
 PhoneNumberInput.defaultProps = {
-  rules: [requiredRule, numberRule],
+  type: 'number',
+  rules: [requiredRule, numberRule, minRule],
 };
