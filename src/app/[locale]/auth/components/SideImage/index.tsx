@@ -1,5 +1,5 @@
 import React from "react";
-import authSideImg from "../../assets/images/auth-img.png";
+import authSideImg from "../../../assets/images/auth-img.png";
 import classes from "./SideImage.module.css";
 import Image from "next/image";
 

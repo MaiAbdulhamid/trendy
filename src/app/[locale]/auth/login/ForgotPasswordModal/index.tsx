@@ -1,10 +1,8 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Modal from "../../../components/Modal";
 import { useTranslations } from "next-intl";
 import { ModalWrapper } from "../style";
-import { H3, P4 } from "../../../components/Typography";
-import theme from "../../../utils/theme";
 import EmailInput from "../../../components/Form/EmailInput";
 import { Flex } from "../../../components/Grids";
 import SubmitButton from "../../../components/Form/SubmitButton";
@@ -12,11 +10,8 @@ import { Form } from "@mongez/react-form";
 import Heading from "../../components/Heading";
 import VerificationModal from "./VerificationModal";
 import { useDisclosure } from "@mantine/hooks";
+import { ModalProps } from "./types";
 
-interface ModalProps {
-  opened: boolean;
-  close: any;
-}
 const ForgotPasswordModal = ({ opened, close }: ModalProps) => {
   const [openedVerify, { open: openVerify, close: closeVerify }] = useDisclosure(false);
 

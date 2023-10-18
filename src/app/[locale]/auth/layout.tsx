@@ -1,5 +1,6 @@
 import "@mantine/core/styles.css";
 import "@mantine/dates/styles.css";
+import '@mantine/notifications/styles.css';
 
 import type { Metadata } from "next";
 import localFont from "next/font/local";
@@ -8,6 +9,7 @@ import {
   ColorSchemeScript,
   DirectionProvider,
 } from "@mantine/core";
+import { Notifications } from '@mantine/notifications';
 import { Container } from "@mantine/core";
 import { Grid } from "@mantine/core";
 import SideImage from "./components/SideImage";
@@ -61,7 +63,7 @@ export default async function RootLayout({
         <body className={universeFont.className}>
           <NextIntlClientProvider locale={locale} messages={messages}>
             <MantineProvider>
-              {/* <ModalsProvider> */}
+              <Notifications position="top-left" autoClose={1500}/>
               <RootStyleRegistry>
               <main>
                 <Container fluid>
@@ -74,7 +76,6 @@ export default async function RootLayout({
                 </Container>
               </main>
               </RootStyleRegistry>
-              {/* </ModalsProvider> */}
             </MantineProvider>
           </NextIntlClientProvider>
         </body>

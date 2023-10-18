@@ -25,7 +25,6 @@ function DateInput({ placeholder, label, icon, id, ...props }: InputPropsType) {
               placeholder={placeholder}
               dateFormat="yyyy-MM-dd"
               wrapperClassName="datePicker"
-              value={value}
               onChange={(e: any) => {
                 changeValue(e.target.value);
               }}

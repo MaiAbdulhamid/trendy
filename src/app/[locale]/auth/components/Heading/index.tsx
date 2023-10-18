@@ -18,7 +18,7 @@ const Heading = ({title, subTitle, appName, extraPadding} : PropsTypes) => {
     <HeadingWrapper extraPadding={extraPadding}>
       <H3 textAlign="center">{trans(title)} {appName && <span>Trendy</span>}</H3>
       {subTitle &&       
-        <P4 textAlign="center" weight="400" color={theme.colors.black[300]}>
+        <P4 textAlign="center" weight="100" color={theme.colors.black[300]}>
           {trans(subTitle)}
         </P4>
       }

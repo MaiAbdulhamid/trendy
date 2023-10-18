@@ -1,16 +1,19 @@
 "use client";
-import {
-  StyledInput,
-  Wrapper,
-  WrapperInput,
-} from "../styles";
+import { StyledInput, Wrapper, WrapperInput } from "../styles";
 import InputError from "../InputError";
 import InputLabel from "../InputLabel";
 import { Flex } from "../../Grids";
 import { useTranslations } from "next-intl";
 import { EmailIcon, FlagIcon, LineIcon } from "../../../assets/svgs";
 import { InputPropsType } from "../types";
-import { minRule, numberRule, requiredRule, useFormControl } from "@mongez/react-form";
+import {
+  maxLengthRule,
+  minLengthRule,
+  minRule,
+  numberRule,
+  requiredRule,
+  useFormControl,
+} from "@mongez/react-form";
 
 function PhoneNumberInput({
   placeholder,
@@ -25,9 +28,9 @@ function PhoneNumberInput({
 
   return (
     <Flex direction="column" gap="0" fullWidth>
-      <InputLabel htmlFor={id} required={props.required}>
-        {trans(label)}
-      </InputLabel>
+        <InputLabel htmlFor={id} required={props.required}>
+          {trans(label)}
+        </InputLabel>
       <WrapperInput>
         <Wrapper style={{ overflow: "hidden" }}>
           {icon && (
@@ -54,6 +57,6 @@ function PhoneNumberInput({
 
 export default PhoneNumberInput;
 PhoneNumberInput.defaultProps = {
-  type: 'number',
-  rules: [requiredRule, numberRule, minRule],
+  type: "number",
+  rules: [requiredRule, numberRule, minRule, maxLengthRule, minLengthRule],
 };

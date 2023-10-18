@@ -8,7 +8,7 @@ export default function InputLabel({ children, required, ...props }: any) {
   return (
     <Label {...props}>
       {typeof children === "string" ? (
-        <P4 weight="400" color={theme.colors.black[300]} text={children} />
+        <P4 weight="400" color={theme.colors.black[300]}>{children}</P4>
       ) : (
         children
       )}

@@ -3,6 +3,8 @@ import React, { useEffect, useState, useRef } from "react";
 import { useTranslations } from "next-intl";
 import { Flex } from "../../../components/Grids";
 import SubmitButton from "../../../components/Form/SubmitButton";
+import PhoneNumberInput from "@/app/[locale]/components/Form/PhoneNumberInput";
+import { useFormControl } from "@mongez/react-form";
 
 interface ModalProps {
   callback?: any;
@@ -30,9 +32,9 @@ const VerificationInputs = ({ callback, reset, isLoading }: ModalProps) => {
     setCode("");
   };
 
-  // Call our callback when code = 6 chars
+  // Call our callback when code = 4 chars
   useEffect(() => {
-    if (code.length === 6) {
+    if (code.length === 4) {
       if (typeof callback === "function") callback(code);
       resetCode();
     }
@@ -107,14 +109,11 @@ const VerificationInputs = ({ callback, reset, isLoading }: ModalProps) => {
     }
   };
 
-  const onSubmit = ({ form, values }: any) => {
-    console.log(values);
-    console.log(form.isSubmitting);
-  };
   return (
     <Flex gap="1rem" justify="center" fullWidth>
       {[0, 1, 2, 3].map((index) => (
         <input
+          name="code"
           className="code-input"
           key={index}
           type="text"
@@ -123,7 +122,7 @@ const VerificationInputs = ({ callback, reset, isLoading }: ModalProps) => {
           ref={inputRefs[index]}
           autoFocus={index === 0}
           onFocus={handleFocus}
-          onKeyDown={(e) => handleKeyDown(e, index)}
+          onKeyDown={(e: any) => handleKeyDown(e, index)}
           onPaste={handlePaste}
           disabled={isLoading}
         />
