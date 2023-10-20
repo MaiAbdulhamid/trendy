@@ -13,21 +13,50 @@ import ResendCode from "./ResendCode";
 import { useDisclosure } from "@mantine/hooks";
 import { ModalProps } from "./types";
 import NewPasswordModal from "./NewPasswordModal";
+import { useSelector } from "react-redux";
+import { ThunkDispatch } from "@reduxjs/toolkit";
+import { useDispatch } from "react-redux";
+import { showNotification } from "../../../components/Notifications/showNotification";
+import { authActions } from "@/app/store";
 
 const VerificationModal = ({ opened, close }: ModalProps) => {
-  const trans = useTranslations("Auth");
+  const enteredEmail = useSelector((state: any) => state.forgotPassword?.email)
+  // console.log(enteredEmail)
+
   const [
     openedNewPassword,
     { open: openNewPassword, close: closeNewPassword },
   ] = useDisclosure(false);
 
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+  const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
+  const trans = useTranslations("Auth");
 
-  const onSubmit = (codeValue: any) => {
-    console.log(codeValue);
-    close();
-    openNewPassword();
-    
+  const onSubmit = async (code: any) => {
+    setIsSubmitting(true);
+  
+    const preparedFormData = {
+      code,
+      email: enteredEmail
+    }
+
+    const response: any = await dispatch(authActions.verifyEmail(preparedFormData));
+    console.log(response)
+    if (response.error) {
+      showNotification({
+        type: "danger",
+        message: response.error.message,
+      });
+      setIsSubmitting(false);
+    } else {
+      showNotification({
+        type: "success",
+        message: response.payload.message,
+      });
+      setIsSubmitting(false);
+      close();
+      openNewPassword();
+    }
   };
   return (
     <>
@@ -48,7 +77,7 @@ const VerificationModal = ({ opened, close }: ModalProps) => {
               <SubmitButton
                 fullWidth
                 variant="primary"
-                isSubmitting={isLoading}
+                isSubmitting={isSubmitting}
                 type="button"
               >
                 {trans("verify")}

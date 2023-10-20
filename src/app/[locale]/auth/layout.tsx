@@ -17,6 +17,7 @@ import Col from "../components/Grids/Grid";
 import { NextIntlClientProvider } from "next-intl";
 import { notFound } from "next/navigation";
 import RootStyleRegistry from "./RootStyleRegistry";
+import Body from "./Body";
 
 export function generateStaticParams() {
   return [{ locale: "en" }, { locale: "ar" }];
@@ -48,6 +49,7 @@ export default async function RootLayout({
   children: React.ReactNode;
   params: any;
 }) {
+
   let messages;
   try {
     messages = (await import(`../../messages/${locale}.json`)).default;
@@ -60,10 +62,10 @@ export default async function RootLayout({
         <head>
           <ColorSchemeScript defaultColorScheme="auto" />
         </head>
-        <body className={universeFont.className}>
+        <Body className={universeFont.className}>
           <NextIntlClientProvider locale={locale} messages={messages}>
             <MantineProvider>
-              <Notifications position="top-left" autoClose={1500}/>
+              <Notifications position="top-left" autoClose={5000}/>
               <RootStyleRegistry>
               <main>
                 <Container fluid>
@@ -78,7 +80,7 @@ export default async function RootLayout({
               </RootStyleRegistry>
             </MantineProvider>
           </NextIntlClientProvider>
-        </body>
+        </Body>
       </html>
     </DirectionProvider>
   );
