@@ -2,16 +2,13 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useTranslations } from "next-intl";
 import { Flex } from "../../../components/Grids";
-import SubmitButton from "../../../components/Form/SubmitButton";
-import PhoneNumberInput from "@/app/[locale]/components/Form/PhoneNumberInput";
-import { useFormControl } from "@mongez/react-form";
 
 interface ModalProps {
   callback?: any;
   reset?: any;
   isLoading?: any;
 }
-const VerificationInputs = ({ callback, reset, isLoading }: ModalProps) => {
+const VerificationInputs = ({ callback, isLoading }: ModalProps) => {
   const trans = useTranslations("Auth");
   const [code, setCode] = useState("");
 
@@ -101,7 +98,7 @@ const VerificationInputs = ({ callback, reset, isLoading }: ModalProps) => {
   // Capture pasted characters
   const handlePaste = (e: any) => {
     const pastedCode = e.clipboardData.getData("text");
-    if (pastedCode.length === 6) {
+    if (pastedCode.length === 4) {
       setCode(pastedCode);
       inputRefs.forEach((inputRef: any, index: number) => {
         inputRef.current.value = pastedCode.charAt(index);

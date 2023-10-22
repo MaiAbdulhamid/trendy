@@ -6,5 +6,5 @@ export const HeadingWrapper = styled.div<{extraPadding?: boolean}>`
   span {
     color: ${theme.colors.primaryColor};
   }
-  margin-top: ${({extraPadding}) => extraPadding ? "81px" : "57px" };
+  margin-top: ${({extraPadding}) => extraPadding ? "55px" : "57px" };
 `;

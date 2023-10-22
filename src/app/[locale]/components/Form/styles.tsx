@@ -88,7 +88,7 @@ export const StyledInput = styled(Input)<any>`
 export const DateWrapper = styled.div<Types>`
   label: date-input;
   width: 100%;
-  .mantine-DatePickerInput-input {
+  .mantine-DateInput-input {
     border: none;
   }
 `;

@@ -1,6 +1,7 @@
 import { authActions } from "..";
 import { store } from "..";
-
+import Cookies, { getCookie } from 'cookies-next';
+import cookies from "browser-cookies"
 export const fetchWrapper = {
   get: request("GET"),
   post: request("POST"),
@@ -15,7 +16,10 @@ function request(method: any) {
       headers: authHeader(url),
     };
     if (body) {
+      console.log(cookies.get('user-ip'))
       requestOptions.headers["Content-Type"] = "application/json";
+      requestOptions.headers["lang"] = "en";
+      requestOptions.headers["device_token"] = getCookie('user-ip');
       requestOptions.body = JSON.stringify(body);
     }
     return fetch(url, requestOptions).then(handleResponse);
@@ -28,7 +32,7 @@ function authHeader(url: any) {
   // return auth header with jwt if user is logged in and request is to the api url
   const token = authToken();
   const isLoggedIn = !!token;
-  const isApiUrl = url.startsWith(process.env.REACT_APP_API_URL);
+  const isApiUrl = url.startsWith(process.env.NEXT_PUBLIC_API_URL);
   if (isLoggedIn && isApiUrl) {
     return { Authorization: `Bearer ${token}` };
   } else {
@@ -37,7 +41,7 @@ function authHeader(url: any) {
 }
 
 function authToken() {
-  return store.getState().auth.user?.token;
+  return store.getState().auth?.token;
 }
 
 function handleResponse(response: any) {

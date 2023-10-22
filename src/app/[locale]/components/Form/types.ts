@@ -1,6 +1,5 @@
-import { ValidationRule } from "react-hook-form";
 import { InputProps } from "@mantine/core";
-import { useFormControl, FormControlProps } from "@mongez/react-form";
+import { FormControlProps } from "@mongez/react-form";
 
 export type InputPropsType = InputProps &
   FormControlProps & {

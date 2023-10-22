@@ -1,4 +1,5 @@
 export interface ModalProps {
   opened: boolean;
-  close: any;
+  close: () => void;
+  openPassword?: any,
 }

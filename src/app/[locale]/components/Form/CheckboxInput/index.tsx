@@ -9,6 +9,7 @@ import { requiredRule, useFormControl } from "@mongez/react-form";
 
 function CheckboxInput({
   placeholder,
+  defaultChecked,
   label,
   icon,
   id,
@@ -21,11 +22,12 @@ function CheckboxInput({
       <CheckboxWrapper>
         <Checkbox
           placeholder={placeholder}
-          defaultChecked
+          defaultChecked={defaultChecked}
           label={label}
           checked={checked}
           onChange={(e) => {
-            setChecked(e.target.checked);
+            console.log(e.currentTarget.checked)
+            setChecked(e.currentTarget.checked);
           }}
           {...otherProps}
         />
@@ -38,5 +40,6 @@ function CheckboxInput({
 export default CheckboxInput;
 CheckboxInput.defaultProps = {
   type: "checkbox",
+  defaultValue: 1,
   rules: [requiredRule],
 };

@@ -49,9 +49,9 @@ function PasswordInput({
           />
           {icon && (
             <Flex align="center" gap="5px">
-              <Button onClick={showPasswordHandler} noStyle type="button">
+              <div style={{ cursor: "pointer" }} onClick={showPasswordHandler}>
                 <EyeIcon />
-              </Button>
+              </div>
             </Flex>
           )}
         </Wrapper>

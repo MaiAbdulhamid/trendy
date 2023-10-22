@@ -15,11 +15,11 @@ import { useDispatch } from "react-redux";
 import { authActions } from "@/app/store";
 import { ThunkDispatch } from "@reduxjs/toolkit";
 import { showNotification } from "../../components/Notifications/showNotification";
-import { useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation';
 
 const LoginForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const [opened, { open, close }] = useDisclosure(false);
+  const [openedForgotPassword, { open : openForgotPassword, close : closeForgotPassword }] = useDisclosure(false);
   const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
   const router = useRouter()
   const trans = useTranslations("Auth");
@@ -66,7 +66,7 @@ const LoginForm = () => {
           />
           <HiddenInput name="type" value={1} />
           <Flex>
-            <Button type="button" noStyle onClick={open}>
+            <Button type="button" noStyle onClick={openForgotPassword}>
               <P4 color={theme.colors.black[300]}>{trans("forgotPasswordQ")}</P4>
             </Button>
           </Flex>
@@ -83,7 +83,7 @@ const LoginForm = () => {
           </Flex>
         </Flex>
       </Form>
-      <ForgotPasswordModal opened={opened} close={close} />
+      <ForgotPasswordModal opened={openedForgotPassword} close={closeForgotPassword} />
     </>
   );
 };

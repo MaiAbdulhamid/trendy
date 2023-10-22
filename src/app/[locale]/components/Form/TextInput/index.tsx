@@ -16,6 +16,7 @@ import {
   useFormControl,
 } from "@mongez/react-form";
 import { requiredRule } from "@mongez/react-form";
+import { UserIcon } from "../../../assets/svgs";
 
 function TextInput({
   placeholder,
@@ -37,6 +38,7 @@ function TextInput({
       </InputLabel>
       <WrapperInput>
         <Wrapper>
+          {icon && <UserIcon />}
           <StyledInput
             placeholder={trans(placeholder)}
             value={value}

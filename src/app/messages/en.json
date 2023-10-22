@@ -31,6 +31,8 @@
     "verifySubTitle": "We have sent the code to the Email ",
     "newPassword": "New Password",
     "newPasswordSubTitle": "Reset your passwords to recovery & login to your account",
-    "enterNewPassword": "Enter your new Password"
+    "enterNewPassword": "Enter your new Password",
+    "activatedSuccessfully": "Account has been Activated Successfully",
+    "codePassed": "Code Passed Successfully"
   }
 }

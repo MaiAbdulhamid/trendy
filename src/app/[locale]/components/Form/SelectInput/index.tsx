@@ -32,9 +32,7 @@ function SelectInput({
             defaultValue={defaultValue}
             clearable={clearable}
             value={value}
-            onChange={(e: any) => {
-              changeValue(e.target.value);
-            }}
+            onChange={changeValue}
             {...props}
           />
         </Wrapper>

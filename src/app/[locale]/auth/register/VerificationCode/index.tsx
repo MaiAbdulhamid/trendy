@@ -1,28 +1,23 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Modal from "../../../components/Modal";
 import { useTranslations } from "next-intl";
-import { ModalWrapper } from "../style";
+import { ModalWrapper } from "../../login/style";
 import { Flex } from "../../../components/Grids";
 import SubmitButton from "../../../components/Form/SubmitButton";
-import { Form } from "@mongez/react-form";
 import Heading from "../../components/Heading";
 import VerificationInputs from "./VerificationInputs";
 import CodeExpired from "./CodeExpired";
 import ResendCode from "./ResendCode";
 import { useDisclosure } from "@mantine/hooks";
 import { ModalProps } from "./types";
-import NewPasswordModal from "./NewPasswordModal";
-import { useSelector } from "react-redux";
 import { ThunkDispatch } from "@reduxjs/toolkit";
 import { useDispatch } from "react-redux";
 import { showNotification } from "../../../components/Notifications/showNotification";
 import { authActions } from "@/app/store";
+import { useRouter } from 'next/navigation'
 
 const VerificationModal = ({ opened, close }: ModalProps) => {
-  const enteredEmail = useSelector((state: any) => state.forgotPassword?.email)
-  // console.log(enteredEmail)
-
   const [
     openedNewPassword,
     { open: openNewPassword, close: closeNewPassword },
@@ -31,17 +26,18 @@ const VerificationModal = ({ opened, close }: ModalProps) => {
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
   const trans = useTranslations("Auth");
+  const router = useRouter()
 
   const onSubmit = async (code: any) => {
     setIsSubmitting(true);
-  
+
     const preparedFormData = {
       code,
-      email: enteredEmail
-    }
+    };
 
-    const response: any = await dispatch(authActions.verifyEmail(preparedFormData));
-    console.log(response)
+    const response: any = await dispatch(
+      authActions.verifyEmail(preparedFormData)
+    );
     if (response.error) {
       showNotification({
         type: "danger",
@@ -51,13 +47,16 @@ const VerificationModal = ({ opened, close }: ModalProps) => {
     } else {
       showNotification({
         type: "success",
-        message: response.payload.message,
+        message: response.message || trans("activatedSuccessfully"),
       });
       setIsSubmitting(false);
       close();
-      openNewPassword();
+      setTimeout(() => {
+        router.push(`/`)
+      }, 2000)
     }
   };
+
   return (
     <>
       <Modal
@@ -69,7 +68,7 @@ const VerificationModal = ({ opened, close }: ModalProps) => {
       >
         <ModalWrapper>
           <Heading title="verifyTitle" subTitle="verifySubTitle" />
-          <form method="post">
+          <form method="post" onSubmit={onSubmit}>
             <Flex direction="column" gap="0.5rem" fullWidth>
               <VerificationInputs callback={onSubmit} />
               <CodeExpired />
@@ -86,7 +85,6 @@ const VerificationModal = ({ opened, close }: ModalProps) => {
           </form>
         </ModalWrapper>
       </Modal>
-      <NewPasswordModal opened={openedNewPassword} close={closeNewPassword} />
     </>
   );
 };
