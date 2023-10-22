@@ -28,7 +28,7 @@ function DateInput({ placeholder, label, icon, id, ...props }: any) {
           <DateWrapper>
             <DatePickerInput
               placeholder={placeholder}
-              // wrapperClassName="datePicker"
+              wrapperClassName="datePicker"
               onChange={changeValue}
               {...props}
             />
