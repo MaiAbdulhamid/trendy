@@ -1,13 +1,5 @@
 import createMiddleware from "next-intl/middleware";
-import { NextRequest, NextResponse } from 'next/server';
 
-// export async function middleware(req: NextRequest) {
-//   const { ip, nextUrl } = req;
-
-//   nextUrl.searchParams.set('clientIp', `${ip}`);
-
-//   return NextResponse.rewrite(nextUrl);
-// }
 export default createMiddleware({
   // A list of all locales that are supported
   locales: ["en", "ar"],
