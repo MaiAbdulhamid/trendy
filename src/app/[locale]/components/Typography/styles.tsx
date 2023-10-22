@@ -9,8 +9,6 @@ import {
   manageFontSize,
 } from "./mixins";
 import { StyledTextType } from "./types";
-import theme from "../../utils/theme";
-import { isRtl } from "../../utils/general";
 
 export const Text = styled("span", {
   shouldForwardProp: (prop) =>
