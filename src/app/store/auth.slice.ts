@@ -2,6 +2,8 @@
 import { createAsyncThunk, createSlice, current } from "@reduxjs/toolkit";
 
 import { history, fetchWrapper } from "./helpers";
+import { setCookie } from "cookies-next";
+import axiosInstance from "../[locale]/lib/axios";
 
 // create slice
 
@@ -30,6 +32,7 @@ function createInitialState() {
     // user: JSON.parse(localStorage.getItem("user") as any),
     token: "",
     error: null,
+    canResendCode: false,
     forgotPassword: {
       email: "",
       code: "",
@@ -45,19 +48,22 @@ function createReducers() {
     localStorage.removeItem("token");
     history.navigate("/login");
   }
+  function canResendCode(state: any, action: any){
+    state.canResendCode = action.payload
+  }
   return {
     logout,
+    canResendCode
   };
 }
 
 function createExtraActions() {
-  const baseUrl = process.env.NEXT_PUBLIC_API_URL;
 
   function signup() {
     return createAsyncThunk(
       `${name}/signup`,
       async (keys: any) =>
-        await fetchWrapper.post(`${baseUrl}register`, {
+        await fetchWrapper.post(`register`, {
           ...keys,
         })
     );
@@ -66,12 +72,14 @@ function createExtraActions() {
   function login() {
     return createAsyncThunk(
       `${name}/login`,
-      async ({ key, password, type }: any) =>
-        await fetchWrapper.post(`${baseUrl}login`, {
+      async ({ key, password, type }: any) => {
+        await fetchWrapper.post(`login`, {
           key,
           password,
           type,
-        })
+        });
+      },
+
     );
   }
 
@@ -79,7 +87,7 @@ function createExtraActions() {
     return createAsyncThunk(
       `${name}/forget-password`,
       async ({ email }: any) =>
-        await fetchWrapper.post(`${baseUrl}check-email`, {
+        await fetchWrapper.post(`check-email`, {
           email,
         })
     );
@@ -91,7 +99,7 @@ function createExtraActions() {
       async ({ code }: any) => {
         const email = JSON.parse(localStorage.getItem("email") as any);
 
-        await fetchWrapper.post(`${baseUrl}activate-account`, {
+        await fetchWrapper.post(`activate-account`, {
           email,
           code
         })
@@ -105,19 +113,21 @@ function createExtraActions() {
       async ({ new_password }: any) => {
         const email = JSON.parse(localStorage.getItem("email") as any);
 
-        await fetchWrapper.post(`${baseUrl}change-forget-password`, {
+        await fetchWrapper.post(`change-forget-password`, {
           email,
           new_password
         })
       }
     );
   }
+
+
   return {
     signup: signup(),
     login: login(),
     forgotPassword: forgotPassword(),
     verifyEmail: verifyEmail(),
-    newPassword: newPassword()
+    newPassword: newPassword(),
   };
 }
 
@@ -129,12 +139,12 @@ function createExtraReducers() {
         state.error = null;
       },
       [fulfilled]: (state: any, action: any) => {
-        const user = action.payload.data;
-        const token = action.payload.data.jwt_token;
+        const user = action.payload?.data;
+        const token = action.payload?.data.jwt_token;
 
         // store user details and jwt token in local storage to keep user logged in between page refreshes
         localStorage.setItem("email", JSON.stringify(user.email));
-        localStorage.setItem("token", JSON.stringify(token));
+        setCookie("token", JSON.stringify(token));
         localStorage.setItem("user", JSON.stringify(user));
 
         state.user = user;
@@ -152,12 +162,14 @@ function createExtraReducers() {
         state.error = null;
       },
       [fulfilled]: (state: any, action: any) => {
-        const user = action.payload.data;
-        const token = action.payload.data.jwt_token;
+        console.log(action)
+        const user = action.payload?.data;
+        const token = action.payload?.data?.jwt_token;
 
         // store user details and jwt token in local storage to keep user logged in between page refreshes
         localStorage.setItem("user", JSON.stringify(user));
-        localStorage.setItem("token", JSON.stringify(token));
+        localStorage.setItem("email", JSON.stringify(user?.email));
+        setCookie("token", JSON.stringify(token));
 
         state.user = user;
       },
@@ -190,6 +202,7 @@ function createExtraReducers() {
       },
       [fulfilled]: (state: any, action: any) => {
         state.forgotPassword.code = action.code;
+
       },
       [rejected]: (state: any, action: any) => {
         state.forgotPassword.error = action.error;

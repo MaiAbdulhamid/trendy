@@ -56,6 +56,7 @@ export default async function RootLayout({
   } catch (error) {
     notFound();
   }
+  
   return (
     <DirectionProvider detectDirection>
       <html lang={locale} dir={locale === "en" ? "ltr" : "rtl" }>
@@ -64,7 +65,7 @@ export default async function RootLayout({
         </head>
         <Body className={universeFont.className}>
           <NextIntlClientProvider locale={locale} messages={messages}>
-            <MantineProvider>
+            <MantineProvider theme={{ colorScheme: 'white' } as any}>
               <Notifications position="top-left" autoClose={5000}/>
               <RootStyleRegistry>
               <main>

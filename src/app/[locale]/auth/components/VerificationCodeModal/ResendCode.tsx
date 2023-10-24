@@ -1,38 +1,38 @@
 import Button from "../../../components/Button/Button";
 import { useTranslations } from "next-intl";
-import React, { useState } from "react";
+import React from "react";
 import theme from "../../../utils/theme";
 import { Flex } from "../../../components/Grids";
 import { P4 } from "../../../components/Typography";
 import { authActions } from "@/app/store";
-import { useDispatch } from "react-redux";
-import { ThunkDispatch } from "@reduxjs/toolkit";
-import { showNotification } from "../../../components/Notifications/showNotification";
-import Loader from "../../../components/Loader";
+import { useDispatch, useSelector } from "react-redux";
+import { getCookie } from "cookies-next";
+import axiosInstance from "@/app/[locale]/lib/axios";
+import { showNotification } from "@/app/[locale]/components/Notifications/showNotification";
 
-const ResendCode = () => {
-  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
-  const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
-  const email = JSON.parse(localStorage.getItem("email") as any);
+const ResendCode = ({ canResend, setCanResend }: any) => {
+  const email = getCookie("email");
   const trans = useTranslations("Auth");
+  const canResendCode = useSelector((state: any) => state.auth.canResendCode)
+  const dispatch = useDispatch();
 
   const resendCodeHandler = async () => {
-    const response: any = await dispatch(authActions.forgotPassword({ email }));
-    if (response.error) {
-      showNotification({
-        type: "danger",
-        message: response.error.message,
-      });
-      setIsSubmitting(false);
-    } else {
+    try{
+      const response: any = await axiosInstance.post("check-email", { email });
       showNotification({
         type: "success",
-        message: response.payload.message,
+        message: response.data.message,
       });
-      setIsSubmitting(false);
+    }catch(error: any){
+      if(error.response){
+        showNotification({
+          type: "danger",
+          message: error.response.data.message,
+        });
+      }
     }
+    (dispatch(authActions.canResendCode({payload: false} as any)));
   };
-  if (isSubmitting) return <Loader />;
   return (
     <Flex gap="0.5rem" justify="center" fullWidth align="center">
       <P4 textAlign="center" weight="100">
@@ -40,6 +40,7 @@ const ResendCode = () => {
       </P4>
       <P4>
         <Button
+          disabled={canResendCode}
           noStyle
           color={theme.colors.primaryColor}
           type="button"

@@ -10,7 +10,7 @@ export default function RootStyleRegistry({
   children: JSX.Element;
 }) {
   const [cache] = useState(() => {
-    const cache = createCache({ key: "css" });
+    const cache = createCache({ key: "css", prepend: false });
     cache.compat = true;
     return cache;
   });

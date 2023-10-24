@@ -1,7 +1,7 @@
 import { authActions } from "..";
 import { store } from "..";
-import Cookies, { getCookie } from 'cookies-next';
-import cookies from "browser-cookies"
+import { getCookie } from "cookies-next";
+
 export const fetchWrapper = {
   get: request("GET"),
   post: request("POST"),
@@ -10,19 +10,19 @@ export const fetchWrapper = {
 };
 
 function request(method: any) {
+  const baseUrl = process.env.NEXT_PUBLIC_API_URL;
+
   return (url: any, body: any) => {
-    const requestOptions : any = {
+    const fullUrl = `${baseUrl + url}`
+    const requestOptions: any = {
       method,
-      headers: authHeader(url),
+      headers: authHeader(fullUrl),
     };
     if (body) {
-      console.log(cookies.get('user-ip'))
       requestOptions.headers["Content-Type"] = "application/json";
-      requestOptions.headers["lang"] = "en";
-      requestOptions.headers["device_token"] = getCookie('user-ip');
       requestOptions.body = JSON.stringify(body);
     }
-    return fetch(url, requestOptions).then(handleResponse);
+    return fetch(fullUrl, requestOptions).then(handleResponse);
   };
 }
 
@@ -34,9 +34,16 @@ function authHeader(url: any) {
   const isLoggedIn = !!token;
   const isApiUrl = url.startsWith(process.env.NEXT_PUBLIC_API_URL);
   if (isLoggedIn && isApiUrl) {
-    return { Authorization: `Bearer ${token}` };
+    return {
+      Authorization: `Bearer ${token}`,
+      lang: "en",
+      device_token: getCookie("user-ip"),
+    };
   } else {
-    return {};
+    return {
+      lang: "en",
+      device_token: getCookie("user-ip"),
+    };
   }
 }
 

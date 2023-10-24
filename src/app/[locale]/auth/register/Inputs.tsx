@@ -46,7 +46,7 @@ const Inputs = ({openTerms, isSubmitting}: Props) => {
         required
         min={0}
       />
-      <HiddenInput name="country_id" value={2} />
+      <HiddenInput name="country_id" value={3} />
       <SelectInput
         name="gender"
         label="gender"

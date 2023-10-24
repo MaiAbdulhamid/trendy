@@ -23,7 +23,7 @@ export const WrapperInput = styled(Flex)`
 export const Wrapper = styled(Flex)`
   label: input-wrapper;
   position: relative;
-  height: ${({ height }) => height || "65px"};
+  height: ${({ height }) => height || "45px"};
   width: 100%;
   border: 1px solid #34343433;
   border-radius: 10px;

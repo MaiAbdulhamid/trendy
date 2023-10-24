@@ -1,59 +1,58 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Modal from "../../../components/Modal";
 import { useTranslations } from "next-intl";
 import { ModalWrapper } from "../../login/style";
 import { Flex } from "../../../components/Grids";
 import SubmitButton from "../../../components/Form/SubmitButton";
-import Heading from "../../components/Heading";
 import VerificationInputs from "./VerificationInputs";
 import CodeExpired from "./CodeExpired";
 import ResendCode from "./ResendCode";
 import { useDisclosure } from "@mantine/hooks";
-import { ModalProps } from "./types";
-import { ThunkDispatch } from "@reduxjs/toolkit";
-import { useDispatch } from "react-redux";
+import NewPasswordModal from "../../login/NewPasswordModal";
 import { showNotification } from "../../../components/Notifications/showNotification";
+import Heading from "../Heading";
+import axiosInstance from "@/app/[locale]/lib/axios";
+import { getCookie, setCookie } from "cookies-next";
+import { useDispatch, useSelector } from "react-redux";
 import { authActions } from "@/app/store";
-import { useRouter } from 'next/navigation'
 
-const VerificationModal = ({ opened, close }: ModalProps) => {
+const VerificationModal = ({ opened, close, verify }: any) => {
   const [
     openedNewPassword,
     { open: openNewPassword, close: closeNewPassword },
   ] = useDisclosure(false);
 
+  const canResendCode = useSelector((state: any) => state.auth.canResendCode);
+  const dispatch = useDispatch();
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
-  const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
   const trans = useTranslations("Auth");
-  const router = useRouter()
 
   const onSubmit = async (code: any) => {
     setIsSubmitting(true);
-
-    const preparedFormData = {
-      code,
-    };
-
-    const response: any = await dispatch(
-      authActions.verifyEmail(preparedFormData)
-    );
-    if (response.error) {
-      showNotification({
-        type: "danger",
-        message: response.error.message,
+    try {
+      const response: any = await axiosInstance.post("activate-account", {
+        code,
+        email: getCookie("email"),
       });
-      setIsSubmitting(false);
-    } else {
+      setCookie("token", response.data.data.jwt_token);
       showNotification({
         type: "success",
-        message: response.message || trans("activatedSuccessfully"),
+        message: response.data.message,
       });
-      setIsSubmitting(false);
       close();
-      setTimeout(() => {
-        router.push(`/`)
-      }, 2000)
+      if (!verify) {
+        openNewPassword();
+      }
+    } catch (error: any) {
+      if (error.response) {
+        showNotification({
+          type: "danger",
+          message: error.response.data.message,
+        });
+      }
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -71,7 +70,7 @@ const VerificationModal = ({ opened, close }: ModalProps) => {
           <form method="post" onSubmit={onSubmit}>
             <Flex direction="column" gap="0.5rem" fullWidth>
               <VerificationInputs callback={onSubmit} />
-              <CodeExpired />
+              {canResendCode && <CodeExpired />}
               <ResendCode />
               <SubmitButton
                 fullWidth
@@ -85,6 +84,7 @@ const VerificationModal = ({ opened, close }: ModalProps) => {
           </form>
         </ModalWrapper>
       </Modal>
+      <NewPasswordModal opened={openedNewPassword} close={closeNewPassword} />
     </>
   );
 };

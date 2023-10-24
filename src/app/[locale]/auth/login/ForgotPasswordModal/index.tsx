@@ -8,38 +8,40 @@ import { Flex } from "../../../components/Grids";
 import SubmitButton from "../../../components/Form/SubmitButton";
 import { Form } from "@mongez/react-form";
 import Heading from "../../components/Heading";
-import VerificationModal from "../VerificationCodeModal";
+import VerificationModal from "../../components/VerificationCodeModal";
 import { useDisclosure } from "@mantine/hooks";
-import { ThunkDispatch } from "@reduxjs/toolkit";
-import { useDispatch } from "react-redux";
 import { showNotification } from "../../../components/Notifications/showNotification";
-import { authActions } from "@/app/store";
+import axiosInstance from "@/app/[locale]/lib/axios";
+import { setCookie } from "cookies-next";
 
 const ForgotPasswordModal = ({ opened, close }: any) => {
   const [openedVerify, { open: openVerify, close: closeVerify }] =
     useDisclosure(false);
 
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
-  const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
   const trans = useTranslations("Auth");
 
   const onSubmit = async ({ form, values }: any) => {
-    setIsSubmitting(form.isSubmitting());
-    const response: any = await dispatch(authActions.forgotPassword(values));
-    if (response.error) {
-      showNotification({
-        type: "danger",
-        message: response.error.message,
-      });
-      setIsSubmitting(false);
-    } else {
+    setIsSubmitting(true);
+    try {
+      const response: any = await axiosInstance.post("check-email", values);
+      console.log(response)
+      setCookie("email", values.email);
       showNotification({
         type: "success",
-        message: response.payload.message,
+        message: response.data.message,
       });
-      setIsSubmitting(false);
-      close()
+      close();
       openVerify();
+    } catch (error: any) {
+      if (error.response) {
+        showNotification({
+          type: "danger",
+          message: error.response.data.message,
+        });
+      }
+    } finally {
+      setIsSubmitting(false);
     }
   };
   return (

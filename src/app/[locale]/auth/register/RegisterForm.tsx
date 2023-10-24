@@ -8,8 +8,10 @@ import { ThunkDispatch } from "@reduxjs/toolkit";
 import { showNotification } from "../../components/Notifications/showNotification";
 import { useRouter } from "next/navigation";
 import moment from "moment";
-import VerificationModal from "./VerificationCode";
 import Inputs from "./Inputs";
+import VerificationModal from "../components/VerificationCodeModal";
+import axiosInstance from "../../lib/axios";
+import { setCookie } from "cookies-next";
 
 const RegisterForm = () => {
   const [openedTerms, { open: openTerms, close: closeTerms }] = useDisclosure(false);
@@ -26,20 +28,24 @@ const RegisterForm = () => {
       gender: +values.gender,
       dob: moment(values.dob).format('YYYY-MM-DD')
     }
-    const response: any = await dispatch(authActions.signup(formattedFormData));
-    if (response.error) {
-      showNotification({
-        type: "danger",
-        message: response.error.message,
-      });
-      setIsSubmitting(false);
-    } else {
+    try {
+      const response: any = await axiosInstance.post("register", formattedFormData);
       showNotification({
         type: "success",
-        message: response.payload.message,
+        message: response.data.message,
       });
-      setIsSubmitting(false);
+      setCookie('email', values.email)
       openVerify();
+
+    } catch (error: any) {
+      if (error.response) {
+        showNotification({
+          type: "danger",
+          message: error.response.data.message,
+        });
+      }
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -49,7 +55,7 @@ const RegisterForm = () => {
         <Inputs openTerms={openTerms} isSubmitting={isSubmitting} />
       </Form>
       <TermsAndConditionsModal opened={openedTerms} close={closeTerms} />
-      <VerificationModal opened={openedVerify} close={closeVerify} />
+      <VerificationModal opened={openedVerify} close={closeVerify} verify />
     </>
   );
 };

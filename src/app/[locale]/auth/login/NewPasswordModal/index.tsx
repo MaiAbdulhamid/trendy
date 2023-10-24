@@ -11,27 +11,36 @@ import { showNotification } from "../../../components/Notifications/showNotifica
 import { ThunkDispatch } from "@reduxjs/toolkit";
 import { useDispatch } from "react-redux";
 import { authActions } from "@/app/store";
+import axiosInstance from "@/app/[locale]/lib/axios";
+import { getCookie } from "cookies-next";
 
 const NewPasswordModal = ({ opened, close }: any) => {
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
   const trans = useTranslations("Auth");
+
   const onSubmit = async ({ form, values }: any) => {
     setIsSubmitting(true);
-    const response: any = await dispatch(authActions.newPassword(values));
-    if (response.error) {
-      showNotification({
-        type: "danger",
-        message: response.error.message,
-      });
-      setIsSubmitting(false);
-    } else {
+    const formattedData = {
+      ...values,
+      email: getCookie('email')
+    }
+    try {
+      const response: any = await axiosInstance.post("change-forget-password", formattedData);
       showNotification({
         type: "success",
-        message: response.message || trans("codePassed"),
+        message: response.data.message,
       });
-      setIsSubmitting(false);
       close();
+    } catch (error: any) {
+      if (error.response) {
+        showNotification({
+          type: "danger",
+          message: error.response.data.message,
+        });
+      }
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -47,7 +56,7 @@ const NewPasswordModal = ({ opened, close }: any) => {
         <ModalWrapper>
           <Flex gap="1rem" direction="column">
             <Heading title="newPassword" subTitle="newPasswordSubTitle" />
-            <Form onSubmit={onSubmit} method="post">
+            <Form onSubmit={onSubmit}>
               <Flex direction="column" gap="1rem" fullWidth>
                 <PasswordInput
                   name="new_password"
@@ -70,6 +79,7 @@ const NewPasswordModal = ({ opened, close }: any) => {
                   isSubmitting={isSubmitting}
                   fullWidth
                   variant="primary"
+                  type="submit"
                 >
                   {trans("login")}
                 </SubmitButton>

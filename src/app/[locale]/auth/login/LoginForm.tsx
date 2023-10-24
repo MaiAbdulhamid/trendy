@@ -11,38 +11,46 @@ import theme from "../../utils/theme";
 import { useDisclosure } from "@mantine/hooks";
 import { Form, HiddenInput } from "@mongez/react-form";
 import ForgotPasswordModal from "./ForgotPasswordModal";
-import { useDispatch } from "react-redux";
-import { authActions } from "@/app/store";
-import { ThunkDispatch } from "@reduxjs/toolkit";
 import { showNotification } from "../../components/Notifications/showNotification";
-import { useRouter } from 'next/navigation';
+import { useRouter } from "next/navigation";
+import VerificationModal from "../components/VerificationCodeModal";
+import axiosInstance from "../../lib/axios";
+import { setCookie } from "cookies-next";
 
 const LoginForm = () => {
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [openedForgotPassword, { open : openForgotPassword, close : closeForgotPassword }] = useDisclosure(false);
-  const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
-  const router = useRouter()
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [
+    openedForgotPassword,
+    { open: openForgotPassword, close: closeForgotPassword },
+  ] = useDisclosure(false);
+  const [openedVerify, { open: openVerify, close: closeVerify }] =
+    useDisclosure(false);
+  const router = useRouter();
   const trans = useTranslations("Auth");
 
   const onSubmit = async ({ form, values }: any) => {
     setIsSubmitting(form.isSubmitting());
-    const response: any = await dispatch(authActions.login(values));
-    if(response.error){
-      showNotification({
-        type: "danger",
-        message: response.error.message,
-      });
-      setIsSubmitting(false);
-    }else{
+
+    try {
+      const response: any = await axiosInstance.post("login", { ...values });
       showNotification({
         type: "success",
-        message: response.payload.message,
+        message: response.data.message,
       });
+      router.push("/")
+    } catch (error: any) {
+      setCookie("email", error.response.data?.data?.email);
+      if (error.response) {
+        showNotification({
+          type: "danger",
+          message: error.response.data.message,
+        });
+      }
+      if (error.response.data.status === 406) {
+        openVerify();
+      }
+    } finally {
       setIsSubmitting(false);
-
-      setTimeout(() => {
-        router.push('/')
-      }, 2000)
     }
   };
 
@@ -67,11 +75,17 @@ const LoginForm = () => {
           <HiddenInput name="type" value={1} />
           <Flex>
             <Button type="button" noStyle onClick={openForgotPassword}>
-              <P4 color={theme.colors.black[300]}>{trans("forgotPasswordQ")}</P4>
+              <P4 color={theme.colors.black[300]}>
+                {trans("forgotPasswordQ")}
+              </P4>
             </Button>
           </Flex>
           <Flex direction="column" fullWidth gap="0.5rem">
-            <SubmitButton isSubmitting={isSubmitting} fullWidth variant="primary">
+            <SubmitButton
+              isSubmitting={isSubmitting}
+              fullWidth
+              variant="primary"
+            >
               {trans("login")}
             </SubmitButton>
             <P4 textAlign="center" color={theme.colors.black[300]}>
@@ -83,7 +97,11 @@ const LoginForm = () => {
           </Flex>
         </Flex>
       </Form>
-      <ForgotPasswordModal opened={openedForgotPassword} close={closeForgotPassword} />
+      <ForgotPasswordModal
+        opened={openedForgotPassword}
+        close={closeForgotPassword}
+      />
+      <VerificationModal opened={openedVerify} close={closeVerify} verify />
     </>
   );
 };

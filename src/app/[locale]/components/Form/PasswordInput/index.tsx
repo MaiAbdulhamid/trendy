@@ -5,8 +5,7 @@ import InputLabel from "../InputLabel";
 import { Flex } from "../../Grids";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
-import { EyeIcon } from "../../../assets/svgs";
-import Button from "../../Button/Button";
+import { EyeIcon, EyeOffIcon } from "../../../assets/svgs";
 import { InputPropsType } from "../types";
 import {
   matchRule,
@@ -48,10 +47,13 @@ function PasswordInput({
             {...props}
           />
           {icon && (
-            <Flex align="center" gap="5px">
-              <div style={{ cursor: "pointer" }} onClick={showPasswordHandler}>
-                <EyeIcon />
-              </div>
+            <Flex
+              align="center"
+              gap="5px"
+              style={{ cursor: "pointer" }}
+              onClick={showPasswordHandler}
+            >
+              {showPassword ? <EyeOffIcon /> : <EyeIcon />}
             </Flex>
           )}
         </Wrapper>
@@ -63,5 +65,6 @@ function PasswordInput({
 
 export default PasswordInput;
 PasswordInput.defaultProps = {
+  type: "password",
   rules: [requiredRule, matchRule, minLengthRule, minRule],
 };
