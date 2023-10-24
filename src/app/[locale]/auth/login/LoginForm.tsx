@@ -16,17 +16,25 @@ import { useRouter } from "next/navigation";
 import VerificationModal from "../components/VerificationCodeModal";
 import axiosInstance from "../../lib/axios";
 import { setCookie } from "cookies-next";
+import Loader from "../../components/Loader";
 
 const LoginForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isPageLoading, setIsPageLoading] = useState(true);
+
   const [
     openedForgotPassword,
     { open: openForgotPassword, close: closeForgotPassword },
   ] = useDisclosure(false);
   const [openedVerify, { open: openVerify, close: closeVerify }] =
     useDisclosure(false);
+
   const router = useRouter();
   const trans = useTranslations("Auth");
+
+  useEffect(() => {
+    setIsPageLoading(false)
+  }, [isPageLoading]);
 
   const onSubmit = async ({ form, values }: any) => {
     setIsSubmitting(form.isSubmitting());
@@ -54,6 +62,8 @@ const LoginForm = () => {
     }
   };
 
+  if(isPageLoading) return <Loader />;
+  
   return (
     <>
       <Form onSubmit={onSubmit} method="post">

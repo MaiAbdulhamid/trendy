@@ -10,11 +10,9 @@ import { getCookie } from "cookies-next";
 import axiosInstance from "@/app/[locale]/lib/axios";
 import { showNotification } from "@/app/[locale]/components/Notifications/showNotification";
 
-const ResendCode = ({ canResend, setCanResend }: any) => {
+const ResendCode = ({ timerReset, resetTimer } : any) => {
   const email = getCookie("email");
   const trans = useTranslations("Auth");
-  const canResendCode = useSelector((state: any) => state.auth.canResendCode)
-  const dispatch = useDispatch();
 
   const resendCodeHandler = async () => {
     try{
@@ -31,7 +29,7 @@ const ResendCode = ({ canResend, setCanResend }: any) => {
         });
       }
     }
-    (dispatch(authActions.canResendCode({payload: false} as any)));
+    resetTimer()
   };
   return (
     <Flex gap="0.5rem" justify="center" fullWidth align="center">
@@ -40,7 +38,7 @@ const ResendCode = ({ canResend, setCanResend }: any) => {
       </P4>
       <P4>
         <Button
-          disabled={canResendCode}
+          disabled={!timerReset}
           noStyle
           color={theme.colors.primaryColor}
           type="button"

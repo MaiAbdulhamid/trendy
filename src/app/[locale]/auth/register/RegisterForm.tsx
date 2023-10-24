@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDisclosure } from "@mantine/hooks";
 import TermsAndConditionsModal from "./TermsAndConditionsModal";
 import { Form } from "@mongez/react-form";
@@ -12,14 +12,20 @@ import Inputs from "./Inputs";
 import VerificationModal from "../components/VerificationCodeModal";
 import axiosInstance from "../../lib/axios";
 import { setCookie } from "cookies-next";
+import Loader from "../../components/Loader";
 
 const RegisterForm = () => {
   const [openedTerms, { open: openTerms, close: closeTerms }] = useDisclosure(false);
   const [openedVerify, { open: openVerify, close: closeVerify }] = useDisclosure(false);
 
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
+  const [isPageLoading, setIsPageLoading] = useState(true);
+
   const router = useRouter();
+
+  useEffect(() => {
+    setIsPageLoading(false)
+  }, [isPageLoading]);
 
   const onSubmit = async ({ form, values }: any) => {
     setIsSubmitting(form.isSubmitting());
@@ -48,6 +54,8 @@ const RegisterForm = () => {
       setIsSubmitting(false);
     }
   };
+
+  if(isPageLoading) return <Loader />
 
   return (
     <>

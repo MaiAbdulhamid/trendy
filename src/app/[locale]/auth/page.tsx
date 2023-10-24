@@ -2,11 +2,18 @@
 import Register from "./register";
 import Login from "./login";
 import Loader from "../components/Loader";
+import { useEffect, useState } from "react";
 
 function Auth(props: any) {
+  const [isPageLoading, setIsPageLoading] = useState(true);
+
   let pageMode = props.searchParams.mode;
 
-  if (!pageMode) return <Loader />;
+  useEffect(() => {
+    setIsPageLoading(false)
+  }, [isPageLoading]);
+
+  if(isPageLoading) return <Loader />;
 
   return (
     <>

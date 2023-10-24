@@ -32,7 +32,6 @@ function createInitialState() {
     // user: JSON.parse(localStorage.getItem("user") as any),
     token: "",
     error: null,
-    canResendCode: false,
     forgotPassword: {
       email: "",
       code: "",

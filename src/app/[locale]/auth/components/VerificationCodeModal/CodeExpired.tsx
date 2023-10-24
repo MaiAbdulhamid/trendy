@@ -6,12 +6,11 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { authActions } from "@/app/store";
 
-const CodeExpired = ({ setCanResend }: any) => {
+const CodeExpired = ({resetTimer}: any) => {
   const trans = useTranslations("Auth");
   const [remainingTime, setRemainingTime] = React.useState(60);
-  const dispatch = useDispatch()
 
-  // start counter
+// start counter
   React.useEffect(() => {
     const intervalId = setInterval(() => {
       if (remainingTime > 0) {
@@ -22,13 +21,13 @@ const CodeExpired = ({ setCanResend }: any) => {
     }, 1000);
 
     if (remainingTime <= 0) {
-      (dispatch(authActions.canResendCode({payload: true} as any)));
+      resetTimer(true)
     }
 
     return () => clearInterval(intervalId);
   }, [remainingTime]);
 
-  // if (remainingTime === 0) return null;
+  if (remainingTime === 0) return null;
 
   return (
     <Flex gap="0.5rem" justify="center" fullWidth align="center">

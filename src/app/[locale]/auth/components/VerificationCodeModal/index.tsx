@@ -23,10 +23,9 @@ const VerificationModal = ({ opened, close, verify }: any) => {
     { open: openNewPassword, close: closeNewPassword },
   ] = useDisclosure(false);
 
-  const canResendCode = useSelector((state: any) => state.auth.canResendCode);
-  const dispatch = useDispatch();
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const trans = useTranslations("Auth");
+  const [timerReset, resetTimer] = React.useState(false);
 
   const onSubmit = async (code: any) => {
     setIsSubmitting(true);
@@ -70,8 +69,8 @@ const VerificationModal = ({ opened, close, verify }: any) => {
           <form method="post" onSubmit={onSubmit}>
             <Flex direction="column" gap="0.5rem" fullWidth>
               <VerificationInputs callback={onSubmit} />
-              {canResendCode && <CodeExpired />}
-              <ResendCode />
+              {!timerReset && <CodeExpired resetTimer={resetTimer} />}
+              <ResendCode timerReset={timerReset} resetTimer={resetTimer} />
               <SubmitButton
                 fullWidth
                 variant="primary"
