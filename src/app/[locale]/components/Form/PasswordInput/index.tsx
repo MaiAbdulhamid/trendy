@@ -17,13 +17,11 @@ import {
 
 function PasswordInput({
   placeholder,
-  required,
   label,
   icon,
-  id,
   ...props
 }: InputPropsType) {
-  const { value, changeValue, error } = useFormControl(props);
+  const { id, value, changeValue, error } = useFormControl(props);
 
   const trans = useTranslations("Auth");
   const [showPassword, setShowPassword] = useState(false);
@@ -32,7 +30,7 @@ function PasswordInput({
   };
   return (
     <Flex direction="column" fullWidth gap="0">
-      <InputLabel htmlFor={id} required={required}>
+      <InputLabel htmlFor={id} required={props.required}>
         {trans(label)}
       </InputLabel>
       <WrapperInput>
