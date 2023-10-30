@@ -26,19 +26,36 @@ export const BaseButton = styled(MantineButton)<ButtonProps>`
     return (
       !size &&
       css`
-        height: 40px;
+        height: "40px";
       `
     );
   }}
-  ${({ variant }) => {
+  ${({ height }) => {
+    return (
+      height &&
+      css`
+        height: ${height};
+      `
+    );
+  }}
+  ${({ variant, color }) => {
     return (
       variant === "primary" &&
       css`
         & .mantine-Button-label {
-          color: ${theme.colors.black[300]} !important;
+          color: ${color ?? theme.colors.black[300]};
         }
         background: ${theme.colors.primaryColor};
         border-color: ${theme.colors.primaryColor};
+      `
+    );
+  }}
+
+  ${({ variant }) => {
+    return (
+      variant === "outline" &&
+      css`
+        border-radius: 5px;
       `
     );
   }}

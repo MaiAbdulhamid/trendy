@@ -16,4 +16,6 @@ export type ButtonProps = BaseButtonProps &
     type?: "submit" | "button";
 
     fullWidth?: boolean;
+
+    height?: string;
   };

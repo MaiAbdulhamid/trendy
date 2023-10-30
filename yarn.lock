@@ -385,6 +385,14 @@
     "@mongez/events" "^2.1.0"
     "@mongez/reinforcements" "^2.3.8"
 
+"@mongez/react-atom@^3.3.1":
+  version "3.3.1"
+  resolved "https://registry.yarnpkg.com/@mongez/react-atom/-/react-atom-3.3.1.tgz#bd8a39d0ec0deada285b2cd7a75452618a148074"
+  integrity sha512-xg4pB6ypzToIOLdoMIEQp56eYtBWCalbgLyt7F7hW4CL0KWDeBimQ4STslvHcRC4wO/SpBQEqinmPwuC39NR4g==
+  dependencies:
+    "@mongez/events" "^2.0.0"
+    "@mongez/reinforcements" "^2.3.8"
+
 "@mongez/react-form@^2.0.20":
   version "2.0.20"
   resolved "https://registry.yarnpkg.com/@mongez/react-form/-/react-form-2.0.20.tgz#c3e08e9a5860f9d01e8bb0f5d1f8e8b18625cc5a"
@@ -2938,6 +2946,11 @@ supports-preserve-symlinks-flag@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/supports-preserve-symlinks-flag/-/supports-preserve-symlinks-flag-1.0.0.tgz#6eda4bd344a3c94aea376d4cc31bc77311039e09"
   integrity sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==
+
+swiper@^11.0.3:
+  version "11.0.3"
+  resolved "https://registry.yarnpkg.com/swiper/-/swiper-11.0.3.tgz#9c325154db2a4431f508b7e8e300621365eb4c3d"
+  integrity sha512-MyV9ooQsriAe2EibeamqewLjgCfSvl2xoyratl6S3ln5BXDL4BzlO6mxcbLMCzQL6Z60b/u0AS/nKrepL0+TAg==
 
 tabbable@^6.0.1:
   version "6.2.0"

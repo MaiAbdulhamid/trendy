@@ -34,5 +34,18 @@
     "enterNewPassword": "Enter your new Password",
     "activatedSuccessfully": "Account has been Activated Successfully",
     "codePassed": "Code Passed Successfully"
+  },
+  "Layout": {
+    "search": "Search",
+    "searchQ": "What are you looking for ?"
+  },
+
+  "Home": {
+    "viewAll": "View All",
+    "dayPromo": "Independence Day Promo",
+    "discountPercentage": "50% Off"
+  },
+  "Cart": {
+    "addToCart": "Add To Cart"
   }
 }

@@ -22,12 +22,11 @@ function TextInput({
   placeholder,
   label,
   icon,
-  id,
   defaultValue,
   clearable,
   ...props
 }: InputPropsType) {
-  const { value, changeValue, error } = useFormControl(props);
+  const { id, value, changeValue, error } = useFormControl(props);
 
   const trans = useTranslations("Auth");
 
@@ -36,7 +35,7 @@ function TextInput({
       <InputLabel htmlFor={id} required={props.required}>
         {trans(label)}
       </InputLabel>
-      <WrapperInput>
+      <WrapperInput error={error}>
         <Wrapper>
           {icon && <UserIcon />}
           <StyledInput

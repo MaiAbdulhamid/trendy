@@ -1,11 +1,12 @@
 import React from "react";
+import { SvgsTypes } from "./types";
 
-const LogoIcon = () => {
+const LogoIcon = ({size} : SvgsTypes) => {
   return (
     <>
       <svg
-        width="74"
-        height="75"
+        width={size ?? "74"}
+        height={size ?? "75"}
         viewBox="0 0 74 75"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"

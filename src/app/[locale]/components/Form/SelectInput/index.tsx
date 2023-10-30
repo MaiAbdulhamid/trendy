@@ -11,12 +11,11 @@ function SelectInput({
   placeholder,
   label,
   icon,
-  id,
   defaultValue,
   clearable,
   ...props
 }: InputPropsType) {
-  const { value, changeValue, error } = useFormControl(props);
+  const { value, changeValue, error, id } = useFormControl(props);
 
   const trans = useTranslations("Auth");
 

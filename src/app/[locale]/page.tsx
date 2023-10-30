@@ -1,8 +1,21 @@
+'use client';
+import React, { useEffect, useState } from 'react'
+import Header from "./components/Header";
 import HomePage from "./home/HomePage";
-import styles from "./page.module.css";
+import Loader from './components/Loader';
 
 export default function Home() {
+  // const [isPageLoading, setIsPageLoading] = useState(true);
+  // useEffect(() => {
+  //   setIsPageLoading(false)
+  // }, [])
+
+  // if(isPageLoading) return <Loader />;
+  
   return (
-    <HomePage />
+    <>    
+      <Header />
+      <HomePage />
+    </>
   )
 }

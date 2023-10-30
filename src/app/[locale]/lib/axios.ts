@@ -1,6 +1,5 @@
 import axios from "axios";
 import { getCookie, setCookie } from "cookies-next";
-import { getLocale } from "next-intl/server";
 
 const fetchIp : any = async () => {
   const response : any = await fetch("https://api.ipify.org/?format=json")

@@ -1,3 +1,5 @@
+import "./globals.css";
+
 import { Grid } from "@mantine/core";
 import SideImage from "./components/SideImage";
 import Col from "../components/Grids/Grid";

@@ -16,10 +16,20 @@ type Types = any & {
   bg?: boolean;
 };
 
-export const WrapperInput = styled(Flex)`
+export const WrapperInput = styled(Flex)<Types>`
   width: 100%;
-`;
-
+  input {
+    border-color: ${({ error }) => error && theme.colors.error[100]};
+  }
+  `;
+export const AutoCompleteWrapper = styled.div`
+  .mantine-Autocomplete-input{
+    min-width: 539px;
+    height: 45px;
+    background: transparent;
+  }
+  
+`
 export const Wrapper = styled(Flex)`
   label: input-wrapper;
   position: relative;
