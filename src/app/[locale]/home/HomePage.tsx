@@ -31,21 +31,40 @@ const HomePage = () => {
   const modules = homeData.map((module: any) => {
     switch (module.type) {
       case 2:
-        return <SlideShow record={module.widgetData} />;
+        return <SlideShow key={module.id} record={module.widgetData} />;
       case 3:
-        return <Categories record={module.widgetData} title={module.title} />;
+        return (
+          <Categories
+            key={module.id}
+            record={module.widgetData}
+            title={module.title}
+          />
+        );
       case 4:
         return (
           <Products
+            key={module.id}
             record={module.widgetData}
             title={module.title}
             widgetId={module.id}
           />
         );
       case 5:
-        return <Banner record={module.widgetData} title={module.title} />;
+        return (
+          <Banner
+            key={module.id}
+            record={module.widgetData}
+            title={module.title}
+          />
+        );
       case 6:
-          return <Brands record={module.widgetData} title={module.title} />;
+        return (
+          <Brands
+            key={module.id}
+            record={module.widgetData}
+            title={module.title}
+          />
+        );
       default:
         break;
     }

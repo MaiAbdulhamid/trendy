@@ -1,4 +1,4 @@
-import { ModulesType } from "../../type";
+import { ModulesType } from "../types";
 import Banner from "./Banner";
 import Brands from "./Brands";
 import Categories from "./Categories";
