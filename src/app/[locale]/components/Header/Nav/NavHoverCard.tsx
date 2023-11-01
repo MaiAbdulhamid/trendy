@@ -22,7 +22,7 @@ const NavHoverCard = ({ subCategories }: any) => {
       <HoverDropdown>
         <Flex className="section" fullWidth gap="2rem">
           {subCategories.section?.map((section: any) => (
-            <Flex direction="column">
+            <Flex key={section.id} direction="column">
               <H3>{section.name}</H3>
               {section.sub_categories.map((subCategory: any) => (
                 <Link href="#">

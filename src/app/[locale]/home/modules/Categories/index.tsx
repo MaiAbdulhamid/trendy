@@ -35,7 +35,7 @@ export default function Categories({ record, title }: ModuleProp) {
           }}
         >
           {record.map((category: any) => (
-            <SwiperSlide>
+            <SwiperSlide key={category.id}>
               <CircleCard
                 to={`${URLS.category.dashboard}?category_id[]=${category.id}`}
                 item={category}

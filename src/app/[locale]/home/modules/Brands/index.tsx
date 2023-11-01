@@ -37,7 +37,7 @@ export default function Brands({ record, title }: ModuleProp) {
           }}
         >
           {record.map((brand: any) => (
-            <SwiperSlide>
+            <SwiperSlide key={brand.id}>
               <BrandContainer>
                 <RectangularCard
                   to={`${URLS.category.dashboard}?brand_id[]=${brand.id}`}
