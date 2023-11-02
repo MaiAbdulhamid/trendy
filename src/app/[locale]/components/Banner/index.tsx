@@ -1,5 +1,5 @@
 import Is from "@mongez/supportive-is";
-import { BannerBox } from "./style";
+import { BannerBox, BannerWrapper } from "./style";
 import { BannerProps } from "./type";
 import Link from "next/link";
 import { Col } from "../Grids";
@@ -13,14 +13,16 @@ export default function Banner(props: BannerProps) {
   col = Is.empty(col) ? 1 : col;
 
   return (
-    <Grid>
-      <Col span={12 / Number(col)}>
-        <BannerBox radius={radius}>
-          <Link href={data[0].image}>
-            <img src={data[0].image} className="full-width" />
-          </Link>
-        </BannerBox>
-      </Col>
-    </Grid>
+    <BannerWrapper>
+      <Grid>
+        <Col span={12 / Number(col)}>
+          <BannerBox radius={radius}>
+            <Link href={data[0].link}>
+              <img src={data[0].image} className="full-width" />
+            </Link>
+          </BannerBox>
+        </Col>
+      </Grid>
+    </BannerWrapper>
   );
 }

@@ -26,7 +26,6 @@ function CheckboxInput({
           label={label}
           checked={checked}
           onChange={(e) => {
-            console.log(e.currentTarget.checked)
             setChecked(e.currentTarget.checked);
           }}
           {...otherProps}

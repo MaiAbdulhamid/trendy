@@ -18,9 +18,18 @@ const URLS = {
   category: {
     dashboard: "/category"
   },
+  deals: "/deals",
   products: "/products",
   viewProduct: (product: any) => `/products/${product.id}/${product.slug}`,
   categories: "/categories",
+  about: "/about",
+  privacyPolicy: "/privacy-policy",
+  returnPolicy: "/return-policy",
+  termsAndConditions: "/terms-and-conditions",
+  contactUs:"/contact-us",
+  shareApp: "/share-app",
+  faq:"/faq",
+  country: "/country",
   notFound: "/404",
 };
 

@@ -4,6 +4,9 @@ import styled from "@emotion/styled";
 type Prop = {
   radius?: number;
 };
+export const BannerWrapper = styled.div`
+  margin-top: 60px;
+`
 export const BannerBox = styled.div<Prop>`
   border-radius: 10px;
   width: 100%;

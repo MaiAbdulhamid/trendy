@@ -9,7 +9,6 @@ import { useTranslations } from "next-intl";
 import theme from "@/app/[locale]/utils/theme";
 
 export default function Categories({ record, title }: ModuleProp) {
-  console.log(title)
   const trans = useTranslations('Home')
 
   return (

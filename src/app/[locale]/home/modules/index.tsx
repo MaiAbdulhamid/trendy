@@ -23,7 +23,6 @@ const modulesList: ModulesType = {
 };
 
 export default function Modules({ modules }: any) {
-  console.log(modules);
   return (
     <>
       {modules.map((module: any) => {

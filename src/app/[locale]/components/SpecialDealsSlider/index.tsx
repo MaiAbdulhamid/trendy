@@ -3,19 +3,18 @@ import { Scrollbar, Autoplay } from "swiper/modules";
 import "swiper/css/scrollbar";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { ProductsContainer, SliderContainer } from "./style";
-import { ProductsSliderProps } from "./type";
+import { SpecialDealsSliderProps } from "./type";
 import URLS from "../../utils/urls";
 import theme from "../../utils/theme";
-import ProductCard from "../ProductCard";
 import SectionTitle from "../SectionTitle";
+import SpecialDealsCard from "../SpecialDealsCard";
 
-export default function ProductsSlider({
+export default function SpecialDealsSlider({
   products,
   title,
-  enableViewAllButton = true,
+  enableViewAllButton = false,
   widgetId,
-  color,
-}: ProductsSliderProps) {
+}: SpecialDealsSliderProps) {
 
   if (Is.empty(products)) return null;
 
@@ -55,7 +54,7 @@ export default function ProductsSlider({
           >
             {products.map((product: any) => (
               <SwiperSlide>
-                <ProductCard product={product} color={color}/>
+                <SpecialDealsCard product={product}/>
               </SwiperSlide>
             ))}
           </Swiper>

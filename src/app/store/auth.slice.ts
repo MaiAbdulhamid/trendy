@@ -161,7 +161,6 @@ function createExtraReducers() {
         state.error = null;
       },
       [fulfilled]: (state: any, action: any) => {
-        console.log(action)
         const user = action.payload?.data;
         const token = action.payload?.data?.jwt_token;
 

@@ -10,7 +10,6 @@ export default function RectangularCard({
   boxSize = 240,
 }: RectangularCardProps) {
   const { id, name, image, color_code } = item;
-  console.log(item)
   return (
     <RectangularCardContainer>
       <Link href={to}>

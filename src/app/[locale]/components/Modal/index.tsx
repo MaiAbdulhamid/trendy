@@ -7,7 +7,7 @@ interface ModalProps {
   opened: boolean;
   close: () => void;
   title?: string;
-  size?: "xs" | "md" | "lg" | "xl" | "xxl";
+  size?: "xs" | "md" | "lg" | "xl" | "xxl" | any;
   withCloseButton?: boolean;
   centered?: boolean
 }

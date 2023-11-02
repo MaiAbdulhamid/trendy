@@ -13,4 +13,14 @@ export { default as GlobalIcon } from "./GlobalIcon";
 export { default as ArrowLeftIcon } from "./ArrowLeftIcon";
 export { default as ArrowRightIcon } from "./ArrowRightIcon";
 export { default as HeartIcon } from "./HeartIcon";
+export { default as YoutubeIcon } from "./YoutubeIcon";
+export { default as InstagramIcon } from "./InstagramIcon";
+export { default as FacebookIcon } from "./FacebookIcon";
+export { default as TwitterIcon } from "./TwitterIcon";
+export { default as AppStoreIcon } from "./AppStoreIcon";
+export { default as GooglePlayIcon } from "./GooglePlayIcon";
+export { default as CloseIcon } from "./CloseIcon";
+
+
+
 

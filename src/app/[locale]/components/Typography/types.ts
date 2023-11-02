@@ -41,6 +41,7 @@ export type TypographyPropsType = {
   direction?: Property.Direction;
   truncationWidth?: Property.Width;
   capitalizeFirstLetter?: boolean;
+  uppercase?: boolean;
   startAdornment?: string;
   className?: string;
   endAdornment?: string;

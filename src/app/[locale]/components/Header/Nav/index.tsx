@@ -2,18 +2,20 @@
 import URLS from "@/app/[locale]/utils/urls";
 import { Flex } from "../../Grids";
 import Link from "next/link";
-import { StyledNav } from "./style";
-import theme from "@/app/[locale]/utils/theme";
+import { PolygonWrapper, StyledNav } from "./style";
 import axiosInstance from "@/app/[locale]/lib/axios";
 import { useEffect, useState } from "react";
 import { HoverCard } from "@mantine/core";
 import NavHoverCard from "./NavHoverCard";
+import PolygonIcon from "@/app/[locale]/assets/svgs/PolygonIcon";
 
 export function Nav() {
   const [categories, setCategories] = useState<any>([]);
   const [subCategories, setSubCategories] = useState<any>([]);
+  const [style, setStyle] = useState({ display: "none" });
 
   const fetchCategories = async () => {
+    // setStyle({ display: "block" })
     try {
       const response: any = await axiosInstance.get("categories");
       setCategories(response.data.data.data);
@@ -37,7 +39,13 @@ export function Nav() {
     <HoverCard.Target>
       <Link
         href={URLS.category.dashboard}
-        onMouseOver={() => fetchSubCategories(category.id)}
+        onMouseEnter={() => fetchSubCategories(category.id)}
+        // onMouseOver={(e) => {
+        //   setStyle({ display: "block" });
+        // }}
+        onMouseLeave={(e) => {
+          setStyle({ display: "none" });
+        }}
       >
         {category.name}
       </Link>
@@ -45,12 +53,12 @@ export function Nav() {
   ));
   return (
     <StyledNav>
-      <HoverCard
-        position="bottom"
-        withinPortal
-      >
+      <HoverCard position="bottom" withinPortal>
         <Flex align="center" gap="1rem">
           {items}
+          <PolygonWrapper style={style}>
+            <PolygonIcon />
+          </PolygonWrapper>
         </Flex>
         <NavHoverCard subCategories={subCategories} />
       </HoverCard>

@@ -1,7 +1,7 @@
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { ModuleProp } from "../../types";
-import { resolveBannerLink } from "@/app/[locale]/utils/general";
+import { resolveLink } from "@/app/[locale]/utils/general";
 import Link from "next/link";
 import { ArrowLeftIcon, ArrowRightIcon } from "@/app/[locale]/assets/svgs";
 // import "swiper/css/navigation";
@@ -25,7 +25,7 @@ export default function SlideShow({ record }: ModuleProp) {
         {record.map((banner: any) => (
           <SwiperSlide key={banner.id}>
             <SliderWrapper>
-              <Link href={resolveBannerLink(banner)}>
+              <Link href={resolveLink(banner)}>
                 <img src={banner.image} className="full-width" />
               </Link>
             </SliderWrapper>

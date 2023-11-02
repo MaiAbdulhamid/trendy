@@ -10,7 +10,6 @@ export default function CircleCard({
   boxSize = 140,
 }: CircleCardProps) {
   const { id, name, image, color_code } = item;
-  console.log(item)
   return (
     <CircleCardItemContainer>
       <Link href={to}>

@@ -5,6 +5,7 @@ import { P4 } from "@/app/[locale]/components/Typography";
 import { useTranslations } from "next-intl";
 import Button from "@/app/[locale]/components/Button/Button";
 import theme from "@/app/[locale]/utils/theme";
+import URLS from "@/app/[locale]/utils/urls";
 
 const Promo = () => {
   const trans = useTranslations("Home");
@@ -15,8 +16,8 @@ const Promo = () => {
           {trans("dayPromo")}{" "}
           <span className="primary">{trans("discountPercentage")}</span>
         </P4>
-        <Button color={theme.colors.white} variant="primary">
-          3:00:00
+        <Button color={theme.colors.white} variant="primary" href={URLS.deals}>
+          {trans("deals")}
         </Button>
       </Flex>
     </PromoContainer>

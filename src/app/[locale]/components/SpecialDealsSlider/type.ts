@@ -1,4 +1,4 @@
-export type ProductsSliderProps = {
+export type SpecialDealsSliderProps = {
     products?: any;
 
     title?: string;

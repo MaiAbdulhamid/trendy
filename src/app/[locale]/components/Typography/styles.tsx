@@ -42,6 +42,11 @@ export const Text = styled("span", {
         text-transform: capitalize;
       }
     `};
+ ${({ uppercase }) =>
+    uppercase &&
+    css`
+      text-transform: uppercase;
+    `};
   ${({ truncationWidth }) =>
     truncationWidth && configureTruncation(truncationWidth)};
   ${({ startAdornment }) =>

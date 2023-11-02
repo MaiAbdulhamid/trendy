@@ -37,13 +37,27 @@
   },
   "Layout": {
     "search": "Search",
-    "searchQ": "What are you looking for ?"
+    "searchQ": "What are you looking for ?",
+    "termsAndConditions": "Terms and conditions",
+    "privacyPolicy": "Privacy Policy",
+    "returnPolicy":"Return Policy",
+    "whoAreWe" : "Who Are We",
+    "about": "About",
+    "connectWithUs": "Connect With Us",
+    "contactUs": "Contact Us",
+    "shareApp": "Share App",
+    "faq": "FAQ",
+    "country": "Country",
+    "categories": "Categories",
+    "copyright": "@2023 trendy.com All rights reserved."
   },
 
   "Home": {
     "viewAll": "View All",
     "dayPromo": "Independence Day Promo",
-    "discountPercentage": "50% Off"
+    "discountPercentage": "50% Off",
+    "newDeals": "A wonderful serenity has possession",
+    "deals": "Deals"
   },
   "Cart": {
     "addToCart": "Add To Cart"

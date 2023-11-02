@@ -22,10 +22,8 @@ export const HoverDropdown = styled.div`
   width: 100%;
   border-top: 12px solid ${theme.colors.primaryColor};
   padding: 1rem;
-  &::before {
-    content: "";
-  }
   .section {
+    padding: 2rem;
     a {
       height: 60px;
       border-bottom: 0.5px solid #0000004d;
@@ -35,3 +33,12 @@ export const HoverDropdown = styled.div`
     }
   }
 `;
+export const PolygonWrapper = styled.div`
+  position: relative;
+
+  svg{
+    position: absolute;
+    z-index: 100;
+    left: 50%;
+  }
+`

@@ -9,10 +9,16 @@ import SlideShow from "./modules/SlideShow";
 import Products from "./modules/Products";
 import Promo from "./modules/Promo";
 import Brands from "./modules/Brands";
+import NewDeals from "./modules/NewDeals";
+import SpecialDeals from "./modules/SpecialDeals";
+import Popup from "./modules/Popup";
+import { useDisclosure } from "@mantine/hooks";
 
 const HomePage = () => {
   const [homeData, setHomeData] = useState<any>([]);
   const [isPageLoading, setIsPageLoading] = useState(true);
+  const [openedPopup, { open: openPopup, close: closePopup }] =
+    useDisclosure(false);
 
   const fetchHomeData = async () => {
     setIsPageLoading(true);
@@ -25,6 +31,7 @@ const HomePage = () => {
   };
 
   useEffect(() => {
+    openPopup()
     fetchHomeData();
   }, [setHomeData]);
 
@@ -63,6 +70,36 @@ const HomePage = () => {
             key={module.id}
             record={module.widgetData}
             title={module.title}
+          />
+        );
+      case 7:
+        return (
+          <NewDeals
+            key={module.id}
+            discount={module.discount}
+            name={module.name}
+            record={module.widgetData}
+            title={module.title}
+            widgetId={module.id}
+          />
+        );
+      case 8:
+        return (
+          <SpecialDeals
+            key={module.id}
+            discount={module.discount}
+            name={module.name}
+            record={module.widgetData}
+            title={module.title}
+            widgetId={module.id}
+          />
+        );
+      case 9:
+        return (
+          <Popup
+            opened={openedPopup}
+            close={closePopup}
+            record={module.widgetData}
           />
         );
       default:
