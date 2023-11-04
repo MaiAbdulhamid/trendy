@@ -4,11 +4,9 @@ import React from "react";
 import theme from "../../../utils/theme";
 import { Flex } from "../../../components/Grids";
 import { P4 } from "../../../components/Typography";
-import { authActions } from "@/app/store";
-import { useDispatch, useSelector } from "react-redux";
 import { getCookie } from "cookies-next";
-import axiosInstance from "@/app/[locale]/lib/axios";
-import { showNotification } from "@/app/[locale]/components/Notifications/showNotification";
+import axiosInstance from "../../../lib/axios";
+import { showNotification } from "../../../components/Notifications/showNotification";
 
 const ResendCode = ({ timerReset, resetTimer } : any) => {
   const email = getCookie("email");

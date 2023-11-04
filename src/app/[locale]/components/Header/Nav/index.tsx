@@ -1,13 +1,13 @@
 "use client";
-import URLS from "@/app/[locale]/utils/urls";
+import URLS from "../../../utils/urls";
 import { Flex } from "../../Grids";
 import Link from "next/link";
 import { PolygonWrapper, StyledNav } from "./style";
-import axiosInstance from "@/app/[locale]/lib/axios";
+import axiosInstance from "../../../lib/axios";
 import { useEffect, useState } from "react";
 import { HoverCard } from "@mantine/core";
 import NavHoverCard from "./NavHoverCard";
-import PolygonIcon from "@/app/[locale]/assets/svgs/PolygonIcon";
+import PolygonIcon from "../../../assets/svgs/PolygonIcon";
 
 export function Nav() {
   const [categories, setCategories] = useState<any>([]);

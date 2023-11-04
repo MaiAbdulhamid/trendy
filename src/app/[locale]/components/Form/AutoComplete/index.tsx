@@ -11,7 +11,7 @@ import {
 } from "@mongez/react-form";
 import { requiredRule } from "@mongez/react-form";
 import { Autocomplete } from "@mantine/core";
-import { SearchIcon } from "@/app/[locale]/assets/svgs";
+import { SearchIcon } from "../../../assets/svgs";
 
 function AutoComplete({
   placeholder,

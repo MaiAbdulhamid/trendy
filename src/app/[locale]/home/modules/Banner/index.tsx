@@ -1,7 +1,7 @@
 import { default as BannerBase } from "../../../components/Banner";
 import { ModuleProp } from "../../types";
-import { resolveLink } from "@/app/[locale]/utils/general";
-import { Container } from "@/app/[locale]/components/Grids";
+import { resolveLink } from "../../../utils/general";
+import { Container } from "../../../components/Grids";
 
 export default function Banner({ record }: ModuleProp) {
 

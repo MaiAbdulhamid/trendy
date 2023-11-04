@@ -1,12 +1,12 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import { CategoriesContainer, Title } from "./style";
-import URLS from "@/app/[locale]/utils/urls";
+import URLS from "../../../utils/urls";
 import { ModuleProp } from "../../types";
-import CircleCard from "@/app/[locale]/components/CircleCard";
-import SectionTitle from "@/app/[locale]/components/SectionTitle";
+import CircleCard from "../../../components/CircleCard";
+import SectionTitle from "../../../components/SectionTitle";
 import { useTranslations } from "next-intl";
-import theme from "@/app/[locale]/utils/theme";
+import theme from "../../../utils/theme";
 
 export default function Categories({ record, title }: ModuleProp) {
   const trans = useTranslations('Home')

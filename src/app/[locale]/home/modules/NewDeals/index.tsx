@@ -1,11 +1,11 @@
-import ProductsSlider from "@/app/[locale]/components/ProductsSlider";
+import ProductsSlider from "../../../components/ProductsSlider";
 import { ModuleProp } from "../../types";
 import { NewDealsContainer } from "./style";
-import SectionTitle from "@/app/[locale]/components/SectionTitle";
-import theme from "@/app/[locale]/utils/theme";
-import URLS from "@/app/[locale]/utils/urls";
-import { Flex } from "@/app/[locale]/components/Grids";
-import { H2, H3, P1, H1 } from "@/app/[locale]/components/Typography";
+import SectionTitle from "../../../components/SectionTitle";
+import theme from "../../../utils/theme";
+import URLS from "../../../utils/urls";
+import { Flex } from "../../../components/Grids";
+import { H2, H3, P1, H1 } from "../../../components/Typography";
 import { useTranslations } from "next-intl";
 
 export default function NewDeals({ record, title, widgetId, name, discount }: ModuleProp) {

@@ -6,14 +6,14 @@ import {
   LogoIcon,
   UserIcon,
   WishListIcon,
-} from "@/app/[locale]/assets/svgs";
-import URLS from "@/app/[locale]/utils/urls";
+} from "../../../assets/svgs";
+import URLS from "../../../utils/urls";
 import Button from "../../Button/Button";
 import { Flex } from "../../Grids";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { StyledHeader } from "./style";
-import theme from "@/app/[locale]/utils/theme";
+import theme from "../../../utils/theme";
 import Search from "./Search";
 
 const links = [

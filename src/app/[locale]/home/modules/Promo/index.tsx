@@ -1,11 +1,11 @@
 import React from "react";
 import { PromoContainer } from "./style";
-import { Flex } from "@/app/[locale]/components/Grids";
-import { P4 } from "@/app/[locale]/components/Typography";
+import { Flex } from "../../../components/Grids";
+import { P4 } from "../../../components/Typography";
 import { useTranslations } from "next-intl";
-import Button from "@/app/[locale]/components/Button/Button";
-import theme from "@/app/[locale]/utils/theme";
-import URLS from "@/app/[locale]/utils/urls";
+import Button from "../../../components/Button/Button";
+import theme from "../../../utils/theme";
+import URLS from "../../../utils/urls";
 
 const Promo = () => {
   const trans = useTranslations("Home");

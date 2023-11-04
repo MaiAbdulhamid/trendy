@@ -1,7 +1,7 @@
-import { Container } from "@/app/[locale]/components/Grids";
-import { H3 } from "@/app/[locale]/components/Typography";
-import devices from "@/app/[locale]/utils/devices";
-import theme from "@/app/[locale]/utils/theme";
+import { Container } from "../../../components/Grids";
+import { H3 } from "../../../components/Typography";
+import devices from "../../../utils/devices";
+import theme from "../../../utils/theme";
 import styled from "@emotion/styled";
 
 export const Title = styled(H3)`

@@ -1,9 +1,7 @@
 "use client";
 import { createAsyncThunk, createSlice, current } from "@reduxjs/toolkit";
-
 import { history, fetchWrapper } from "./helpers";
 import { setCookie } from "cookies-next";
-import axiosInstance from "../[locale]/lib/axios";
 
 // create slice
 

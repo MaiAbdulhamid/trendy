@@ -11,7 +11,7 @@ import Heading from "../../components/Heading";
 import VerificationModal from "../../components/VerificationCodeModal";
 import { useDisclosure } from "@mantine/hooks";
 import { showNotification } from "../../../components/Notifications/showNotification";
-import axiosInstance from "@/app/[locale]/lib/axios";
+import axiosInstance from "../../../lib/axios";
 import { setCookie } from "cookies-next";
 
 const ForgotPasswordModal = ({ opened, close }: any) => {

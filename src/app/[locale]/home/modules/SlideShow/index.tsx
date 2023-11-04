@@ -1,12 +1,11 @@
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { ModuleProp } from "../../types";
-import { resolveLink } from "@/app/[locale]/utils/general";
+import { resolveLink } from "../../../utils/general";
 import Link from "next/link";
-import { ArrowLeftIcon, ArrowRightIcon } from "@/app/[locale]/assets/svgs";
+import { ArrowLeftIcon, ArrowRightIcon } from "../../../assets/svgs";
 // import "swiper/css/navigation";
 import "swiper/css/pagination";
-import { Container } from "@/app/[locale]/components/Grids";
 import { SliderContainer, SliderWrapper } from "./style";
 
 export default function SlideShow({ record }: ModuleProp) {

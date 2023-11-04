@@ -11,7 +11,7 @@ import { showNotification } from "../../../components/Notifications/showNotifica
 import { ThunkDispatch } from "@reduxjs/toolkit";
 import { useDispatch } from "react-redux";
 import { authActions } from "@/app/store";
-import axiosInstance from "@/app/[locale]/lib/axios";
+import axiosInstance from "../../../lib/axios";
 import { getCookie } from "cookies-next";
 
 const NewPasswordModal = ({ opened, close }: any) => {

@@ -4,7 +4,6 @@ import { H3, P4 } from "../../Typography";
 import Link from "next/link";
 import { HoverDropdown } from "./style";
 import { Flex } from "../../Grids";
-import theme from "@/app/[locale]/utils/theme";
 
 const NavHoverCard = ({ subCategories }: any) => {
   if (!subCategories) return null;

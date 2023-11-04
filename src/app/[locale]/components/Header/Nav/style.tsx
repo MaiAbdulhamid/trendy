@@ -1,5 +1,5 @@
 "use client";
-import theme from "@/app/[locale]/utils/theme";
+import theme from "../../../utils/theme";
 import styled from "@emotion/styled";
 
 export const StyledNav = styled.nav`

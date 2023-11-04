@@ -12,10 +12,8 @@ import { useDisclosure } from "@mantine/hooks";
 import NewPasswordModal from "../../login/NewPasswordModal";
 import { showNotification } from "../../../components/Notifications/showNotification";
 import Heading from "../Heading";
-import axiosInstance from "@/app/[locale]/lib/axios";
+import axiosInstance from "../../../lib/axios";
 import { getCookie, setCookie } from "cookies-next";
-import { useDispatch, useSelector } from "react-redux";
-import { authActions } from "@/app/store";
 
 const VerificationModal = ({ opened, close, verify }: any) => {
   const [

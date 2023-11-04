@@ -1,5 +1,5 @@
-import { Container } from "@/app/[locale]/components/Grids";
-import theme from "@/app/[locale]/utils/theme";
+import { Container } from "../../../components/Grids";
+import theme from "../../../utils/theme";
 import styled from "@emotion/styled";
 
 export const PromoContainer = styled(Container)`

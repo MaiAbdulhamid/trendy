@@ -1,10 +1,9 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { useTranslations } from "next-intl";
 import Link from "next/link";
-import { resolveLink } from "@/app/[locale]/utils/general";
+import { resolveLink } from "../../../utils/general";
 import { CloseIconWrapper, ModalWrapper } from "./style";
-import { CloseIcon } from "@/app/[locale]/assets/svgs";
+import { CloseIcon } from "../../../assets/svgs";
 import { Modal } from "@mantine/core";
 
 interface ModalProps {

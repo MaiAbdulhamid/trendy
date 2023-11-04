@@ -1,12 +1,11 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import { BrandContainer, BrandsContainer } from "./style";
-import SectionTitle from "@/app/[locale]/components/SectionTitle";
-import URLS from "@/app/[locale]/utils/urls";
-import CircleCard from "@/app/[locale]/components/CircleCard";
+import SectionTitle from "../../../components/SectionTitle";
+import URLS from "../../../utils/urls";
 import { ModuleProp } from "../../types";
-import RectangularCard from "@/app/[locale]/components/RectangularCard";
-import theme from "@/app/[locale]/utils/theme";
+import RectangularCard from "../../../components/RectangularCard";
+import theme from "../../../utils/theme";
 
 export default function Brands({ record, title }: ModuleProp) {
   return (

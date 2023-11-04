@@ -1,5 +1,5 @@
 import { ModuleProp } from "../../types";
-import SpecialDealsSlider from "@/app/[locale]/components/SpecialDealsSlider";
+import SpecialDealsSlider from "../../../components/SpecialDealsSlider";
 
 export default function SpecialDeals({ record, title, widgetId }: ModuleProp) {
   return (

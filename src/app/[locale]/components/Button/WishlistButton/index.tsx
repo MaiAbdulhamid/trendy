@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { WishlistButtonStyled } from "./style";
 import { WishlistButtonProps } from "./type";
-import { HeartIcon } from "@/app/[locale]/assets/svgs";
+import { HeartIcon } from "../../../assets/svgs";
 
 export default function WishlistButton({
   product,

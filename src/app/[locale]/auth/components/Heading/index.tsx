@@ -4,7 +4,7 @@ import { H3, P4 } from "../../../components/Typography";
 import { useTranslations } from "next-intl";
 import theme from "../../../utils/theme";
 import { LogoIcon } from "../../../assets/svgs";
-import { Flex } from "@/app/[locale]/components/Grids";
+import { Flex } from "../../../components/Grids";
 
 interface PropsTypes {
   title: string;

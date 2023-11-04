@@ -2,8 +2,8 @@ import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { IconButton } from "../IconButton";
 import { WishlistButtonProps } from "./type";
-import theme from "@/app/[locale]/utils/theme";
-import devices from "@/app/[locale]/utils/devices";
+import theme from "../../../utils/theme";
+import devices from "../../../utils/devices";
 
 export const WishlistButtonStyled = styled(IconButton)<WishlistButtonProps>`
   &:hover {
