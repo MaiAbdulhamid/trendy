@@ -1,21 +1,20 @@
+import "@mantine/spotlight/styles.css";
 import React, { useEffect, useState } from "react";
 import { Flex } from "../../Grids";
 import AutoComplete from "../../Form/AutoComplete";
 import { useTranslations } from "next-intl";
 import { spotlight, Spotlight, SpotlightActionData } from "@mantine/spotlight";
 import { SearchIcon } from "../../../assets/svgs";
-import Loader from "../../Loader";
-import "@mantine/spotlight/styles.css";
 import axiosInstance from "../../../lib/axios";
 import { useRouter } from "next/navigation";
 import { resolveSearchLink } from "../../../utils/general";
 import { P4 } from "../../Typography";
-import theme from "@/app/[locale]/utils/theme";
+import theme from "../../../utils/theme";
 import { Hr, MainSearchWrapper, SearchWrapper, TotalResults } from "./style";
 import cache from "@mongez/cache";
 import Button from "../../Button/Button";
 import { PlainLocalStorageDriver, setCacheConfigurations } from "@mongez/cache";
-import URLS from "@/app/[locale]/utils/urls";
+import URLS from "../../../utils/urls";
 import Is from "@mongez/supportive-is";
 
 setCacheConfigurations({
