@@ -6,7 +6,7 @@ import theme from "../../utils/theme";
 import devices from "../../utils/devices";
 
 type Props = ButtonProps & {
-  sized: string;
+  sized?: string;
 };
 
 export const IconButton = styled(Button)<Props>`

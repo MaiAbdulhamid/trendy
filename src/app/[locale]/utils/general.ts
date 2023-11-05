@@ -29,3 +29,26 @@ export function resolveLink(data: any) {
 
   return link;
 }
+export function resolveSearchLink(data: any) {
+  let link = '';
+
+  const { redirect_type, id } = data;
+
+  if(redirect_type === 1){
+    link = URLS.viewProduct({ id: id, slug: 'product' });
+  }
+
+  if(redirect_type === 2 ){
+    link = URLS.category.dashboard + '?category_id[]=' + id;
+  }
+
+  if(redirect_type === 3){
+    link = data.link;
+  }
+
+  if(redirect_type === 4){
+    link = URLS.category.dashboard + '?brand_id[]=' + id;
+  }
+
+  return link;
+}

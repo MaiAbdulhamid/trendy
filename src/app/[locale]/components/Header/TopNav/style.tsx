@@ -1,4 +1,5 @@
 "use client";
+import theme from "../../../utils/theme";
 import styled from "@emotion/styled";
 
 export const StyledHeader = styled.header`
@@ -19,6 +20,31 @@ export const StyledHeader = styled.header`
 
     @mixin hover {
       background-color: light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-6));
+    }
+  }
+`;
+
+export const TotalResults = styled.div`
+  padding: 1rem;
+`;
+
+export const Hr = styled.hr`
+  color: ${theme.colors.gray[200]};
+  border: 0; 
+  border-top: 1px solid ${theme.colors.gray[200]};
+`;
+
+export const SearchWrapper = styled.div`
+  width: 50%;
+  margin: 3rem 1rem;
+  input{
+    border: 1px solid ${theme.colors.gray[200]};
+  }
+`;
+export const MainSearchWrapper = styled.div`
+  .mantine-Spotlight-action{
+    [data-selected]: {
+      background: transparent
     }
   }
 `;

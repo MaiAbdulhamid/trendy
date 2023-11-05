@@ -14,6 +14,9 @@ const URLS = {
     wishlist: "/wishlist",
     cart: "/cart",
     resetPassword: "/reset-password",
+    editProfile: "/profile",
+    orders: "/orders",
+    addressBook: "/addresses"
   },
   category: {
     dashboard: "/category"

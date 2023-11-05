@@ -41,11 +41,14 @@ const LoginForm = () => {
 
     try {
       const response: any = await axiosInstance.post("login", { ...values });
+      setCookie("token", response.data.data.jwt_token)
+      setCookie("user", response.response.data.data);
+
       showNotification({
         type: "success",
         message: response.data.message,
       });
-      router.push("/")
+      router.push("/");
     } catch (error: any) {
       setCookie("email", error.response.data?.data?.email);
       if (error.response) {

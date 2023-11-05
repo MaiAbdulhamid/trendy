@@ -1,43 +1,18 @@
 import { Group, Burger } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import {
-  CartIcon,
   GlobalIcon,
   LogoIcon,
-  UserIcon,
-  WishListIcon,
 } from "../../../assets/svgs";
-import URLS from "../../../utils/urls";
 import Button from "../../Button/Button";
 import { Flex } from "../../Grids";
-import Link from "next/link";
-import { useTranslations } from "next-intl";
 import { StyledHeader } from "./style";
 import theme from "../../../utils/theme";
 import Search from "./Search";
-
-const links = [
-  { link: URLS.account.wishlist, text: <WishListIcon />, label: "wishlist" },
-  { link: URLS.account.cart, text: <CartIcon />, label: "cart" },
-  {
-    link: URLS.account.dashboard,
-    text: <UserIcon color={theme.colors.black[300]} size={39} />,
-    label: "Account",
-  },
-];
+import Icons from "../Icons";
 
 export function TopNav() {
   const [opened, { toggle }] = useDisclosure(false);
-
-  const items = links.map((link) => (
-    <Link
-      key={link.label}
-      href={link.link}
-      onClick={(event) => event.preventDefault()}
-    >
-      {link.text}
-    </Link>
-  ));
 
   return (
     <StyledHeader>
@@ -52,7 +27,7 @@ export function TopNav() {
         <Button noStyle>
           <GlobalIcon />
         </Button>
-        {items}
+        <Icons />
       </Flex>
     </StyledHeader>
   );

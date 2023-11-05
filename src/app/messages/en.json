@@ -50,7 +50,17 @@
     "country": "Country",
     "categories": "Categories",
     "copyright": "@2023 trendy.com All rights reserved.",
-    "noResult": "No Results"
+    "noResult": "No Results",
+    "orders": "Orders",
+    "addresses": "Addresses",
+    "wishlist" : "Wishlist",
+    "profile": "Profile",
+    "logout": "Sign Out",
+    "searchResults": "Search Results",
+    "results": "results",
+    "searchHistory": "Search History",
+    "clear": "Clear",
+    "nothingFound": "Nothing found..."
   },
 
   "Home": {

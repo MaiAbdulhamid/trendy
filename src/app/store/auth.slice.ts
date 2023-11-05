@@ -1,7 +1,7 @@
 "use client";
 import { createAsyncThunk, createSlice, current } from "@reduxjs/toolkit";
 import { history, fetchWrapper } from "./helpers";
-import { setCookie } from "cookies-next";
+import { getCookie, setCookie } from "cookies-next";
 
 // create slice
 
@@ -41,16 +41,10 @@ function createInitialState() {
 function createReducers() {
   function logout(state: any) {
     state.user = null;
-    localStorage.removeItem("user");
-    localStorage.removeItem("token");
-    history.navigate("/login");
-  }
-  function canResendCode(state: any, action: any){
-    state.canResendCode = action.payload
+    setCookie('token', '');
   }
   return {
     logout,
-    canResendCode
   };
 }
 
