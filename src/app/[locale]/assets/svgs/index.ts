@@ -24,7 +24,7 @@ export { default as AddressesIcon } from "./AddressesIcon";
 export { default as ProfileIcon } from "./ProfileIcon";
 export { default as OrdersIcon } from "./OrdersIcon";
 export { default as UserWishlistIcon } from "./UserWishlistIcon";
-export { default as SignOutIcon } from "./SignoutIcon";
+export { default as SignOutIcon } from "./SignOutIcon";
 
 
 
