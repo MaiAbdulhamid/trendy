@@ -1,5 +1,5 @@
 import "@mantine/spotlight/styles.css";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Flex } from "../../Grids";
 import AutoComplete from "../../Form/AutoComplete";
 import { useTranslations } from "next-intl";
@@ -13,32 +13,36 @@ import theme from "../../../utils/theme";
 import { Hr, MainSearchWrapper, SearchWrapper, TotalResults } from "./style";
 import cache from "@mongez/cache";
 import Button from "../../Button/Button";
-import { PlainLocalStorageDriver, setCacheConfigurations } from "@mongez/cache";
 import URLS from "../../../utils/urls";
 import Is from "@mongez/supportive-is";
-
-setCacheConfigurations({
-  driver: new PlainLocalStorageDriver(),
-});
 
 const SearchInput = () => {
   const trans = useTranslations("Layout");
   // const latestSearch = resolveLatestSearch(cache.get("latestSearch", []));
-  const [latestSearch, setLatestSearch] = useState(resolveLatestSearch(cache.get("latestSearch", [])))
+  const [latestSearch, setLatestSearch] = useState<any[]>([]);
+
+  const router = useRouter();
+  const resolveLatestSearch = useCallback(
+    (searches: any[]) => {
+      return searches.slice(-5).map((word: any, index) => {
+        return {
+          label: word,
+          id: "word" + index,
+          onClick: () => router.push(`${URLS.products}?q=${word}`),
+        };
+      });
+    },
+    [router]
+  );
+
+  useEffect(() => {
+    setLatestSearch(resolveLatestSearch(cache.get("latestSearch", [])));
+  }, [resolveLatestSearch]);
+
   const [actions, setActions] = useState<any>([]);
   const [loaded, setLoaded] = useState<Boolean>(true);
   const [query, setQuery] = useState("");
-  const router = useRouter();
 
-  function resolveLatestSearch(searches: Array<any>): any[] {
-    return searches.slice(-5).map((word: any, index) => {
-      return {
-        label: word,
-        id: "word" + index,
-        onClick: () => router.push(`${URLS.products}?q=${word}`),
-      };
-    });
-  }
   function resolveSearchResult(results: Array<any>): SpotlightActionData[] {
     return results.map((result: any) => {
       return {
@@ -78,13 +82,13 @@ const SearchInput = () => {
   const setLatestSearchHandler = () => {
     if (!Is.empty(query)) {
       cache.set("latestSearch", [...cache.get("latestSearch", []), query]);
-      setLatestSearch(resolveLatestSearch(cache.get("latestSearch", [])))
+      setLatestSearch(resolveLatestSearch(cache.get("latestSearch", [])));
     }
   };
 
   const clearLatestSearch = () => {
     cache.remove("latestSearch");
-    setLatestSearch([])
+    setLatestSearch([]);
   };
 
   return (
