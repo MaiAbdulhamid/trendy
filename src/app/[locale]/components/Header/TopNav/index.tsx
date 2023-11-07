@@ -10,6 +10,8 @@ import { StyledHeader } from "./style";
 import theme from "../../../utils/theme";
 import Search from "./Search";
 import Icons from "../Icons";
+import Link from "next/link";
+import URLS from "../../../utils/urls";
 
 export function TopNav() {
   const [opened, { toggle }] = useDisclosure(false);
@@ -18,7 +20,9 @@ export function TopNav() {
     <StyledHeader>
       <Group>
         <Burger opened={opened} onClick={toggle} size="sm" hiddenFrom="sm" />
+        <Link href={URLS.home}>
         <LogoIcon />
+        </Link>
       </Group>
 
       <Search />

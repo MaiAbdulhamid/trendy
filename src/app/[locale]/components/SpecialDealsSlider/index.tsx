@@ -33,7 +33,7 @@ export default function SpecialDealsSlider({
           <Swiper
             modules={[Scrollbar]}
             scrollbar={{ draggable: true }}
-            dir="rtl"
+            // dir="rtl"
             spaceBetween={20}
             slidesPerView={3}
             // autoplay={true}
