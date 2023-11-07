@@ -9,33 +9,43 @@ import MultiRangeSlider from "multi-range-slider-react";
 import { MultiRangeSliderWrapper } from "../style";
 import { productsActions } from "../../../../store";
 import { useDispatch, useSelector } from "react-redux";
+import { useRouter } from "next/navigation";
+import URLS from "@/app/[locale]/utils/urls";
 
 const Filter = ({ filter }: any) => {
   const [openFilters, setOpenFilters] = useState<Boolean>(true);
-  const dispatch = useDispatch();
-  const products = useSelector((state: any) => state.products.products);
+  const [queryParams, setQueryParams] = useState<any>({query: ''});
+
+  const router = useRouter();
 
   const onChangePrice = (e: any) => {
-    dispatch(
-      productsActions.filter({
-        type: "price",
-        payload: {
-          min: e.minValue,
-          max: e.maxValue,
-        },
-      })
-    );
+    // dispatch(
+    //   productsActions.filter({
+    //     type: "price",
+    //     payload: {
+    //       min: e.minValue,
+    //       max: e.maxValue,
+    //     },
+    //   })
+    // );
 
-    // const newProducts = filteredProducts.filter((product : any) => {
-    //   +product.price_after <= e.maxValue && +product.price_after >= e.minValue
-    // });
+    // // const newProducts = filteredProducts.filter((product : any) => {
+    // //   +product.price_after <= e.maxValue && +product.price_after >= e.minValue
+    // // });
 
-    // console.log(newProducts)
-    console.log(products)
+    // // console.log(newProducts)
+    // console.log(products)
 
   };
-  const onChangeFilters = (e: any) => {
-    console.log(e)
+  const onChangeFilters = (type: any, flag: any) => {
+    console.log(type, flag)
+    setQueryParams((prevState : any) => {
+      return {
+        ...prevState,
+        query: `${type}[]=${flag}`
+      }
+    })
+    router.push(`/?${type}[]=${flag}`)
   }
   return (
     <>
@@ -53,7 +63,7 @@ const Filter = ({ filter }: any) => {
         {filter.section.map((section: any) => {
           if (filter.type === "price") {
             return (
-              <MultiRangeSliderWrapper>
+              <MultiRangeSliderWrapper key={section.id}>
                 <MultiRangeSlider
                   min={section.min_price}
                   max={section.max_price}
@@ -73,13 +83,13 @@ const Filter = ({ filter }: any) => {
           }
           return (
             openFilters && (
-              <Flex direction="column" fullWidth>
+              <Flex direction="column" fullWidth key={section.id}>
                 <CheckboxInput
                   name={section.product_flag ?? section.id}
                   label={section.item}
                   defaultChecked={false}
-                  // value={section.product_flag}
-                  onChange={onChangeFilters}
+                  value={section.product_flag ?? section.id}
+                  onChange={() => onChangeFilters(filter.type, section.product_flag ?? section.id)}
                 />
               </Flex>
             )

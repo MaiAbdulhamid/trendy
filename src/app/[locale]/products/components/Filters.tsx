@@ -29,6 +29,7 @@ const Filters = () => {
         {filters.map((filter: any) => {
           return (
             <Filter
+              key={filter.id}
               filter={filter}
             />
           );

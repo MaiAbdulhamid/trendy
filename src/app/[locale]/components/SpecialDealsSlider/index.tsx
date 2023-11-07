@@ -53,7 +53,7 @@ export default function SpecialDealsSlider({
             }}
           >
             {products.map((product: any) => (
-              <SwiperSlide>
+              <SwiperSlide key={product.id}>
                 <SpecialDealsCard product={product}/>
               </SwiperSlide>
             ))}

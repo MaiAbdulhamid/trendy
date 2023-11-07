@@ -34,5 +34,43 @@
     "enterNewPassword": "أدخل كلمة المرور الجديدة",
     "activatedSuccessously": "تم تفعيل الحساب بنجاح",
     "codePassed": "تم تمرير الرمز بنجاح"
+  },
+  "Layout": {
+    "search": "بحث",
+    "searchQ": "ما الذي تبحث عنه؟",
+    "termsAndConditions": "Terms and conditions",
+    "privacyPolicy": "Privacy Policy",
+    "returnPolicy":"Return Policy",
+    "whoAreWe" : "Who Are We",
+    "about": "About",
+    "connectWithUs": "Connect With Us",
+    "contactUs": "Contact Us",
+    "shareApp": "Share App",
+    "faq": "FAQ",
+    "country": "Country",
+    "categories": "Categories",
+    "copyright": "@2023 trendy.com All rights reserved.",
+    "noResult": "No Results",
+    "orders": "Orders",
+    "addresses": "Addresses",
+    "wishlist" : "Wishlist",
+    "profile": "Profile",
+    "logout": "Sign Out",
+    "searchResults": "Search Results",
+    "results": "results",
+    "searchHistory": "Search History",
+    "clear": "Clear",
+    "nothingFound": "Nothing found..."
+  },
+
+  "Home": {
+    "viewAll": "View All",
+    "dayPromo": "Independence Day Promo",
+    "discountPercentage": "50% Off",
+    "newDeals": "A wonderful serenity has possession",
+    "deals": "Deals"
+  },
+  "Cart": {
+    "addToCart": "Add To Cart"
   }
 }

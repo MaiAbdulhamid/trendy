@@ -25,13 +25,11 @@ const universeFont = localFont({
   src: [
     {
       path: "./assets/fonts/UniversLTStdBold.otf",
-      weight: "500",
-      style: "normal",
+      weight: "700",
     },
     {
       path: "./assets/fonts/UniversLTStd.otf",
       weight: "300",
-      style: "italic",
     },
   ],
 });

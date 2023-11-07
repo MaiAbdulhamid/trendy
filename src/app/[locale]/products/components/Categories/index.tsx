@@ -1,5 +1,5 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-import { CategoriesContainer, Title } from "./style";
+import { CategoriesContainer } from "./style";
 import CircleCard from "../../../components/CircleCard";
 
 export default function Categories({ record }: any) {
@@ -8,7 +8,6 @@ export default function Categories({ record }: any) {
       <CategoriesContainer>
         <Swiper
           slidesPerView={6}
-          modules={[]}
           draggable={true}
           breakpoints={{
             300: {

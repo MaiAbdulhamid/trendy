@@ -24,7 +24,7 @@ const NavHoverCard = ({ subCategories }: any) => {
             <Flex key={section.id} direction="column">
               <H3>{section.name}</H3>
               {section.sub_categories.map((subCategory: any) => (
-                <Link href="#">
+                <Link href="#" key={subCategories.id}>
                   <P4>{subCategory.name}</P4>
                 </Link>
               ))}

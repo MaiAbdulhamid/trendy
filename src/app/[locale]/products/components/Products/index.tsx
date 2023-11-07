@@ -7,7 +7,7 @@ const Products = ({record} : any) => {
   return (
     <Grid>
       {record.map((product : any) => (
-        <Col span={4}>
+        <Col span={4} key={product.id}>
           <ProductCard product={product} />
         </Col>
       ))}

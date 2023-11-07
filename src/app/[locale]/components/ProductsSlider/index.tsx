@@ -54,7 +54,7 @@ export default function ProductsSlider({
             }}
           >
             {products.map((product: any) => (
-              <SwiperSlide>
+              <SwiperSlide key={product.id}>
                 <ProductCard product={product} color={color}/>
               </SwiperSlide>
             ))}

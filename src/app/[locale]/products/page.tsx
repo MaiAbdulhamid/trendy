@@ -10,27 +10,27 @@ import Filters from "./components/Filters";
 import { productsActions } from "../../store/products.slice";
 import { useDispatch, useSelector } from "react-redux";
 import axiosInstance from "../lib/axios";
+import { useSearchParams } from "next/navigation";
 
 function ProductsPage() {
   const [isPageLoading, setIsPageLoading] = useState(true);
-  const dispatch = useDispatch();
-  const products = useSelector((state: any) => state.products.products);
+  const searchParams = useSearchParams();
+
   const [filteredProducts, setFilteredProducts] = useState<any>([]);
   const fetchProducts = async () => {
     try {
       const response: any = await axiosInstance.get("products");
       const data = response.data.data.data;
       setFilteredProducts(data);
-      dispatch(productsActions.getProducts() as any)
     } catch (error: any) {
       console.log(error);
     }
   };
+
   useEffect(() => {
     setIsPageLoading(false);
-    // fetchProducts();
-    dispatch(productsActions.getProducts() as any)
-
+    fetchProducts();
+    //dispatch(productsActions.getProducts() as any)
   }, [isPageLoading]);
 
   if (isPageLoading) return <Loader />;
@@ -44,7 +44,7 @@ function ProductsPage() {
             <Filters />
           </Col>
           <Col span={9}>
-            <CategoriesAndProducts products={products} />
+            <CategoriesAndProducts products={filteredProducts} />
           </Col>
         </Grid>
       </Container>

@@ -36,8 +36,9 @@ export function Nav() {
   }, [setCategories]);
 
   const items = categories?.map((category: any) => (
-    <HoverCard.Target>
+    <HoverCard.Target key={category.id}>
       <Link
+        
         href={URLS.products + "?category_id[]=" + category.id}
         onMouseEnter={() => fetchSubCategories(category.id)}
         // onMouseOver={(e) => {
