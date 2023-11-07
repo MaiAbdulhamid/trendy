@@ -3,7 +3,7 @@ import URLS from "./urls";
 export function trimmed(value: string, length: number) {
   if (value?.length < length) return value;
 
-  return  ' ...' + value?.substring(0, length);
+  return  value?.substring(0, length) + ' ...';
 }
 
 export function resolveLink(data: any) {
@@ -16,7 +16,7 @@ export function resolveLink(data: any) {
   }
 
   if(redirect_type === 2 ){
-    link = URLS.category.dashboard + '?category_id[]=' + redirect_id;
+    link = URLS.products + '?category_id[]=' + redirect_id;
   }
 
   if(redirect_type === 3){
@@ -24,7 +24,7 @@ export function resolveLink(data: any) {
   }
 
   if(redirect_type === 4){
-    link = URLS.category.dashboard + '?brand_id[]=' + redirect_id;
+    link = URLS.products + '?brand_id=' + redirect_id;
   }
 
   return link;
@@ -39,7 +39,7 @@ export function resolveSearchLink(data: any) {
   }
 
   if(redirect_type === 2 ){
-    link = URLS.category.dashboard + '?category_id[]=' + id;
+    link = URLS.products + '?category_id[]=' + id;
   }
 
   if(redirect_type === 3){
@@ -47,7 +47,7 @@ export function resolveSearchLink(data: any) {
   }
 
   if(redirect_type === 4){
-    link = URLS.category.dashboard + '?brand_id[]=' + id;
+    link = URLS.products + '?brand_id=' + id;
   }
 
   return link;

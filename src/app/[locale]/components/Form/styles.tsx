@@ -4,8 +4,6 @@ import { Flex } from "../Grids";
 import theme from "../../utils/theme";
 import devices from "../../utils/devices";
 import { Select, Input } from "@mantine/core";
-import { DatePickerInput } from "@mantine/dates";
-import { InputPropsType } from "./types";
 
 type Types = any & {
   error?: boolean;

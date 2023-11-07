@@ -45,11 +45,6 @@ const Footer = () => {
       url: URLS.faq,
       text: trans("faq"),
     },
-    {
-      id: "lc2",
-      url: URLS.category.dashboard,
-      text: trans("categories"),
-    },
     // {
     //   id: "lc4",
     //   url: URLS.country,

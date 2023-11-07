@@ -35,7 +35,7 @@ const SearchInput = () => {
       return {
         label: word,
         id: "word" + index,
-        onClick: () => router.push(`${URLS.category.dashboard}?q=${word}`),
+        onClick: () => router.push(`${URLS.products}?q=${word}`),
       };
     });
   }
@@ -130,7 +130,7 @@ const SearchInput = () => {
                     <Flex justify="space-between" align="center" fullWidth>
                       <P4>{trans("searchHistory")}</P4>
                       <Button noStyle onClick={clearLatestSearch}>
-                        <P4 color={theme.colors.primaryColor}>
+                        <P4 color={theme.colors.error[300]}>
                           {trans("clear")}
                         </P4>
                       </Button>

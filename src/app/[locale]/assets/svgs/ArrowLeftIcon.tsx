@@ -6,7 +6,7 @@ const ArrowLeftIcon = ({ size, color }: SvgsTypes) => {
     <>
       <svg
         width={size ?? "16"}
-        height="26"
+        height={size ?? "26"}
         viewBox="0 0 16 26"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"

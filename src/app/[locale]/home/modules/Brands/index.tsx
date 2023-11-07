@@ -13,7 +13,7 @@ export default function Brands({ record, title }: ModuleProp) {
       <BrandsContainer>
         <SectionTitle
           color={theme.colors.black[300]}
-          to={URLS.category.dashboard}
+          to={URLS.products}
           title={title}
         />
 
@@ -39,7 +39,7 @@ export default function Brands({ record, title }: ModuleProp) {
             <SwiperSlide key={brand.id}>
               <BrandContainer>
                 <RectangularCard
-                  to={`${URLS.category.dashboard}?brand_id[]=${brand.id}`}
+                  to={`${URLS.products}?brand_id=${brand.id}`}
                   item={brand}
                 />
               </BrandContainer>

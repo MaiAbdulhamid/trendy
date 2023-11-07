@@ -4,7 +4,6 @@ import Loader from "../components/Loader";
 import axiosInstance from "../lib/axios";
 import Banner from "./modules/Banner";
 import Categories from "./modules/Categories";
-import "swiper/css";
 import SlideShow from "./modules/SlideShow";
 import Products from "./modules/Products";
 import Promo from "./modules/Promo";

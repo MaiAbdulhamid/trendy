@@ -13,7 +13,7 @@ export default function NewDeals({ record, title, widgetId, name, discount }: Mo
   return (
     <NewDealsContainer>
         <SectionTitle
-        to={`${URLS.category.dashboard}?widget_id=${widgetId}`}
+        to={`${URLS.products}?widget_id=${widgetId}`}
           title={title}
           enableViewAll={true}
           color={theme.colors.black[300]}

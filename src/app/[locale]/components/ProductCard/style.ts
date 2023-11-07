@@ -78,7 +78,7 @@ export const StyledCartButton = styled(CartButton)`
 export const CaptionBox = styled.div`
   margin-bottom: 15px;
   display: flex;
-  align-items: end;
+  /* align-items: end; */
   flex-direction: column;
   width: 100%;
 `;

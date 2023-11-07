@@ -23,7 +23,7 @@ export default function SpecialDealsSlider({
       <ProductsContainer>
         {title && 
           <SectionTitle
-            to={`${URLS.category.dashboard}?widget_id=${widgetId}`}
+            to={`${URLS.products}?widget_id=${widgetId}`}
             title={title}
             enableViewAll={enableViewAllButton}
             color={theme.colors.black[300]}

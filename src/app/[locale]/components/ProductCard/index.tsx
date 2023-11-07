@@ -59,12 +59,12 @@ export default function ProductCard(props: ProductCardProps) {
           <P3 color={color ?? theme.colors.black[300]}>
             {trimmed(product.name, 20)}
           </P3>
-          <Flex gap="1rem" fullWidth justify="end">
-            <P4 className="price--before">
-              {Currency.format(product.price_before)}
-            </P4>
+          <Flex gap="1rem" fullWidth>
             <P4 color={theme.colors.primaryColor}>
               {Currency.format(product.price_after)}
+            </P4>
+            <P4 className="price--before">
+              {Currency.format(product.price_before)}
             </P4>
           </Flex>
         </CaptionBox>

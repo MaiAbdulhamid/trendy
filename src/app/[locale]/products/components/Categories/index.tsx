@@ -1,23 +1,15 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-
 import { CategoriesContainer, Title } from "./style";
-import URLS from "../../../utils/urls";
-import { ModuleProp } from "../../types";
 import CircleCard from "../../../components/CircleCard";
-import SectionTitle from "../../../components/SectionTitle";
-import { useTranslations } from "next-intl";
-import theme from "../../../utils/theme";
 
-export default function Categories({ record, title }: ModuleProp) {
-  const trans = useTranslations("Home");
-
+export default function Categories({ record }: any) {
   return (
     <>
       <CategoriesContainer>
-        {title && <SectionTitle title={title} color={theme.colors.black} />}
         <Swiper
-          // dir="rtl"
           slidesPerView={6}
+          modules={[]}
+          draggable={true}
           breakpoints={{
             300: {
               slidesPerView: 3,
@@ -29,14 +21,14 @@ export default function Categories({ record, title }: ModuleProp) {
               slidesPerView: 5,
             },
             1150: {
-              slidesPerView: 7,
+              slidesPerView: 6,
             },
           }}
         >
           {record.map((category: any) => (
             <SwiperSlide key={category.id}>
               <CircleCard
-                to={`${URLS.products}?category_id[]=${category.id}`}
+                to={`?category_id[]=${category.id}`}
                 item={category}
               />
             </SwiperSlide>

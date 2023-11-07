@@ -7,7 +7,6 @@ import { Nav } from './Nav'
 const Header = () => {
   return (
     <Container>
-
       <TopNav />
       <Nav />
     </Container>

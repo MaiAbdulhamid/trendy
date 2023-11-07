@@ -25,6 +25,7 @@ export { default as ProfileIcon } from "./ProfileIcon";
 export { default as OrdersIcon } from "./OrdersIcon";
 export { default as UserWishlistIcon } from "./UserWishlistIcon";
 export { default as SignOutIcon } from "./SignOutIcon";
+export { default as ArrowDownIcon } from "./ArrowDownIcon";
 
 
 
