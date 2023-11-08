@@ -1,4 +1,3 @@
-import "@mantine/spotlight/styles.css";
 import React, { useCallback, useEffect, useState } from "react";
 import { Flex } from "../../Grids";
 import AutoComplete from "../../Form/AutoComplete";
@@ -11,14 +10,17 @@ import { resolveSearchLink } from "../../../utils/general";
 import { P4 } from "../../Typography";
 import theme from "../../../utils/theme";
 import { Hr, MainSearchWrapper, SearchWrapper, TotalResults } from "./style";
-import cache from "@mongez/cache";
+import cache, { PlainLocalStorageDriver, setCacheConfigurations } from "@mongez/cache";
 import Button from "../../Button/Button";
 import URLS from "../../../utils/urls";
 import Is from "@mongez/supportive-is";
 
+setCacheConfigurations({
+  driver: new PlainLocalStorageDriver(),
+});
+
 const SearchInput = () => {
   const trans = useTranslations("Layout");
-  // const latestSearch = resolveLatestSearch(cache.get("latestSearch", []));
   const [latestSearch, setLatestSearch] = useState<any[]>([]);
 
   const router = useRouter();

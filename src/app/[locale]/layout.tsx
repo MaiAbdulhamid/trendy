@@ -3,6 +3,7 @@ import "@mantine/dates/styles.css";
 import '@mantine/notifications/styles.css';
 import "swiper/css";
 import "./globals.css";
+import "@mantine/spotlight/styles.css";
 
 import type { Metadata } from "next";
 import localFont from "next/font/local";
@@ -62,7 +63,7 @@ export default async function RootLayout({
         </head>
         <Body className={universeFont.className}>
           <NextIntlClientProvider locale={locale} messages={messages}>
-            <MantineProvider theme={{ colorScheme: 'white' } as any}>
+            <MantineProvider defaultColorScheme="light">
               <Notifications position="top-left" autoClose={5000}/>
               <RootStyleRegistry>
               <main>
