@@ -10,14 +10,10 @@ import { resolveSearchLink } from "../../../utils/general";
 import { P4 } from "../../Typography";
 import theme from "../../../utils/theme";
 import { Hr, MainSearchWrapper, SearchWrapper, TotalResults } from "./style";
-import cache, { PlainLocalStorageDriver, setCacheConfigurations } from "@mongez/cache";
+import cache from "@mongez/cache";
 import Button from "../../Button/Button";
 import URLS from "../../../utils/urls";
 import Is from "@mongez/supportive-is";
-
-setCacheConfigurations({
-  driver: new PlainLocalStorageDriver(),
-});
 
 const SearchInput = () => {
   const trans = useTranslations("Layout");
