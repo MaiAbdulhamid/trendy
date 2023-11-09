@@ -4,22 +4,44 @@ import { Col, Container } from "../components/Grids";
 import { Grid } from "@mantine/core";
 import Header from "../components/Header";
 import Loader from "../components/Loader";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import CategoriesAndProducts from "./components/CategoriesAndProducts";
 import Filters from "./components/Filters";
-import { productsActions } from "../../store/products.slice";
-import { useDispatch, useSelector } from "react-redux";
 import axiosInstance from "../lib/axios";
-import { useSearchParams } from "next/navigation";
 
-function ProductsPage() {
+function ProductsPage({ searchParams }: any) {
   const [isPageLoading, setIsPageLoading] = useState(true);
-  const searchParams = useSearchParams();
-
   const [filteredProducts, setFilteredProducts] = useState<any>([]);
-  const fetchProducts = async () => {
+
+  const fetchProducts = useCallback(async () => {
     try {
       const response: any = await axiosInstance.get("products");
+      const data = response.data.data.data;
+      setFilteredProducts(data);
+    } catch (error: any) {
+      console.log(error);
+    }
+  }, []);
+
+  const getProductsFilters = async (filters: any) => {
+    let params = "";
+    filters.map((filter: any) => {
+      params += `&${new URLSearchParams(filter).toString()}`;
+    });
+    try {
+      const response: any = await axiosInstance.get(`products?${params}`);
+      const data = response.data.data.data;
+      setFilteredProducts(data);
+    } catch (error: any) {
+      console.log(error);
+    }
+  };
+
+  const getSearchParamsProducts = async () => {
+    let params = "";
+    params += `&${new URLSearchParams(searchParams).toString()}`;
+    try {
+      const response: any = await axiosInstance.get(`products?${params}`);
       const data = response.data.data.data;
       setFilteredProducts(data);
     } catch (error: any) {
@@ -29,9 +51,16 @@ function ProductsPage() {
 
   useEffect(() => {
     setIsPageLoading(false);
-    fetchProducts();
-    //dispatch(productsActions.getProducts() as any)
-  }, [isPageLoading]);
+    if(!searchParams){
+      fetchProducts();
+    }
+  }, [searchParams]);
+
+  useEffect(() => {
+    if(searchParams){
+      getSearchParamsProducts();
+    }
+  }, [searchParams]);
 
   if (isPageLoading) return <Loader />;
 
@@ -41,7 +70,10 @@ function ProductsPage() {
       <Container>
         <Grid>
           <Col span={3}>
-            <Filters />
+            <Filters
+              getProductsFilters={getProductsFilters}
+              setFilteredProducts={setFilteredProducts}
+            />
           </Col>
           <Col span={9}>
             <CategoriesAndProducts products={filteredProducts} />

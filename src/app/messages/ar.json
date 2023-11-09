@@ -38,39 +38,49 @@
   "Layout": {
     "search": "بحث",
     "searchQ": "ما الذي تبحث عنه؟",
-    "termsAndConditions": "Terms and conditions",
-    "privacyPolicy": "Privacy Policy",
-    "returnPolicy":"Return Policy",
-    "whoAreWe" : "Who Are We",
-    "about": "About",
-    "connectWithUs": "Connect With Us",
-    "contactUs": "Contact Us",
+    "termsAndConditions": "الشروط والأحكام",
+    "privacyPolicy": "سياسة الخصوصية",
+    "returnPolicy":"سياية الاسترجاع",
+    "whoAreWe" : "من نحن",
+    "about": "عنَا",
+    "connectWithUs": "تواصل معنا",
+    "contactUs": "اتصل بنا",
     "shareApp": "Share App",
-    "faq": "FAQ",
-    "country": "Country",
-    "categories": "Categories",
-    "copyright": "@2023 trendy.com All rights reserved.",
-    "noResult": "No Results",
-    "orders": "Orders",
-    "addresses": "Addresses",
-    "wishlist" : "Wishlist",
-    "profile": "Profile",
-    "logout": "Sign Out",
-    "searchResults": "Search Results",
-    "results": "results",
-    "searchHistory": "Search History",
-    "clear": "Clear",
-    "nothingFound": "Nothing found..."
+    "faq": "الاسئلة المتكررة",
+    "country": "البلد",
+    "categories": "الأقسام",
+    "copyright": "@2023 Trendy.com جميع الحقوق محفوظة.",
+    "noResult": "لا توجد نتائج",
+    "orders": "الطلبات",
+    "addresses": "العنواين",
+    "wishlist" : "المفضلة",
+    "profile": "الملف الشخصي",
+    "logout": "تسجيل الخروج",
+    "searchResults": "نتائج البحث",
+    "results": "النتائج",
+    "searchHistory": "سجل البحث",
+    "clear": "مسح",
+    "nothingFound": "لم يتم العثور على شيء..."
   },
 
   "Home": {
-    "viewAll": "View All",
-    "dayPromo": "Independence Day Promo",
-    "discountPercentage": "50% Off",
-    "newDeals": "A wonderful serenity has possession",
-    "deals": "Deals"
+    "viewAll": "عرض الكل",
+    "dayPromo": "عرض اليوم",
+    "discountPercentage": "50% خصم",
+    "newDeals": "صفاء رائع يمتلكه",
+    "deals": "العروض"
   },
   "Cart": {
-    "addToCart": "Add To Cart"
+    "addToCart": "أضف إلى السلة"
+  },
+  "Products": {
+    "sort": "فرز",
+    "recommended": "موصى به",
+    "mostPopular" : "الأكثر شعبية",
+    "newArrival" : "وصل حديثاً",
+    "priceLowToHigh" : "السعر من الأقل إلى الأعلى",
+    "priceHighToLow" : "السعر من الأعلى إلى الأقل",
+    "topRated" : "الأعلى تقييمًا",
+    "noResults": "لا توجد نتائج"
   }
 }

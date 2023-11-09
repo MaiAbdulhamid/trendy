@@ -105,7 +105,7 @@ const HomePage = () => {
         break;
     }
   });
-  console.log(homeData);
+  
   if (!isPageLoading) return <Loader />;
 
   return (

@@ -90,19 +90,19 @@ const SearchInput = () => {
   };
 
   return (
-    <MainSearchWrapper>
-      <Flex align="center" gap="8px">
-        <div onClick={spotlight.open}>
-          <AutoComplete name="q" placeholder={trans("searchQ")} />
-        </div>
-        <Spotlight.Root
-          fullScreen
-          maxHeight="100vh"
-          query={query}
-          onQueryChange={setQuery}
-          shortcut="shift + s"
-        >
-          <Spotlight.ActionsList style={{ minHeight: "100vh" }}>
+    <Flex align="center" gap="8px">
+      <div onClick={spotlight.open}>
+        <AutoComplete name="q" placeholder={trans("searchQ")} />
+      </div>
+      <Spotlight.Root
+        fullScreen
+        maxHeight="100vh"
+        query={query}
+        onQueryChange={setQuery}
+        shortcut="shift + s"
+      >
+        <Spotlight.ActionsList style={{ minHeight: "100vh" }}>
+          <MainSearchWrapper>
             <SearchWrapper>
               <Spotlight.Search
                 placeholder="Search..."
@@ -149,10 +149,10 @@ const SearchInput = () => {
                 </div>
               )}
             </Flex>
-          </Spotlight.ActionsList>
-        </Spotlight.Root>
-      </Flex>
-    </MainSearchWrapper>
+          </MainSearchWrapper>
+        </Spotlight.ActionsList>
+      </Spotlight.Root>
+    </Flex>
   );
 };
 

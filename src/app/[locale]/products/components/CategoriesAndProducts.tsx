@@ -7,23 +7,6 @@ import { useSearchParams } from "next/navigation";
 
 const CategoriesAndProducts = ({ products } : any) => {
   const [categories, setCategories] = useState<any>([]);
-  const [filteredProducts, setFilteredProducts] = useState<any>([]);
-  console.log(`products`, products)
-  // const [filteredProducts, setFilteredProducts] = useState<any>([]);
-  // const products = useSelector((state: any) => state.products.products);
-  const searchParams = useSearchParams()
-  // console.log(searchParams.getAll(''));
-  // console.log(productsRedux);
-
-  // const fetchProducts = async () => {
-  //   try {
-  //     const response: any = await axiosInstance.get("products");
-  //     const data = response.data.data.data;
-  //     setFilteredProducts(data);
-  //   } catch (error: any) {
-  //     console.log(error);
-  //   }
-  // };
 
   const fetchCategories = async () => {
     try {
@@ -46,8 +29,6 @@ const CategoriesAndProducts = ({ products } : any) => {
 
   useEffect(() => {
     fetchCategories();
-    // fetchProducts()
-    setFilteredProducts(products)
   }, []);
 
   return (

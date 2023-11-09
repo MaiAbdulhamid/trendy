@@ -39,7 +39,7 @@ export default function Brands({ record, title }: ModuleProp) {
             <SwiperSlide key={brand.id}>
               <BrandContainer>
                 <RectangularCard
-                  to={`${URLS.products}?brand_id=${brand.id}`}
+                  to={`${URLS.products}?brand_id[]=${brand.id}`}
                   item={brand}
                 />
               </BrandContainer>

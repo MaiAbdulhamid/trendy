@@ -42,10 +42,9 @@ export const SearchWrapper = styled.div`
   }
 `;
 export const MainSearchWrapper = styled.div`
-  .mantine-Spotlight-action{
-    [data-selected]: {
-      background: transparent
-    }
+  label: MainSearchWrapper;
+  .mantine-Spotlight-action[data-selected]{
+    background: transparent;
   }
 `;
 

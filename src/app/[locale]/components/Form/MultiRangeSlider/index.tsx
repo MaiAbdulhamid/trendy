@@ -8,6 +8,7 @@ import {
 } from "react";
 import classnames from "classnames";
 import { MultiRangeWrapper } from "./MultiRangeSlider";
+import {useLocale} from 'next-intl';
 
 interface MultiRangeSliderProps {
   min: number;
@@ -18,13 +19,14 @@ interface MultiRangeSliderProps {
 const MultiRangeSlider: FC<MultiRangeSliderProps> = ({
   min,
   max,
-  onChange
+  onChange,
 }) => {
   const [minVal, setMinVal] = useState(min);
   const [maxVal, setMaxVal] = useState(max);
   const minValRef = useRef<HTMLInputElement>(null);
   const maxValRef = useRef<HTMLInputElement>(null);
   const range = useRef<HTMLDivElement>(null);
+  const defaultLocale = useLocale();
 
   // Convert to percentage
   const getPercent = useCallback(
@@ -37,10 +39,13 @@ const MultiRangeSlider: FC<MultiRangeSliderProps> = ({
     if (maxValRef.current) {
       const minPercent = getPercent(minVal);
       const maxPercent = getPercent(+maxValRef.current.value); // Precede with '+' to convert the value from type string to type number
-      console.log(maxPercent)
 
       if (range.current) {
-        range.current.style.left = `${minPercent}%`;
+        if(defaultLocale === 'ar'){
+          range.current.style.right = `${minPercent}%`;
+        }else{
+          range.current.style.left = `${minPercent}%`;
+        }
         range.current.style.width = `${maxPercent - minPercent}%`;
       }
     }
@@ -51,8 +56,6 @@ const MultiRangeSlider: FC<MultiRangeSliderProps> = ({
     if (minValRef.current) {
       const minPercent = getPercent(+minValRef.current.value);
       const maxPercent = getPercent(maxVal);
-      console.log(maxVal)
-      console.log(maxPercent)
 
       if (range.current) {
         range.current.style.width = `${maxPercent - minPercent}%`;
@@ -63,7 +66,7 @@ const MultiRangeSlider: FC<MultiRangeSliderProps> = ({
   // Get min and max values when their state changes
   useEffect(() => {
     onChange({ min: minVal, max: maxVal });
-  }, [minVal, maxVal, onChange]);
+  }, [minVal, maxVal]);
 
   return (
     <MultiRangeWrapper>
@@ -90,7 +93,8 @@ const MultiRangeSlider: FC<MultiRangeSliderProps> = ({
         ref={maxValRef}
         onChange={(event: ChangeEvent<HTMLInputElement>) => {
           const value = Math.max(+event.target.value, minVal + 1);
-          setMaxVal(value);
+          console.log(value)
+          setMaxVal(+event.target.value);
           event.target.value = value.toString();
         }}
         className="thumb thumb--zindex-4"

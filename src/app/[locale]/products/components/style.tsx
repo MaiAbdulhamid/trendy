@@ -2,9 +2,11 @@ import styled from "@emotion/styled";
 
 export const FiltersWrapper = styled.div`
   margin-top: 3rem;
+  padding-bottom: 3rem;
 `;
 
 export const MultiRangeSliderWrapper = styled.div`
+  padding: 0 1rem;
   .multi-range-slider {
     border: 0;
     border-radius: 0;
@@ -25,4 +27,8 @@ export const MultiRangeSliderWrapper = styled.div`
       box-shadow: none;
     }
   }
+`;
+
+export const ProductsWrapper = styled.div`
+  margin-top: 3rem;
 `;

@@ -32,10 +32,10 @@ export default function SlideShow({ record }: ModuleProp) {
         ))}
 
         <div className="custom--prev">
-          <ArrowLeftIcon size={10} />
+          <ArrowLeftIcon />
         </div>
         <div className="custom--next">
-          <ArrowRightIcon size={10} />
+          <ArrowRightIcon />
         </div>
       </Swiper>
     </SliderContainer>

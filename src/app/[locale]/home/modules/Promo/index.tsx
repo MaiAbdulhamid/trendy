@@ -16,7 +16,7 @@ const Promo = () => {
           {trans("dayPromo")}{" "}
           <span className="primary">{trans("discountPercentage")}</span>
         </P4>
-        <Button color={theme.colors.white} variant="primary" href={URLS.deals}>
+        <Button color={theme.colors.white} variant="primary" href={URLS.deals} style={{padding: "10px 55px"}}>
           {trans("deals")}
         </Button>
       </Flex>

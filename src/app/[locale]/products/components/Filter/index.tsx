@@ -1,52 +1,34 @@
-import React, { useCallback, useState } from "react";
-import { Flex } from "../../../components/Grids";
-import { P4 } from "../../../components/Typography";
-import { ArrowDownIcon, ArrowLeftIcon } from "../../../assets/svgs";
-import CheckboxInput from "../../../components/Form/CheckboxInput";
-import Button from "../../../components/Button/Button";
+import React, { useCallback, useEffect, useState } from "react";
 import theme from "../../../utils/theme";
-import MultiRangeSlider from "multi-range-slider-react";
 import { MultiRangeSliderWrapper } from "../style";
-import { productsActions } from "../../../../store";
-import { useDispatch, useSelector } from "react-redux";
-import { useRouter } from "next/navigation";
-import URLS from "@/app/[locale]/utils/urls";
+import axiosInstance from "@/app/[locale]/lib/axios";
+import cache from "@mongez/cache";
+import { Flex } from "@/app/[locale]/components/Grids";
+import { P4 } from "@/app/[locale]/components/Typography";
+import Button from "@/app/[locale]/components/Button/Button";
+import { ArrowDownIcon, ArrowLeftIcon } from "@/app/[locale]/assets/svgs";
+import CheckboxInput from "@/app/[locale]/components/Form/CheckboxInput";
+import MultiRangeSlider from "@/app/[locale]/components/Form/MultiRangeSlider";
 
-const Filter = ({ filter }: any) => {
+const Filter = ({ filter, onChangeFilters, setFilteredProducts }: any) => {
   const [openFilters, setOpenFilters] = useState<Boolean>(true);
-  const [queryParams, setQueryParams] = useState<any>({query: ''});
 
-  const router = useRouter();
-
-  const onChangePrice = (e: any) => {
-    // dispatch(
-    //   productsActions.filter({
-    //     type: "price",
-    //     payload: {
-    //       min: e.minValue,
-    //       max: e.maxValue,
-    //     },
-    //   })
-    // );
-
-    // // const newProducts = filteredProducts.filter((product : any) => {
-    // //   +product.price_after <= e.maxValue && +product.price_after >= e.minValue
-    // // });
-
-    // // console.log(newProducts)
-    // console.log(products)
-
-  };
-  const onChangeFilters = (type: any, flag: any) => {
-    console.log(type, flag)
-    setQueryParams((prevState : any) => {
-      return {
-        ...prevState,
-        query: `${type}[]=${flag}`
+  const onChangePrice = async (e: any, min_price : number, max_price: number) => {
+    if(e.max !== max_price || e.min !== min_price){
+      try {
+        const response: any = await axiosInstance.get(`products?max_price=${e.max}&min_price=${e.min}`);
+        const data = response.data.data.data;
+        setFilteredProducts(data);
+      } catch (error: any) {
+        console.log(error);
       }
-    })
-    router.push(`/?${type}[]=${flag}`)
-  }
+    }
+  };
+
+  useEffect(() => {
+    cache.remove("filters");
+  }, []);
+
   return (
     <>
       <Flex fullWidth align="center" justify="space-between">
@@ -64,7 +46,7 @@ const Filter = ({ filter }: any) => {
           if (filter.type === "price") {
             return (
               <MultiRangeSliderWrapper key={section.id}>
-                <MultiRangeSlider
+                {/* <MultiRangeSlider
                   min={section.min_price}
                   max={section.max_price}
                   step={5}
@@ -77,6 +59,11 @@ const Filter = ({ filter }: any) => {
                   barLeftColor="#D9D9D9"
                   barRightColor="#D9D9D9"
                   barInnerColor={theme.colors.primaryColor}
+                /> */}
+                <MultiRangeSlider
+                  onChange={(e: any) => onChangePrice(e, section.min_price, section.max_price)}
+                  min={section.min_price}
+                  max={section.max_price}
                 />
               </MultiRangeSliderWrapper>
             );
@@ -88,8 +75,13 @@ const Filter = ({ filter }: any) => {
                   name={section.product_flag ?? section.id}
                   label={section.item}
                   defaultChecked={false}
-                  value={section.product_flag ?? section.id}
-                  onChange={() => onChangeFilters(filter.type, section.product_flag ?? section.id)}
+                  onChange={(value) =>
+                    onChangeFilters(
+                      value,
+                      filter.type,
+                      section.product_flag ?? section.id
+                    )
+                  }
                 />
               </Flex>
             )

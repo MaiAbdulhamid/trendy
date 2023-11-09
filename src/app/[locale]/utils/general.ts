@@ -24,7 +24,7 @@ export function resolveLink(data: any) {
   }
 
   if(redirect_type === 4){
-    link = URLS.products + '?brand_id=' + redirect_id;
+    link = URLS.products + '?brand_id[]=' + redirect_id;
   }
 
   return link;
@@ -47,7 +47,7 @@ export function resolveSearchLink(data: any) {
   }
 
   if(redirect_type === 4){
-    link = URLS.products + '?brand_id=' + id;
+    link = URLS.products + '?brand_id[]=' + id;
   }
 
   return link;

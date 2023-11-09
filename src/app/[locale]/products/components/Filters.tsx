@@ -3,10 +3,10 @@ import { Flex } from "../../components/Grids";
 import axiosInstance from "../../lib/axios";
 import { FiltersWrapper } from "./style";
 import Filter from "./Filter";
-import { productsActions } from "../../../store";
-import { useDispatch, useSelector } from "react-redux";
+import Sort from "./Sort";
+import cache from "@mongez/cache";
 
-const Filters = () => {
+const Filters = ({ getProductsFilters, setFilteredProducts }: any) => {
   const [filters, setFilters] = useState<any>([]);
 
   const fetchFilters = async () => {
@@ -19,18 +19,45 @@ const Filters = () => {
     }
   };
 
+  const onChangeFilters = (
+    value: React.FormEvent,
+    type: string,
+    flag: string
+  ) => {
+    const preparedFlag = type === "delivery" ? 1 : flag;
+    const preparedType = type === "sort" ? type : `${type}[]`;
+
+    if (value) {
+      cache.set("filters", [
+        ...cache.get("filters", []),
+        {
+          [preparedType]: preparedFlag,
+        },
+      ]);
+    } else {
+      const filtered = cache
+        .get("filters", [])
+        .filter((item: any) => item[preparedType] !== preparedFlag);
+      cache.set("filters", filtered);
+    }
+    getProductsFilters(cache.get("filters", []));
+  };
+
   useEffect(() => {
     fetchFilters();
-  }, [setFilters]);
+  }, []);
 
   return (
     <FiltersWrapper>
       <Flex direction="column" fullWidth gap="1rem">
+        <Sort onChangeFilters={onChangeFilters} />
         {filters.map((filter: any) => {
           return (
             <Filter
               key={filter.id}
               filter={filter}
+              onChangeFilters={onChangeFilters}
+              setFilteredProducts={setFilteredProducts}
             />
           );
         })}

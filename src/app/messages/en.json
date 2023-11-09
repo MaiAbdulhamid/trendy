@@ -72,5 +72,15 @@
   },
   "Cart": {
     "addToCart": "Add To Cart"
+  },
+  "Products": {
+    "sort": "Sort",
+    "recommended": "Recommended",
+    "mostPopular" : "Most Popular",
+    "newArrival" : "New Arrival",
+    "priceLowToHigh" : "Price low to high",
+    "priceHighToLow" : "Price high to low",
+    "topRated" : "Top Rated",
+    "noResults": "There is No Results"
   }
 }
