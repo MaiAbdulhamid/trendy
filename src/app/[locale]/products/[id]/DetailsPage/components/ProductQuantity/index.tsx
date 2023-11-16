@@ -18,23 +18,23 @@ export default function ProductQuantity({ product }: any) {
 
   const [quantity, setQuantity] = useState(product.qty || 1);
 
-  const optionsPrices = cartItemAtom.useValue().optionsPrices || {};
+  // const optionsPrices = cartItemAtom.useValue().optionsPrices || {};
 
-  useEffect(() => {
-    let optionsPrice = 0;
+  // useEffect(() => {
+  //   let optionsPrice = 0;
 
-    for (var key of Object.keys(optionsPrices)) {
-      if (Is.array(optionsPrices[key])) {
-        optionsPrice += optionsPrices[key].reduce((a: any, b: any) => a + b, 0);
-      } else {
-        optionsPrice += optionsPrices[key];
-      }
-    }
+  //   for (var key of Object.keys(optionsPrices)) {
+  //     if (Is.array(optionsPrices[key])) {
+  //       optionsPrice += optionsPrices[key].reduce((a: any, b: any) => a + b, 0);
+  //     } else {
+  //       optionsPrice += optionsPrices[key];
+  //     }
+  //   }
 
-    setOptionsPriceTotal(optionsPrice);
+  //   setOptionsPriceTotal(optionsPrice);
 
-    setFinalPrice(quantity * (product.finalPrice + optionsPrice));
-  }, [optionsPrices]);
+  //   setFinalPrice(quantity * (product.finalPrice + optionsPrice));
+  // }, [optionsPrices]);
 
   const onChangeQty = (value: any) => {
     setQuantity(value);
