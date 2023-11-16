@@ -1,7 +1,7 @@
 import { atom } from "@mongez/react-atom";
 
 export const cartItemAtom = atom({
-  name: "cartItem",
+  key: "cartItem",
   default: {
     options: [],
     quantity: 1,
