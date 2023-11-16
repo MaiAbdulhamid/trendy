@@ -23,7 +23,7 @@ const URLS = {
   },
   deals: "/deals",
   products: "/products",
-  viewProduct: (product: any) => `/products/${product.id}/${product.slug}`,
+  viewProduct: (product: any) => `/products/${product.id}`,
   categories: "/categories",
   about: "/about",
   privacyPolicy: "/privacy-policy",

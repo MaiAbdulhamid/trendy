@@ -21,6 +21,7 @@ export const Text = styled("span", {
     textDecoration,
     textAlign,
     lineHeight,
+    opacity,
   }) => css`
     font-family: ${fontFamily ? fontFamily : "inherit"};
     font-weight: ${weight || "normal"};
@@ -28,6 +29,7 @@ export const Text = styled("span", {
     text-align: ${textAlign};
     line-height: ${lineHeight};
     color: ${color || "#343434"};
+    opacity: ${opacity};
     display: block;
   `}
   ${({ fontSize, length, isHeader }) =>

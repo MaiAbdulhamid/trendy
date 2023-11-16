@@ -12,7 +12,7 @@ export function resolveLink(data: any) {
   const { redirect_type, redirect_id } = data;
 
   if(redirect_type === 1){
-    link = URLS.viewProduct({ id: redirect_id, slug: 'product' });
+    link = URLS.viewProduct({ id: redirect_id });
   }
 
   if(redirect_type === 2 ){
@@ -35,7 +35,7 @@ export function resolveSearchLink(data: any) {
   const { redirect_type, id } = data;
 
   if(redirect_type === 1){
-    link = URLS.viewProduct({ id: id, slug: 'product' });
+    link = URLS.viewProduct({ id: id });
   }
 
   if(redirect_type === 2 ){
@@ -52,3 +52,4 @@ export function resolveSearchLink(data: any) {
 
   return link;
 }
+

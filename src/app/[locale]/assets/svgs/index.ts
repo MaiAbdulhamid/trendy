@@ -26,7 +26,9 @@ export { default as OrdersIcon } from "./OrdersIcon";
 export { default as UserWishlistIcon } from "./UserWishlistIcon";
 export { default as SignOutIcon } from "./LogoutIcon";
 export { default as ArrowDownIcon } from "./ArrowDownIcon";
-
-
+export { default as AddToCartIcon } from "./AddToCartIcon";
+export { default as MinusIcon } from "./MinusIcon";
+export { default as PlusIcon } from "./PlusIcon";
+export { default as BreadcrumbIcon } from "./BreadcrumbIcon";
 
 

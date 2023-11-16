@@ -63,7 +63,7 @@ export default function ProductCard(props: ProductCardProps) {
             <P4 color={theme.colors.primaryColor}>
               {Currency.format(product.price_after)}
             </P4>
-            <P4 className="price--before">
+            <P4 color="#AEABA4" textDecoration='line-through'>
               {Currency.format(product.price_before)}
             </P4>
           </Flex>

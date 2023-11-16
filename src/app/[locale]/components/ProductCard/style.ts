@@ -16,8 +16,6 @@ export const ProductBox = styled.div`
   }
   .price--before{
     color: #AEABA4;
-    text-decoration-line: line-through;
-
   }
   ${devices.smallMax} {
     border-radius: 12px;
@@ -31,7 +29,7 @@ export const Options = styled.div`
   z-index: 100;
 `;
 export const IsExpress = styled.div`
-  background: ${theme.colors.error[300]};
+  background: #EA4335;
   padding: 10px 30px;
   border-radius: 25px 0px 25px 0px;
   text-align: center
@@ -76,6 +74,7 @@ export const StyledCartButton = styled(CartButton)`
 `
 
 export const CaptionBox = styled.div`
+  position: relative;
   margin-bottom: 15px;
   display: flex;
   /* align-items: end; */

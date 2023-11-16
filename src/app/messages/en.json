@@ -82,5 +82,15 @@
     "priceHighToLow" : "Price high to low",
     "topRated" : "Top Rated",
     "noResults": "There is No Results"
+  },
+  "Product": {
+    "brand": "Brand",
+    "delivery": "Delivery",
+    "express": "Express",
+    "productDetails": "Product Details",
+    "promotions": "promotions"
+  },
+  "Breadcrumb": {
+    "home": "Home"
   }
 }

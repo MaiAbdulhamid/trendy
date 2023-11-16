@@ -37,7 +37,7 @@ function ProductsPage({ searchParams }: any) {
     }
   };
 
-  const getSearchParamsProducts = async () => {
+  const getSearchParamsProducts = useCallback(async () => {
     let params = "";
     params += `&${new URLSearchParams(searchParams).toString()}`;
     try {
@@ -47,20 +47,20 @@ function ProductsPage({ searchParams }: any) {
     } catch (error: any) {
       console.log(error);
     }
-  };
+  }, [searchParams]);
 
   useEffect(() => {
     setIsPageLoading(false);
     if(!searchParams){
       fetchProducts();
     }
-  }, [searchParams]);
+  }, [fetchProducts, searchParams]);
 
   useEffect(() => {
     if(searchParams){
       getSearchParamsProducts();
     }
-  }, [searchParams]);
+  }, [searchParams, getSearchParamsProducts]);
 
   if (isPageLoading) return <Loader />;
 

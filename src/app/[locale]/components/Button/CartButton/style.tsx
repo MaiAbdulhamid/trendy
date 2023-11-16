@@ -3,8 +3,10 @@ import Button from "../Button";
 import { CartButtonProps } from "./type";
 
 export const CartButtonStyled = styled(Button)`
+  height: 78px;
+  display: flex;
+  gap: 1rem;
   svg {
-    margin-left: 10px;
-    margin-top: -5px;
+    margin-right: 1rem;
   }
 `;

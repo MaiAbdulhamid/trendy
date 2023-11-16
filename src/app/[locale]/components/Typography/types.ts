@@ -47,6 +47,7 @@ export type TypographyPropsType = {
   endAdornment?: string;
   hover?: HoverType;
   as?: React.ElementType;
+  opacity?: Property.Opacity;
 };
 
 export type StyledTextType = Omit<

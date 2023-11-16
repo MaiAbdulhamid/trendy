@@ -46,6 +46,7 @@ export default function WishlistButton({
       rounded
       // onClick={addToWishlist}
       variant='primary'
+      noStyle
       disabled={loading}
       active={inWishlist}
       {...other}

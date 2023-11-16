@@ -2,12 +2,14 @@ import { useState } from "react";
 import { CartButtonStyled } from "./style";
 import { CartButtonProps } from "./type";
 import { useTranslations } from "next-intl";
+import { AddToCartIcon } from "@/app/[locale]/assets/svgs";
+import { P4 } from "../../Typography";
 
 export default function CartButton({
   product,
   quantity = 1,
   options = {},
-  iconSize= 19,
+  iconSize = 31,
   ...other
 }: CartButtonProps) {
   const trans = useTranslations('Cart')
@@ -30,9 +32,9 @@ export default function CartButton({
   //     });
   // };
   return (
-    <CartButtonStyled {...other} loading={loading}>
-      {/* <CartIcon color={theme.colors.white} size={iconSize} /> */}
-      {trans("addToCart")}
+    <CartButtonStyled variant="primary" {...other} loading={loading}>
+      <AddToCartIcon size={iconSize} />
+      <P4>{trans("addToCart")}</P4>
     </CartButtonStyled>
   );
 }

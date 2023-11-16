@@ -386,6 +386,11 @@
   dependencies:
     "@mongez/encryption" "^1.0.x"
 
+"@mongez/concat-route@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@mongez/concat-route/-/concat-route-1.0.0.tgz#c2c0d26274c6135914be5f64670a2986aa443ce2"
+  integrity sha512-yl0kNPilESIk3GcdZtgChfpfVc8VzqQmHTZ+H12wuxACWl7hbA9jK8xQrjvdh+IIxd4Wzr4eaDfrpRpPTvwSQw==
+
 "@mongez/encryption@^1.0.x":
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/@mongez/encryption/-/encryption-1.0.4.tgz#91b9c78ddadf29ce5be35fa8a52f9eecbf371008"
@@ -421,6 +426,14 @@
   dependencies:
     "@mongez/events" "^2.0.0"
     "@mongez/localization" "^2.2.1"
+
+"@mongez/react-router@^2.3.2":
+  version "2.3.2"
+  resolved "https://registry.yarnpkg.com/@mongez/react-router/-/react-router-2.3.2.tgz#3b2ef206b85c3e1e3a92a667065c01d95714515e"
+  integrity sha512-vPOiCbUodOdhTvoLBTaQlvKGAVxJpPTJeUmpgNSMM+0UZb+6IhnIYq3qddj92fs3zkMoa/4YJRVUMWK8AJNvaA==
+  dependencies:
+    "@mongez/concat-route" "^1.0.0"
+    "@mongez/events" "^2.1.0"
 
 "@mongez/reinforcements@^2.3.8":
   version "2.3.9"

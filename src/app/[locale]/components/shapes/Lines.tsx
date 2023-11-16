@@ -4,7 +4,7 @@ import theme from "../../utils/theme";
 
 export const DottedLine = styled.div`
   height: 2px;
-  margin: 40px 0;
+  margin: 20px 0;
 
   background: repeating-linear-gradient(
       to right,
@@ -19,8 +19,9 @@ export const DottedLine = styled.div`
 `;
 
 export const Line = styled.hr<any>`
-  height: 2px;
+  height: 1px;
   margin: 20px 0;
+  opacity: 0.3;
   ${({ color }) =>
     color &&
     css`
