@@ -1,7 +1,7 @@
 import { Group } from "@mantine/core";
 import Is from "@mongez/supportive-is";
 import { AttachmentsWrapper, Wrapper } from "./style";
-import { H4, P4 } from "@/app/[locale]/components/Typography";
+import { H7, P4 } from "@/app/[locale]/components/Typography";
 import { Line } from "@/app/[locale]/components/shapes/Lines";
 import { useTranslations } from "next-intl";
 
@@ -12,7 +12,7 @@ export default function Attachments({ product }: any) {
 
   return (
     <Wrapper>
-      <H4> {trans("promotions")}</H4>
+      <H7> {trans("promotions")}</H7>
       {(product.specifications || []).map((item: any) => (
         <AttachmentsWrapper
           key={item.id}

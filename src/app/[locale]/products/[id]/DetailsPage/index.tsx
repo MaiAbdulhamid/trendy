@@ -61,7 +61,7 @@ function DetailsPage({ product }: any) {
 
             <ProductOptions product={product} />
 
-            <ProductQuantity product={product} />
+            {/* <ProductQuantity product={product} /> */}
 
             <Attachments product={product} />
           </Col>

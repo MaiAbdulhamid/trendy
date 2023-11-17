@@ -5,14 +5,14 @@ import { RadioProps } from "./type";
 import theme from "@/app/[locale]/utils/theme";
 
 export const RadioStyled = styled(Radio)<RadioProps>`
+  margin: 0rem 1rem 0 0;
   .mantine-Radio-radio {
-    width: 90px;
+    width: 39px;
     height: 39px;
-    padding: 11px 0px 8px 0px;
-    border-radius: 5px;
-    border: 1px;
-    border: 1px solid;
-    background: transparent;
+    /* padding: 11px 0px 8px 0px; */
+    border-radius: 50%;
+    border: 2px;
+    background: ${(props) => props.color};
 
     &:checked {
       border: 1px solid ${theme.colors.primaryColor};
@@ -35,5 +35,6 @@ export const RadioStyled = styled(Radio)<RadioProps>`
     width: 100%;
     height: 100%;
     line-height: inherit;
+    margin: 20px 0;
   }
 `;

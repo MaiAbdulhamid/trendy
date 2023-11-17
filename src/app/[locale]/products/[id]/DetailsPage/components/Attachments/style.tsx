@@ -19,7 +19,7 @@ export const AttachmentsWrapper = styled(Flex)`
   `;
 
 export const Wrapper = styled.div`
-  h4{
+  h6{
     text-transform: uppercase;
   }
 `

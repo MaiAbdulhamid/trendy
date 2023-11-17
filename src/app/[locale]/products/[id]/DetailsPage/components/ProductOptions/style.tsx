@@ -7,6 +7,7 @@ export const ProductOptionsContainer = styled.div`
 `;
 
 export const ProductOption = styled.div`
-  margin-bottom: 20px;
-  width: 90px;
+  display: flex;
+  gap: 1rem;
+  width: 100%;
 `;

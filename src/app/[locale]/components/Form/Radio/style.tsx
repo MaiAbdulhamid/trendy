@@ -10,7 +10,7 @@ export const RadioStyled = styled(Radio)<RadioProps>`
     padding: 11px 0px 8px 0px;
     border-radius: 5px;
     border: 1px;
-    border: 1px solid;
+    border: 1px solid ${theme.colors.lightGrey};
     background: transparent;
 
     &:checked {
@@ -32,7 +32,7 @@ export const RadioStyled = styled(Radio)<RadioProps>`
     }
   }
   .mantine-Radio-labelWrapper {
-    width: 100%;
+    width: 90px;
     height: 39px;
     line-height: inherit;
     display: flex;

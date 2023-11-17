@@ -88,7 +88,9 @@
     "delivery": "Delivery",
     "express": "Express",
     "productDetails": "Product Details",
-    "promotions": "promotions"
+    "promotions": "promotions",
+    "quantity": "Quantity",
+    "mustLogin": "Tou Must login first"
   },
   "Breadcrumb": {
     "home": "Home"

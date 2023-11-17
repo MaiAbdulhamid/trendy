@@ -6,6 +6,9 @@ import EnNumber from "@/app/[locale]/utils/EnNumber";
 import theme from "@/app/[locale]/utils/theme";
 
 export default function Reviews({ rate }: any) {
+
+  if(+rate === 0) return null;
+
   return (
     <ReviewWrapper>
       <P4>

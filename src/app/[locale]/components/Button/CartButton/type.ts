@@ -1,15 +1,15 @@
 import { ButtonProps } from "../type";
 
 type productProps = {
-    [key: string]: any
-}
+  [key: string]: any;
+};
 
 export type CartButtonProps = ButtonProps & {
-    product: productProps,
+  product: productProps;
 
-    quantity?: string | number
+  quantity?: string | number;
 
-    options?: any
+  variationId?: any;
 
-    iconSize?: number
-}
+  iconSize?: number;
+};

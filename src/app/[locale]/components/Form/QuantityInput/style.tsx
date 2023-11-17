@@ -19,6 +19,9 @@ export const QuantityInputContainer = styled(Group)`
   button {
     border-color: ${theme.colors.primaryColor};
     border-width: 2px;
+    :disabled{
+      border-color: ${theme.colors.lightGrey};
+    }
   }
   .plus--button,
   .minus--button {

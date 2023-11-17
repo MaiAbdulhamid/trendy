@@ -5,6 +5,6 @@ export const cartItemAtom = atom({
   default: {
     options: [],
     quantity: 1,
-    notes: "",
+    variation_id: '',
   },
 });

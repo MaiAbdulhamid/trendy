@@ -5,62 +5,41 @@ import Currency from "../../../../../utils/currency";
 import { ProductQuantityContainer } from "./style";
 import { cartItemAtom } from "@/app/[locale]/shared/atoms/cart-atom";
 import QuantityInput from "@/app/[locale]/components/Form/QuantityInput";
-import { P1, P3 } from "@/app/[locale]/components/Typography";
+import { H7, P1, P3 } from "@/app/[locale]/components/Typography";
 import theme from "@/app/[locale]/utils/theme";
 import { Flex } from "@/app/[locale]/components/Grids";
 import CartButton from "@/app/[locale]/components/Button/CartButton";
 import { Line } from "@/app/[locale]/components/shapes/Lines";
 
-export default function ProductQuantity({ product }: any) {
-  const [finalPrice, setFinalPrice] = useState(product.finalPrice);
-
-  const [optionsPriceTotal, setOptionsPriceTotal] = useState(0);
-
+export default function ProductQuantity({ product, variationId }: any) {
   const [quantity, setQuantity] = useState(product.qty || 1);
-
-  // const optionsPrices = cartItemAtom.useValue().optionsPrices || {};
-
-  // useEffect(() => {
-  //   let optionsPrice = 0;
-
-  //   for (var key of Object.keys(optionsPrices)) {
-  //     if (Is.array(optionsPrices[key])) {
-  //       optionsPrice += optionsPrices[key].reduce((a: any, b: any) => a + b, 0);
-  //     } else {
-  //       optionsPrice += optionsPrices[key];
-  //     }
-  //   }
-
-  //   setOptionsPriceTotal(optionsPrice);
-
-  //   setFinalPrice(quantity * (product.finalPrice + optionsPrice));
-  // }, [optionsPrices]);
 
   const onChangeQty = (value: any) => {
     setQuantity(value);
-
-    setFinalPrice(Number(value) * (product.finalPrice + optionsPriceTotal));
   };
+
+  // if(product.qty === 0 ) return null;
 
   return (
     <>
       <ProductQuantityContainer>
-        <P3>{trans("Quantity")}</P3>
+        <H7>{trans("quantity")}</H7>
         <Flex justify="space-between" fullWidth>
           <QuantityInput
-            min={product.minimumPurchaseQuantity}
-            max={product.quantity}
+            min={product.qty}
+            max={product.stock}
             onChange={onChangeQty}
             defaultValue={quantity}
           />
         </Flex>
       </ProductQuantityContainer>
+      <Line color="#3434344D" />
       <CartButton
         quantity={quantity}
         fullWidth
         size="lg"
         product={product}
-        options={cartItemAtom.useValue().options}
+        variationId={variationId}
         className="add--to--cart"
       />
       <Line color="#3434344D" />

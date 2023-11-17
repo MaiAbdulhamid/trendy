@@ -23,14 +23,10 @@ export default function QuantityInput({
 
   const increment = () => {
     handlers?.current?.increment();
-
-    // onChange && onChange(value);
   };
 
   const decrement = () => {
     handlers?.current?.decrement();
-
-    // onChange && onChange(value);
   };
 
   const changeValue = (val: any) => {
@@ -47,11 +43,11 @@ export default function QuantityInput({
       <ActionIcon
         size={35}
         variant="default"
-        onClick={increment}
+        onClick={decrement}
         radius={5}
-        className="plus--button"
+        className="minus--button"
       >
-        <PlusIcon />
+        <MinusIcon />
       </ActionIcon>
       <NumberInput
         hideControls
@@ -64,15 +60,14 @@ export default function QuantityInput({
         size="md"
         className="number-input"
       />
-
       <ActionIcon
         size={35}
         variant="default"
-        onClick={decrement}
+        onClick={increment}
         radius={5}
-        className="minus--button"
+        className="plus--button"
       >
-        <MinusIcon />
+        <PlusIcon />
       </ActionIcon>
     </QuantityInputContainer>
   );
