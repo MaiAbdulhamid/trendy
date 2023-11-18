@@ -26,7 +26,7 @@ export default function ProductQuantity({ product, variationId }: any) {
         <H7>{trans("quantity")}</H7>
         <Flex justify="space-between" fullWidth>
           <QuantityInput
-            min={product.qty}
+            min={0}
             max={product.stock}
             onChange={onChangeQty}
             defaultValue={quantity}

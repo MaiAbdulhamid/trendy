@@ -1,4 +1,3 @@
-import CartButton from "../Button/CartButton";
 import { P3, P4 } from "../Typography";
 import {
   CaptionBox,
