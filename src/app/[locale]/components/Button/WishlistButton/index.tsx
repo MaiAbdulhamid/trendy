@@ -4,20 +4,21 @@ import { WishlistButtonProps } from "./type";
 import { HeartIcon } from "../../../assets/svgs";
 import axiosInstance from "@/app/[locale]/lib/axios";
 import { showNotification } from "../../Notifications/showNotification";
-import { getCookie } from "cookies-next";
 import { useTranslations } from "next-intl";
+import HeartFillIcon from "@/app/[locale]/assets/svgs/HeartFillIcon";
+import cache from "@mongez/cache";
 
 export default function WishlistButton({
   product,
   ...other
 }: WishlistButtonProps) {
   const [loading, isLoading] = useState(false);
-  const [inWishlist, setInWishlist] = useState(product.inWishlist);
+  const [inWishlist, setInWishlist] = useState(product.is_favorite);
   const trans = useTranslations('Product');
 
   const addOrRemoveWishlist = () => {
 
-    if(!getCookie('token')) {
+    if(!cache.get('token')) {
       
       showNotification({
         type: "danger",
@@ -31,6 +32,7 @@ export default function WishlistButton({
     axiosInstance.post("wishlist/add_or_remove", {product_id: product.id})
      .then((response) => {
         isLoading(false);
+        // setInWishlist(true)
         showNotification({
           type: "success",
           message: response.data.message,
@@ -54,10 +56,10 @@ export default function WishlistButton({
       variant='primary'
       noStyle
       disabled={loading}
-      active={inWishlist}
+      // active={inWishlist}
       {...other}
     >
-      <HeartIcon />
+      {inWishlist ? <HeartFillIcon /> : <HeartIcon />}
     </WishlistButtonStyled>
   );
 }

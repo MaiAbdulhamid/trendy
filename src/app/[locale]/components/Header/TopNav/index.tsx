@@ -1,9 +1,6 @@
 import { Group, Burger } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
-import {
-  GlobalIcon,
-  LogoIcon,
-} from "../../../assets/svgs";
+import { GlobalIcon, LogoIcon } from "../../../assets/svgs";
 import Button from "../../Button/Button";
 import { Flex } from "../../Grids";
 import { StyledHeader } from "./style";
@@ -11,26 +8,18 @@ import Search from "./Search";
 import Icons from "../Icons";
 import Link from "next/link";
 import URLS from "../../../utils/urls";
-import { getCookie, setCookie } from "cookies-next";
-import { useRouter } from "next/navigation";
-import {useLocale} from 'next-intl';
+import { useLocale } from "next-intl";
+import { usePathname } from "next-intl/client"
 
 export function TopNav() {
   const [opened, { toggle }] = useDisclosure(false);
-  const router = useRouter();
-  const defaultLocale = useLocale();
+  const locale = useLocale();
+  const pathName = usePathname();
 
-  const langHandler = () => {
-    console.log(defaultLocale)
-    // if(getCookie('NEXT_LOCALE') === 'ar'){
-    //   setCookie('NEXT_LOCALE', 'en');
-    //   router.push('/')
-    // }
-    // if(getCookie('NEXT_LOCALE') === 'en'){
-    //   setCookie('NEXT_LOCALE', 'ar');
-    //   router.push('/ar')
-    // }
-  }
+  const toggleLanguage = () => {
+    const newLocale = locale === "en" ? "ar" : "en";
+    window.location.href = `/${newLocale}/${pathName}`;
+  };
   return (
     <StyledHeader>
       <Group>
@@ -43,7 +32,7 @@ export function TopNav() {
       <Search />
 
       <Flex align="center" gap="0.5rem">
-        <Button noStyle onClick={langHandler}>
+        <Button noStyle onClick={toggleLanguage}>
           <GlobalIcon />
         </Button>
         <Icons />

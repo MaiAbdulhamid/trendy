@@ -4,13 +4,13 @@ import React from "react";
 import theme from "../../../utils/theme";
 import { Flex } from "../../../components/Grids";
 import { P4 } from "../../../components/Typography";
-import { getCookie } from "cookies-next";
 import axiosInstance from "../../../lib/axios";
 import { showNotification } from "../../../components/Notifications/showNotification";
+import cache from "@mongez/cache";
 
 const ResendCode = ({ timerReset, resetTimer } : any) => {
-  const email = getCookie("email");
   const trans = useTranslations("Auth");
+  const email = cache.get("email");
 
   const resendCodeHandler = async () => {
     try{

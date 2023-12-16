@@ -13,18 +13,18 @@ import {
   UserWishlistIcon,
 } from "../../../assets/svgs";
 import theme from "../../../utils/theme";
-import { getCookie } from "cookies-next";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { useDispatch } from "react-redux";
 import { authActions } from "../../../../store";
 import Button from "../../Button/Button";
+import cache from "@mongez/cache";
 
 export default function User() {
   const trans = useTranslations("Layout");
   const dispatch = useDispatch();
 
-  if (!getCookie("token")) {
+  if (!cache.get("token")) {
     return (
       <Wrapper>
         <IconButton noStyle href={`auth${URLS.auth.login}`}>

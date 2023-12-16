@@ -33,7 +33,8 @@
     "newPasswordSubTitle": "Reset your passwords to recovery & login to your account",
     "enterNewPassword": "Enter your new Password",
     "activatedSuccessfully": "Account has been Activated Successfully",
-    "codePassed": "Code Passed Successfully"
+    "codePassed": "Code Passed Successfully",
+    "message" : "Message"
   },
   "Layout": {
     "search": "Search",
@@ -71,7 +72,15 @@
     "deals": "Deals"
   },
   "Cart": {
-    "addToCart": "Add To Cart"
+    "addToCart": "Add To Cart",
+    "cart": "Cart",
+    "items": "Items",
+    "emptyCart": "Your cart is empty",
+    "noItems": "No Items",
+    "remove": "Remove",
+    "orderSummary": "Order Summary",
+    "totalPrice": "Total Price",
+    "checkout": "Checkout"
   },
   "Products": {
     "sort": "Sort",
@@ -81,7 +90,8 @@
     "priceLowToHigh" : "Price low to high",
     "priceHighToLow" : "Price high to low",
     "topRated" : "Top Rated",
-    "noResults": "There is No Results"
+    "noResults": "There is No Results",
+    "wishlist": "Wishlist"
   },
   "Product": {
     "brand": "Brand",
@@ -94,5 +104,28 @@
   },
   "Breadcrumb": {
     "home": "Home"
+  },
+  "ContactUs":{
+    "title": "Get in touch",
+    "subTitle": "Need help? Talk to our experts.",
+    "submit": "Submit",
+    "callUs": "Call Us",
+    "whatsapp": "Whatsapp",
+    "email": "Email"
+  },
+  "Faq": {
+    "faq": "FAQ"
+  },
+  "PrivacyPolicy": {
+    "privacyPolicy": "Privacy Policy"
+  },
+  "Addresses": {
+    "addresses": "Addresses",
+    "edit": "Edit",
+    "delete": "Delete",
+    "noResults": "There is No Results",
+    "name": "Name",
+    "address" : "Address",
+    "phoneNumber" : "Phone Number"
   }
 }

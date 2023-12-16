@@ -1,7 +1,7 @@
 "use client";
 import { createAsyncThunk, createSlice, current } from "@reduxjs/toolkit";
 import { history, fetchWrapper } from "./helpers";
-import { getCookie, setCookie } from "cookies-next";
+import { setCookie } from "cookies-next";
 
 // create slice
 

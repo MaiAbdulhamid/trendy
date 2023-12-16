@@ -17,6 +17,7 @@ import VerificationModal from "../components/VerificationCodeModal";
 import axiosInstance from "../../lib/axios";
 import { setCookie } from "cookies-next";
 import Loader from "../../components/Loader";
+import cache from "@mongez/cache";
 
 const LoginForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -41,29 +42,40 @@ const LoginForm = () => {
 
     try {
       const response: any = await axiosInstance.post("login", { ...values });
-      setCookie("token", response.data.data.jwt_token)
-      setCookie("user", response.response.data.data);
-
+      // setCookie("token", response?.data.data.jwt_token)
+      // setCookie("user", response?.response.data.data);
       showNotification({
         type: "success",
         message: response.data.message,
       });
+
+      cache.set("token", response.data.data.jwt_token);
+      cache.set("user", response.data.data);
+
       router.push("/");
+
     } catch (error: any) {
-      setCookie("email", error.response.data?.data?.email);
+      // setCookie("email", error.response?.data?.data?.email);
+      cache.set("email", error.response?.data?.data?.email)
       if (error.response) {
         showNotification({
           type: "danger",
           message: error.response.data.message,
         });
       }
-      if (error.response.data.status === 406) {
+      if (error.response?.data.status === 406) {
         openVerify();
       }
     } finally {
       setIsSubmitting(false);
     }
   };
+
+  useEffect(() => {
+    if (cache.get("token")) {
+      router.push("/");
+    }
+  }, [router]);
 
   if(isPageLoading) return <Loader />;
   

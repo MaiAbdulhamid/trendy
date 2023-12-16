@@ -32,11 +32,13 @@ function TextInput({
 
   return (
     <Flex direction="column" gap="0" fullWidth>
-      <InputLabel htmlFor={id} required={props.required}>
-        {trans(label)}
-      </InputLabel>
-      <WrapperInput error={error}>
-        <Wrapper>
+      {label && (
+        <InputLabel htmlFor={id} required={props.required}>
+          {trans(label)}
+        </InputLabel>
+      )}
+      <WrapperInput error={error} className="input-wrapper">
+        <Wrapper className="wrapper">
           {icon && <UserIcon />}
           <StyledInput
             placeholder={trans(placeholder)}

@@ -1,25 +1,18 @@
-import { Badge, Grid, Group } from "@mantine/core";
+import { Grid } from "@mantine/core";
 import Attachments from "./components/Attachments";
 import Brand from "./components/Brand";
 import ProductDescription from "./components/ProductDescription";
 import ProductOptions from "./components/ProductOptions";
 import ProductPrice from "./components/ProductPrice";
-import ProductQuantity from "./components/ProductQuantity";
 import ProductThumb from "./components/ProductThumb";
-import { BadgeContainer, PageContainer } from "./style";
+import { PageContainer } from "./style";
 import { Col, Flex } from "@/app/[locale]/components/Grids";
 import WishlistButton from "@/app/[locale]/components/Button/WishlistButton";
-import EnNumber from "@/app/[locale]/utils/EnNumber";
-import { useTranslations } from "next-intl";
 import URLS from "@/app/[locale]/utils/urls";
 import useBreadcrumb from "@/app/[locale]/shared/hooks/useBreadcrumb";
 import useBreakpoints from "@/app/[locale]/shared/hooks/useBreakpoints";
-import StarIcon from "@/app/[locale]/assets/svgs/StarIcon";
-import { H4, P4 } from "@/app/[locale]/components/Typography";
+import { H4 } from "@/app/[locale]/components/Typography";
 import ProductsSlider from "@/app/[locale]/components/ProductsSlider";
-import { useEffect, useState } from "react";
-import axiosInstance from "@/app/[locale]/lib/axios";
-import { useParams } from "next/navigation";
 import Breadcrumb from "@/app/[locale]/components/Breadcrumb";
 
 function DetailsPage({ product }: any) {
@@ -60,8 +53,6 @@ function DetailsPage({ product }: any) {
             <ProductDescription description={product?.description} />
 
             <ProductOptions product={product} />
-
-            {/* <ProductQuantity product={product} /> */}
 
             <Attachments product={product} />
           </Col>

@@ -40,10 +40,10 @@ export default function ProductsSlider({
             // autoplay={true}
             breakpoints={{
               300: {
-                slidesPerView: 2,
+                slidesPerView: 1,
               },
               550: {
-                slidesPerView: 3,
+                slidesPerView: 2,
               },
               991: {
                 slidesPerView: 3,

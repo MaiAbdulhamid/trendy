@@ -25,7 +25,7 @@ const URLS = {
   products: "/products",
   viewProduct: (product: any) => `/products/${product.id}`,
   categories: "/categories",
-  about: "/about",
+  about: "/about-us",
   privacyPolicy: "/privacy-policy",
   returnPolicy: "/return-policy",
   termsAndConditions: "/terms-and-conditions",
@@ -33,6 +33,7 @@ const URLS = {
   shareApp: "/share-app",
   faq:"/faq",
   country: "/country",
+  checkout: "/checkout",
   notFound: "/404",
 };
 

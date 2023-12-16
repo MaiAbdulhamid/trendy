@@ -30,5 +30,11 @@ export { default as AddToCartIcon } from "./AddToCartIcon";
 export { default as MinusIcon } from "./MinusIcon";
 export { default as PlusIcon } from "./PlusIcon";
 export { default as BreadcrumbIcon } from "./BreadcrumbIcon";
+export { default as RemoveIcon } from "./RemoveIcon";
+export { default as EmptyCartIcon } from "./EmptyCartIcon";
+export { default as ContactUsSocialIcon } from "./ContactUsSocialIcon";
+export { default as PencilIcon } from "./PencilIcon";
+export { default as HomeIcon } from "./HomeIcon";
+export { default as DeleteIcon } from "./DeleteIcon";
 
 

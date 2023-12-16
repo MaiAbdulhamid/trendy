@@ -13,7 +13,7 @@ import NewPasswordModal from "../../login/NewPasswordModal";
 import { showNotification } from "../../../components/Notifications/showNotification";
 import Heading from "../Heading";
 import axiosInstance from "../../../lib/axios";
-import { getCookie, setCookie } from "cookies-next";
+import cache from "@mongez/cache";
 
 const VerificationModal = ({ opened, close, verify }: any) => {
   const [
@@ -30,9 +30,10 @@ const VerificationModal = ({ opened, close, verify }: any) => {
     try {
       const response: any = await axiosInstance.post("activate-account", {
         code,
-        email: getCookie("email"),
+        email: cache.get("email"),
       });
-      setCookie("token", response.data.data.jwt_token);
+      // setCookie("token", response.data.data.jwt_token);
+      cache.set('token', response.data.data.jwt_token)
       showNotification({
         type: "success",
         message: response.data.message,

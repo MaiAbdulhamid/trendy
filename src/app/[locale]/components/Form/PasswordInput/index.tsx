@@ -63,6 +63,6 @@ function PasswordInput({
 
 export default PasswordInput;
 PasswordInput.defaultProps = {
-  type: "password",
+  // type: "password",
   rules: [requiredRule, matchRule, minLengthRule, minRule],
 };

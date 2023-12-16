@@ -13,6 +13,7 @@ import { useDisclosure } from "@mantine/hooks";
 import { showNotification } from "../../../components/Notifications/showNotification";
 import axiosInstance from "../../../lib/axios";
 import { setCookie } from "cookies-next";
+import cache from "@mongez/cache";
 
 const ForgotPasswordModal = ({ opened, close }: any) => {
   const [openedVerify, { open: openVerify, close: closeVerify }] =
@@ -26,7 +27,7 @@ const ForgotPasswordModal = ({ opened, close }: any) => {
     try {
       const response: any = await axiosInstance.post("check-email", values);
       console.log(response)
-      setCookie("email", values.email);
+      cache.set("email", values.email);
       showNotification({
         type: "success",
         message: response.data.message,

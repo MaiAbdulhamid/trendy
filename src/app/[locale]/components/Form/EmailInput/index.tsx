@@ -21,11 +21,13 @@ function EmailInput({
 
   return (
     <Flex direction="column" gap="0" fullWidth>
-      <InputLabel htmlFor={id} required={props.required}>
-        {trans(label)}
-      </InputLabel>
-      <WrapperInput>
-        <Wrapper>
+      {label && (
+        <InputLabel htmlFor={id} required={props.required}>
+          {trans(label)}
+        </InputLabel>
+      )}
+      <WrapperInput error={error} className="input-wrapper">
+        <Wrapper className="wrapper">
           {icon && <EmailIcon />}
           <StyledInput
             placeholder={placeholder}

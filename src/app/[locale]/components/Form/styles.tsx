@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 import { Flex } from "../Grids";
 import theme from "../../utils/theme";
 import devices from "../../utils/devices";
-import { Select, Input } from "@mantine/core";
+import { Select, Input, Textarea } from "@mantine/core";
 
 type Types = any & {
   error?: boolean;
@@ -19,15 +19,17 @@ export const WrapperInput = styled(Flex)<Types>`
   input {
     border-color: ${({ error }) => error && theme.colors.error[100]};
   }
-  `;
+`;
 export const AutoCompleteWrapper = styled.div`
-  .mantine-Autocomplete-input{
+  .mantine-Autocomplete-input {
     min-width: 539px;
+    ${devices.mediumMax}{
+      min-width: auto;
+    }
     height: 45px;
     background: transparent;
   }
-  
-`
+`;
 export const Wrapper = styled(Flex)`
   label: input-wrapper;
   position: relative;
@@ -61,6 +63,7 @@ export const CheckboxWrapper = styled(Flex)`
     border-color: ${theme.colors.primaryColor};
   }
 `;
+export const StyledTextarea = styled(Textarea)``;
 export const StyledInput = styled(Input)<any>`
   height: 100%;
   flex: 1;

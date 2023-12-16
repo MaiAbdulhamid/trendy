@@ -34,7 +34,8 @@ const Footer = () => {
       url: URLS.termsAndConditions,
       text: trans("termsAndConditions"),
     },
-  ]
+  ];
+  
   const contactLinks = [
     {
       id: "lc1",

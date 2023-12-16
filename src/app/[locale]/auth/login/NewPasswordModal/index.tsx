@@ -8,22 +8,18 @@ import Modal from "../../../components/Modal";
 import { ModalWrapper } from "../style";
 import Heading from "../../components/Heading";
 import { showNotification } from "../../../components/Notifications/showNotification";
-import { ThunkDispatch } from "@reduxjs/toolkit";
-import { useDispatch } from "react-redux";
-import { authActions } from "@/app/store";
 import axiosInstance from "../../../lib/axios";
-import { getCookie } from "cookies-next";
+import cache from "@mongez/cache";
 
 const NewPasswordModal = ({ opened, close }: any) => {
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
-  const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
   const trans = useTranslations("Auth");
 
-  const onSubmit = async ({ form, values }: any) => {
+  const onSubmit = async ({ values }: any) => {
     setIsSubmitting(true);
     const formattedData = {
       ...values,
-      email: getCookie('email')
+      email: cache.get('email')
     }
     try {
       const response: any = await axiosInstance.post("change-forget-password", formattedData);
