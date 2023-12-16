@@ -18,7 +18,9 @@ export function TopNav() {
 
   const toggleLanguage = () => {
     const newLocale = locale === "en" ? "ar" : "en";
-    window.location.href = `/${newLocale}/${pathName}`;
+    if (typeof window !== 'undefined') {
+      window.location.href = `/${newLocale}/${pathName}`;
+    }
   };
   return (
     <StyledHeader>
