@@ -74,11 +74,11 @@ export default function CartPage() {
         <Grid>
           <Col>
             <Line />
-            {/* <ProductsSlider
+            <ProductsSlider
               enableViewAllButton={false}
               title={cache.get('cartWidget')?.title}
               products={cache.get('cartWidget')?.widgetData}
-            /> */}
+            />
           </Col>
         </Grid>
       </Container>

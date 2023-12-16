@@ -15,7 +15,6 @@ import { showNotification } from "../../components/Notifications/showNotificatio
 import { useRouter } from "next/navigation";
 import VerificationModal from "../components/VerificationCodeModal";
 import axiosInstance from "../../lib/axios";
-import { setCookie } from "cookies-next";
 import Loader from "../../components/Loader";
 import cache from "@mongez/cache";
 
@@ -34,7 +33,7 @@ const LoginForm = () => {
   const trans = useTranslations("Auth");
 
   useEffect(() => {
-    setIsPageLoading(false)
+    setIsPageLoading(false);
   }, [isPageLoading]);
 
   const onSubmit = async ({ form, values }: any) => {
@@ -53,10 +52,9 @@ const LoginForm = () => {
       cache.set("user", response.data.data);
 
       router.push("/");
-
     } catch (error: any) {
       // setCookie("email", error.response?.data?.data?.email);
-      cache.set("email", error.response?.data?.data?.email)
+      cache.set("email", error.response?.data?.data?.email);
       if (error.response) {
         showNotification({
           type: "danger",
@@ -77,8 +75,8 @@ const LoginForm = () => {
     }
   }, [router]);
 
-  if(isPageLoading) return <Loader />;
-  
+  if (isPageLoading) return <Loader />;
+
   return (
     <>
       <Form onSubmit={onSubmit} method="post">
