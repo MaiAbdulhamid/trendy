@@ -1,4 +1,4 @@
-import { LoadingOverlay } from "@mantine/core";
+"use client";
 import { useState } from "react";
 import Currency from "../../../utils/currency";
 import { CartItemWrapper, PercentCard, Wrapper } from "./style";
