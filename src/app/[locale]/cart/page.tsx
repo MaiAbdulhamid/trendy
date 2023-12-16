@@ -9,11 +9,12 @@ import cart from './utils/CartManager';
 const Cart = () => {
   const [isPageLoading, setIsPageLoading] = useState(true);
   useEffect(() => {
+    cart.load();
     setIsPageLoading(false);
-    cart.load()
   }, [])
 
   if(isPageLoading) return <Loader />;
+
   return (
     <>
       <Header />

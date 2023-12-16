@@ -1,3 +1,4 @@
+"use client";
 import { Grid, Space } from "@mantine/core";
 import cart from "../../utils/CartManager";
 import CartItem from "../CartItem";

@@ -45,8 +45,9 @@ export class CartManager {
           console.log(response);
           this.cart = response.data.data;
           this.cartWidget = response.data.widget;
-          cache.set('cartWidget', response.data.data.widget);
-          
+          if (typeof window !== 'undefined') {
+            cache.set('cartWidget', response.data.data.widget);
+          }
           this.trigger("loading", false);
 
           cartItemAtom.update({
