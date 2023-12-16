@@ -71,7 +71,15 @@
     "deals": "العروض"
   },
   "Cart": {
-    "addToCart": "أضف إلى السلة"
+    "addToCart": "أضف إلى السلة",
+    "cart": "العربة",
+    "items": "العناصر",
+    "emptyCart": "عربة التسوق الخاصة بك فارغة",
+    "noItems": "لا توجد عناصر",
+    "remove": "ازالة",
+    "orderSummary": "ملخص الطلب",
+    "totalPrice": "السعر الإجمالي",
+    "checkout": "الدفع"
   },
   "Products": {
     "sort": "فرز",
@@ -81,6 +89,42 @@
     "priceLowToHigh" : "السعر من الأقل إلى الأعلى",
     "priceHighToLow" : "السعر من الأعلى إلى الأقل",
     "topRated" : "الأعلى تقييمًا",
-    "noResults": "لا توجد نتائج"
+    "noResults": "لا توجد نتائج",
+    "wishlist": "قائمة الامنيات"
+  },
+  "Product": {
+    "brand": "العلامة التجارية",
+    "delivery": "التسليم",
+    "express": "أكسبرس",
+    "productDetails": "تفاصيل المنتج",
+    "promotions": "العروض الترويجية",
+    "quantity": "الكمية",
+    "mustLogin": "يجب عليك تسجيل الدخول أولاً"
+  },
+  "Breadcrumb": {
+    "home": "الرئيسية"
+  },
+  "ContactUs":{
+    "title": "اتصل بنا",
+    "subTitle": "هل تحتاج إلى مساعدة؟ تحدث إلى خبرائنا.",
+    "submit": "إرسال",
+    "callUs": "اتصل بنا",
+    "whatsapp": "واتساب",
+    "email": "البريد الإلكتروني"
+  },
+  "Faq": {
+    "faq": "الأسئلة الشائعة"
+  },
+  "PrivacyPolicy": {
+    "privacyPolicy": "سياسة الخصوصية"
+  },
+  "Addresses": {
+    "addresses": "العناوين",
+    "edit": "تعديل",
+    "delete": "حذف",
+    "noResults": "لا توجد نتائج",
+    "name": "اسم",
+    "address" : "عنوان",
+    "phoneNumber" : "رقم الهاتف"
   }
 }
