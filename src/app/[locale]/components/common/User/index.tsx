@@ -1,5 +1,4 @@
 import { Menu } from "@mantine/core";
-import { IconButton } from "../../Button/IconButton";
 import { Flex } from "../../Grids";
 import { P4 } from "../../Typography";
 import { Hr, Wrapper, WrapperDropdown } from "./style";
@@ -23,16 +22,16 @@ import cache from "@mongez/cache";
 export default function User() {
   const trans = useTranslations("Layout");
   const dispatch = useDispatch();
-
-  if (!cache.get("token")) {
-    return (
-      <Wrapper>
-        <Button noStyle href={`auth${URLS.auth.login}`}>
-          <UserIcon size={40} color={theme.colors.black[300]} />
-        </Button>
-      </Wrapper>
-    );
-  }
+  // console.log(cache)
+  // if (!cache.get("token")) {
+  //   return (
+  //     <Wrapper>
+  //       <Button noStyle href={`auth${URLS.auth.login}`}>
+  //         <UserIcon size={40} color={theme.colors.black[300]} />
+  //       </Button>
+  //     </Wrapper>
+  //   );
+  // }
 
   return (
     <>

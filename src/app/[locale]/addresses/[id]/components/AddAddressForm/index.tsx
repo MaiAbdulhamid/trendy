@@ -17,6 +17,7 @@ import SubmitButton from "@/app/[locale]/components/Form/SubmitButton";
 import GoogleMapInput from "@/app/[locale]/components/Form/GoogleMapInput";
 import { showNotification } from "@/app/[locale]/components/Notifications/showNotification";
 import cache from "@mongez/cache";
+import Loader from "@/app/[locale]/components/Loader";
 
 const AddAddressForm = ({useAddress} : any) => {
   const trans = useTranslations("Auth");
@@ -25,6 +26,8 @@ const AddAddressForm = ({useAddress} : any) => {
   useEffect(() => {
     setAddress(useAddress)
   }, [useAddress]);
+
+  console.log(useAddress)
 
   const [cities, setCities] = useState<any>([]);
   const [selectedCity, setSelectedCity] = useState<any>("");
@@ -94,7 +97,8 @@ const AddAddressForm = ({useAddress} : any) => {
     }
   };
 
-  console.log(address)
+  if(useAddress === 'undefined') return <Loader />
+
   return (
     <PageWrapper>
       <Title />
