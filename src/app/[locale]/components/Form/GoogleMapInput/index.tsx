@@ -1,18 +1,18 @@
 import { useFormControl, HiddenInput } from "@mongez/react-form";
-// import { useOuterClick } from "@mongez/react-hooks";
 import { GoogleMap, Marker, useLoadScript } from "@react-google-maps/api";
 import {
   getAddressByLatLng,
   getAddressByPlaceId,
 } from "./google-map-service";
 import React, { useState } from "react";
-import { ListGroup, ListGroupItem } from "reactstrap";
+// import { ListGroup, ListGroupItem } from "reactstrap";
 import usePlacesAutocomplete from "use-places-autocomplete";
 import { GoogleMapInputProps, LocationType } from "./GoogleMapInput.types";
 import Loader from "../../Loader";
-import { Col } from "../../Grids";
+import { Col, Flex } from "../../Grids";
 import TextInput from "../TextInput";
 import { Grid } from "@mantine/core";
+import Button from "../../Button/Button";
 
 const defaultStyles = {
   container: {
@@ -119,13 +119,12 @@ export default function GoogleMapInput({
       } = suggestion;
 
       return (
-        <ListGroupItem
-          action
-          tag="button"
+        <Button
+          noStyle
           key={place_id}
           onClick={handleSelect(suggestion)}>
           <strong>{main_text}</strong> <small>{secondary_text}</small>
-        </ListGroupItem>
+        </Button>
       );
     });
 
@@ -153,7 +152,7 @@ export default function GoogleMapInput({
 
         {status === "OK" && (
           <Col xs={12} className="mt-0">
-            <ListGroup>{renderSuggestions()}</ListGroup>
+            <Flex direction="column">{renderSuggestions()}</Flex>
           </Col>
         )}
       </Grid>
