@@ -30,7 +30,6 @@ const UserAddresses = () => {
   useEffect(() => {
     getAddresses()
   }, []);
-  console.log(addressesAtom.useValue().records)
 
   return (
     <>

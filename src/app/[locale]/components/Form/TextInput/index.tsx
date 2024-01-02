@@ -22,11 +22,10 @@ function TextInput({
   placeholder,
   label,
   icon,
-  defaultValue,
   clearable,
   ...props
 }: InputPropsType) {
-  const { id, value, changeValue, error } = useFormControl(props);
+  const { id, value, changeValue, error, otherProps } = useFormControl(props);
 
   const trans = useTranslations("Auth");
 
@@ -46,7 +45,7 @@ function TextInput({
             onChange={(e: any) => {
               changeValue(e.target.value);
             }}
-            {...props}
+            {...otherProps}
           />
         </Wrapper>
       </WrapperInput>

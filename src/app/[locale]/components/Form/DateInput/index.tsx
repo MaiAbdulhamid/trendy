@@ -14,7 +14,11 @@ import customParseFormat from 'dayjs/plugin/customParseFormat';
 dayjs.extend(customParseFormat);
 
 function DateInput({ placeholder, label, icon, id, ...props }: any) {
-  const { changeValue, error } = useFormControl(props);
+  const { changeValue, error, otherProps } = useFormControl(props, {
+    collectValue: (value: any) => {
+      return dayjs(value.value).format('YYYY-MM-DD')
+    },
+  });
 
   const trans = useTranslations("Auth");
 
@@ -29,9 +33,9 @@ function DateInput({ placeholder, label, icon, id, ...props }: any) {
             <DatePickerInput
               placeholder={placeholder}
               valueFormat="YYYY/MM/DD"
-              wrapperClassName="datePicker"
+              // wrapperClassName={"datePicker"}
               onChange={changeValue}
-              {...props}
+              {...otherProps}
             />
           </DateWrapper>
           {icon && (

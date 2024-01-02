@@ -36,5 +36,7 @@ export { default as ContactUsSocialIcon } from "./ContactUsSocialIcon";
 export { default as PencilIcon } from "./PencilIcon";
 export { default as HomeIcon } from "./HomeIcon";
 export { default as DeleteIcon } from "./DeleteIcon";
+export { default as StatusCircleIcon } from "./StatusCircleIcon";
+export { default as StatusLineIcon } from "./StatusLineIcon";
 
 

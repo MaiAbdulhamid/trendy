@@ -44,7 +44,7 @@ const Address = ({ address }: any) => {
           </Flex>
         </H4>
         <Flex gap="1rem">
-          <Button noStyle>
+          <Button noStyle href={`addresses/${address.id}`}>
             <PencilIcon />
             {trans("edit")}
           </Button>

@@ -24,6 +24,8 @@ const URLS = {
   deals: "/deals",
   products: "/products",
   viewProduct: (product: any) => `/products/${product.id}`,
+  orders: "/orders",
+  viewOrder: (order: any) => `/orders/${order.id}`,
   categories: "/categories",
   about: "/about-us",
   privacyPolicy: "/privacy-policy",
@@ -34,6 +36,7 @@ const URLS = {
   faq:"/faq",
   country: "/country",
   checkout: "/checkout",
+  addAddress: "/addresses/add-address",
   notFound: "/404",
 };
 

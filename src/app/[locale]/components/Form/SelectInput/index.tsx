@@ -11,11 +11,10 @@ function SelectInput({
   placeholder,
   label,
   icon,
-  defaultValue,
   clearable,
   ...props
 }: InputPropsType) {
-  const { value, changeValue, error, id } = useFormControl(props);
+  const { value, changeValue, error, id, otherProps } = useFormControl(props);
 
   const trans = useTranslations("Auth");
 
@@ -28,11 +27,10 @@ function SelectInput({
         <Wrapper>
           <StyledSelectInput
             placeholder={placeholder}
-            defaultValue={defaultValue}
             clearable={clearable}
             value={value}
             onChange={changeValue}
-            {...props}
+            {...otherProps}
           />
         </Wrapper>
       </WrapperInput>

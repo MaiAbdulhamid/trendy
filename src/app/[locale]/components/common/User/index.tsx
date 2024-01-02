@@ -27,9 +27,9 @@ export default function User() {
   if (!cache.get("token")) {
     return (
       <Wrapper>
-        <IconButton noStyle href={`auth${URLS.auth.login}`}>
+        <Button noStyle href={`auth${URLS.auth.login}`}>
           <UserIcon size={40} color={theme.colors.black[300]} />
-        </IconButton>
+        </Button>
       </Wrapper>
     );
   }

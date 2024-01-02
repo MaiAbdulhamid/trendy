@@ -21,7 +21,7 @@ export const DottedLine = styled.div`
 export const Line = styled.hr<any>`
   height: 1px;
   width: 100%;
-  margin: 20px 0;
+  margin: ${({margin}) => margin ?? "20px 0"};
   opacity: 0.3;
   ${({ color }) =>
     color &&

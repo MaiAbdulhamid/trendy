@@ -22,7 +22,7 @@ function PhoneNumberInput({
   id,
   ...props
 }: InputPropsType) {
-  const { value, changeValue, error } = useFormControl(props);
+  const { value, changeValue, error, otherProps } = useFormControl(props);
 
   const trans = useTranslations("Auth");
 
@@ -46,7 +46,7 @@ function PhoneNumberInput({
             onChange={(e: any) => {
               changeValue(e.target.value);
             }}
-            {...props}
+            {...otherProps}
           />
         </Wrapper>
       </WrapperInput>

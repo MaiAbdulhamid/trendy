@@ -33,7 +33,14 @@
     "newPasswordSubTitle": "أعد تعيين كلمات المرور الخاصة بك للاسترداد وقم بتسجيل الدخول إلى حسابك",
     "enterNewPassword": "أدخل كلمة المرور الجديدة",
     "activatedSuccessously": "تم تفعيل الحساب بنجاح",
-    "codePassed": "تم تمرير الرمز بنجاح"
+    "codePassed": "تم تمرير الرمز بنجاح",
+    "message" : "رسالة",
+    "changePassword": "تغيير كلمة المرور",
+    "enterCurrentPassword": "أدخل كلمة المرور الحالية",
+    "changeEmail": "تغيير البريد الإلكتروني",
+    "sendVerification": "إرسال",
+    "changePhone": "تغيير رقم الهاتف",
+    "newPhoneNumber": "رقم الهاتف الجديد"
   },
   "Layout": {
     "search": "بحث",
@@ -125,6 +132,8 @@
     "noResults": "لا توجد نتائج",
     "name": "اسم",
     "address" : "عنوان",
-    "phoneNumber" : "رقم الهاتف"
+    "phoneNumber" : "رقم الهاتف",
+    "addAddress": "إضافة عنوان",
+    "addAddressHint": "لضمان نجاح عملية التخليص الجمركي، يرجى إدخال اسمك الحقيقي."
   }
 }

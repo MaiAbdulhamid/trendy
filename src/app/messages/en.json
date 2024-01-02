@@ -34,7 +34,26 @@
     "enterNewPassword": "Enter your new Password",
     "activatedSuccessfully": "Account has been Activated Successfully",
     "codePassed": "Code Passed Successfully",
-    "message" : "Message"
+    "message" : "Message",
+    "changePassword": "Change Password",
+    "enterCurrentPassword": "Enter your current Password",
+    "changeEmail": "Change Email",
+    "sendVerification": "Send Verification",
+    "changePhone": "Change Phone Number",
+    "newPhoneNumber": "New Phone Number",
+
+    "addressLineOne": "Address Line 1",
+    "addressLineTwo": "Address Line 2",
+    "type": "Type",
+    "home": "Home",
+    "work": "Work",
+    "postalCode": "Postal Code",
+    "city": "City",
+    "region": "Region",
+    "makeDefault": "Make Default",
+    "cancel": "Cancel",
+    "save": "Save",
+    "location": "Location"
   },
   "Layout": {
     "search": "Search",
@@ -126,6 +145,48 @@
     "noResults": "There is No Results",
     "name": "Name",
     "address" : "Address",
-    "phoneNumber" : "Phone Number"
+    "phoneNumber" : "Phone Number",
+    "addAddress": "Add Address",
+    "addAddressHint": "To ensure successful customs clearance, please enter you real name."
+  },
+  "Checkout":{
+    "checkout": "Checkout",
+    "promoCode": "Promo Code",
+    "apply": "Apply",
+    "remove": "Remove",
+    "orderSummary": "Order Summary",
+    "placeOrder": "Place Order",
+    "addNewAddress": "Add a New Address",
+    "shipTo": "Ship To",
+    "paymentMethod": "Payment Method"
+  },
+  "Orders": {
+    "orders": "Orders",
+    "noResult": "There is No Orders",
+    "orderHistory": "Order History",
+    "on": "On",
+    "off": "Off"
+  },
+  "Profile": {
+    "profile": "Profile",
+    "profileSubTitle" : "Manage your details, view your tier status and change your password",
+    "generalInfo": "General Info",
+    "fullName": "Full Name",
+    "dob": "Date Of Birth",
+    "date" : "Date",
+    "gender": "Gender",
+    "male": "Male",
+    "female": "Female",
+    "other": "Other",
+    "updateInfo": "Update Info",
+    "changeEmail": "Change Email",
+    "addPhoneNumber": "Add Phone Number",
+    "deleteAccount": "Delete Account",
+    "phoneNumber":"Phone Number",
+    "security": "Security",
+    "changePassword": "Change Password",
+    "sure": "Are You Sure you want to delete Account?",
+    "yes": "Yes",
+    "no": "No"
   }
 }

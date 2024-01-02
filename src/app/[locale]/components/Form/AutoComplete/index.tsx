@@ -19,7 +19,7 @@ function AutoComplete({
   icon,
   ...props
 }: InputPropsType) {
-  const { value, changeValue, error } = useFormControl(props);
+  const { value, changeValue, error, otherProps } = useFormControl(props);
 
   return (
     <Flex direction="column" gap="0" fullWidth>

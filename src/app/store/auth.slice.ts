@@ -2,6 +2,7 @@
 import { createAsyncThunk, createSlice, current } from "@reduxjs/toolkit";
 import { history, fetchWrapper } from "./helpers";
 import { setCookie } from "cookies-next";
+import cache from "@mongez/cache";
 
 // create slice
 
@@ -42,6 +43,7 @@ function createReducers() {
   function logout(state: any) {
     state.user = null;
     setCookie('token', '');
+    cache.set('token', '');
   }
   return {
     logout,

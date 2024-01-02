@@ -21,7 +21,7 @@ function PasswordInput({
   icon,
   ...props
 }: InputPropsType) {
-  const { id, value, changeValue, error } = useFormControl(props);
+  const { id, value, changeValue, error, otherProps } = useFormControl(props);
 
   const trans = useTranslations("Auth");
   const [showPassword, setShowPassword] = useState(false);
@@ -42,7 +42,7 @@ function PasswordInput({
             onChange={(e: any) => {
               changeValue(e.target.value);
             }}
-            {...props}
+            {...otherProps}
           />
           {icon && (
             <Flex

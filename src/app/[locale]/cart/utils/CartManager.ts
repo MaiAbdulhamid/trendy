@@ -41,8 +41,6 @@ export class CartManager {
       axiosInstance
         .get("/cart", { ...this.cartOptions })
         .then((response) => {
-          // TODO: FIX FRONTend provider
-          console.log(response);
           this.cart = response.data.data;
           this.cartWidget = response.data.widget;
           if (typeof window !== 'undefined') {

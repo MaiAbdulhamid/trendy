@@ -26,7 +26,7 @@ function TextareaInput({
   clearable,
   ...props
 }: any) {
-  const { id, value, changeValue, error } = useFormControl(props);
+  const { id, value, changeValue, error, otherProps } = useFormControl(props);
 
   const trans = useTranslations("Auth");
 
@@ -43,7 +43,7 @@ function TextareaInput({
         onChange={(e: any) => {
           changeValue(e.target.value);
         }}
-        {...props}
+        {...otherProps}
       />
       <InputError error={error} />
     </Flex>

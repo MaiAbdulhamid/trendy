@@ -11,9 +11,11 @@ import URLS from "@/app/[locale]/utils/urls";
 import cart from "../../utils/CartManager";
 import { useTranslations } from "next-intl";
 import { Flex } from "@/app/[locale]/components/Grids";
+import { useRouter } from "next/navigation";
 
 export default function Invoice() {
   const trans = useTranslations("Cart");
+  const router = useRouter();
 
   const [isLoadingAction, setIsLoadingAction] = useState(false);
 
@@ -31,7 +33,11 @@ export default function Invoice() {
     0
   );
 
-  console.log(totalPrice);
+  const navigateToCheckout = () => {
+    router.push(URLS.checkout)
+  }
+
+  // console.log(totalPrice);
   return (
     <Wrapper>
       <H5>{trans("orderSummary")}</H5>
@@ -46,7 +52,7 @@ export default function Invoice() {
         variant="primary"
         fullWidth
         loading={isLoadingAction}
-        onClick={() => navigateTo(URLS.checkout)}
+        onClick={navigateToCheckout}
         height="55px"
         className="checkout-button"
       >
