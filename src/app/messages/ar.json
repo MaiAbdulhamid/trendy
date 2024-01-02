@@ -40,7 +40,20 @@
     "changeEmail": "تغيير البريد الإلكتروني",
     "sendVerification": "إرسال",
     "changePhone": "تغيير رقم الهاتف",
-    "newPhoneNumber": "رقم الهاتف الجديد"
+    "newPhoneNumber": "رقم الهاتف الجديد",
+
+    "addressLineOne": "سطر العنوان 1",
+     "addressLineTwo": "سطر العنوان 2",
+     "type": "نوع",
+     "home" : "المنزل",
+     "work" : " عمل",
+     "postalCode": "الرمز البريدي",
+     "city": "مدينة",
+     "region": "المنطقة",
+     "makeDefault": "اجعله افتراضيًا",
+     "cancel": "إلغاء",
+     "save": "حفظ",
+     "location": "الموقع"
   },
   "Layout": {
     "search": "بحث",
@@ -135,5 +148,45 @@
     "phoneNumber" : "رقم الهاتف",
     "addAddress": "إضافة عنوان",
     "addAddressHint": "لضمان نجاح عملية التخليص الجمركي، يرجى إدخال اسمك الحقيقي."
+  },
+  "Checkout":{
+    "checkout": "الدفع",
+    "promoCode": "الرمز الترويجي",
+    "apply": "تطبيق",
+    "remove": "إزالة",
+    "orderSummary": "ملخص الطلب",
+    "placeOrder": "تقديم الطلب",
+    "addNewAddress": "أضف عنوانًا جديدًا",
+    "shipTo": "الشحن إلى",
+    "paymentMethod": "طريقة الدفع"
+  },
+  "Orders": {
+    "orders": "طلبات",
+    "noResult": "لا يوجد أي طلبات",
+    "orderHistory": "سجل الطلب",
+    "on": "على",
+    "off": "خصم"
+  },
+  "Profile": {
+    "profile": "الملف الشخصي",
+    "profileSubTitle" : "إدارة التفاصيل الخاصة بك، وعرض حالة مستواك وتغيير كلمة المرور الخاصة بك",
+    "generalInfo": "معلومات عامة",
+    "fullName": "الاسم الكامل",
+    "dob": "تاريخ الميلاد",
+    "date" : "التاريخ",
+    "gender": "الجنس",
+    "male": "ذكر",
+    "female": "أنثى",
+    "other": "أخرى",
+    "updateInfo": "تعديل البيانات",
+    "changeEmail": "تغيير البريد الإلكتروني",
+    "addPhoneNumber": "أضف رقم هاتف",
+    "deleteAccount": "حذف الحساب",
+    "phoneNumber":"رقم الهاتف",
+    "security": "الأمان",
+    "changePassword": "تغيير كلمة المرور",
+    "sure": "هل أنت متأكد من رغبتك في حذف الحساب؟",
+    "yes": "نعم",
+    "no": "لا"
   }
 }
