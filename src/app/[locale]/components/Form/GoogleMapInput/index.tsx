@@ -33,7 +33,6 @@ export default function GoogleMapInput({
   searchScope = ["address"],
   ...props
 }: GoogleMapInputProps) {
-  const { name } = useFormControl(props);
 
   // initializing google map
   const { isLoaded, loadError } = useLoadScript({
@@ -147,6 +146,7 @@ export default function GoogleMapInput({
             value={value}
             onChange={handleInput}
             disabled={!ready}
+            defaultValue={props.defaultValue}
           />
         </Col>
 

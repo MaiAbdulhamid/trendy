@@ -30,7 +30,7 @@ const AddAddressForm = ({useAddress} : any) => {
   console.log(useAddress)
 
   const [cities, setCities] = useState<any>([]);
-  const [selectedCity, setSelectedCity] = useState<any>("");
+  const [selectedCity, setSelectedCity] = useState<any>(String(address?.city?.id));
   const [regions, setRegions] = useState<any>([]);
 
   const getCities = async () => {
@@ -48,6 +48,7 @@ const AddAddressForm = ({useAddress} : any) => {
 
   useEffect(() => {
     getCities();
+    setSelectedCity(address?.city?.id)
   }, []);
 
   const selectedCityHandler = (value: any) => {
@@ -68,6 +69,7 @@ const AddAddressForm = ({useAddress} : any) => {
       console.log(error);
     }
   };
+  
   useEffect(() => {
     getRegions();
   }, [selectedCity]);
@@ -117,6 +119,7 @@ const AddAddressForm = ({useAddress} : any) => {
               required
               placeholder={"addressLineOne"}
               label={"addressLineOne"}
+              defaultValue={address?.address || address?.address_1}
             />
             <TextInput
               name="address_2"
@@ -133,7 +136,7 @@ const AddAddressForm = ({useAddress} : any) => {
               ]}
               required
               clearable
-              defaultValue={address?.type?.id}
+              defaultValue={String(address?.type?.id)}
             />
             <Grid>
               <Col span={{ base: 12, md: 6 }}>
@@ -162,7 +165,7 @@ const AddAddressForm = ({useAddress} : any) => {
                   onChange={selectedCityHandler}
                   required
                   clearable
-                  defaultValue={address?.city.id}
+                  defaultValue={String(address?.city.id)}
                 />
               </Col>
               <Col span={{ base: 12, md: 6 }}>
@@ -172,7 +175,7 @@ const AddAddressForm = ({useAddress} : any) => {
                   data={regions}
                   required
                   clearable
-                  defaultValue={address?.region.id}
+                  defaultValue={String(address?.region.id)}
                 />
               </Col>
             </Grid>

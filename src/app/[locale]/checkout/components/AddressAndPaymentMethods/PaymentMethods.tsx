@@ -3,11 +3,12 @@ import { PaymentMethodWrapper } from "./style";
 import { Flex } from "@/app/[locale]/components/Grids";
 import { P4 } from "@/app/[locale]/components/Typography";
 import { RadioGroup, Radio } from "@mantine/core";
+import { useFormControl } from "@mongez/react-form";
 
 const PaymentMethods = ({ methods }: any) => {
   return (
     <>
-      <RadioGroup>
+      <RadioGroup required>
         {methods?.map((method: any) => (
           <>
             <PaymentMethodWrapper key={method.id}>

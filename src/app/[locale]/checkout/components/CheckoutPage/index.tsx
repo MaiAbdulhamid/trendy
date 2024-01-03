@@ -6,11 +6,13 @@ import { useTranslations } from "next-intl";
 import React, { useEffect, useState } from "react";
 import AddressAndPaymentMethods from "../AddressAndPaymentMethods";
 import OrderSummary from "../OrderSummary";
+import { Form } from "@mongez/react-form";
 
 const CheckoutPage = () => {
   const trans = useTranslations("Checkout");
 
   const [checkout, setCheckout] = useState<any>([]);
+
   const getCheckout = async () => {
     try {
       const response: any = await axiosInstance.get("checkout");
@@ -24,6 +26,9 @@ const CheckoutPage = () => {
     getCheckout();
   }, []);
 
+  const onSubmit = ({values} : any) => {
+    console.log(values)
+  }
   return (
     <Container>
       <Grid>
@@ -33,15 +38,16 @@ const CheckoutPage = () => {
           <Space h={20} />
         </Col>
       </Grid>
-      
-      <Grid gutter={20}>
-        <Col span={{ base: 12, md: 8 }}>
-          <AddressAndPaymentMethods checkout={checkout} />
-        </Col>
-        <Col span={{ base: 12, md: 4 }}>
-          <OrderSummary orderSummery={checkout.order_summary} />
-        </Col>
-      </Grid>
+      <Form onSubmit={onSubmit}>
+        <Grid gutter={20}>
+          <Col span={{ base: 12, md: 8 }}>
+            <AddressAndPaymentMethods checkout={checkout} />
+          </Col>
+          <Col span={{ base: 12, md: 4 }}>
+            <OrderSummary orderSummery={checkout.order_summary} />
+          </Col>
+        </Grid>
+      </Form>
     </Container>
   );
 };

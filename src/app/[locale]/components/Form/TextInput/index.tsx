@@ -26,7 +26,6 @@ function TextInput({
   ...props
 }: InputPropsType) {
   const { id, value, changeValue, error, otherProps } = useFormControl(props);
-
   const trans = useTranslations("Auth");
 
   return (

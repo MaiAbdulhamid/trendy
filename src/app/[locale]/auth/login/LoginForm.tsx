@@ -41,7 +41,7 @@ const LoginForm = () => {
 
     try {
       const response: any = await axiosInstance.post("login", { ...values });
-      // setCookie("token", response?.data.data.jwt_token)
+      //setCookie("token", response?.data.data.jwt_token)
       // setCookie("user", response?.response.data.data);
       showNotification({
         type: "success",

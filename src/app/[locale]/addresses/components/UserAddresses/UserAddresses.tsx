@@ -8,6 +8,7 @@ import { useTranslations } from 'next-intl';
 import React, { useEffect, useState } from 'react'
 import Address from './Address';
 import { addressesAtom } from '../atoms/addresses-atom';
+import cache from '@mongez/cache';
 
 const UserAddresses = () => {
   const trans = useTranslations("Addresses");
@@ -22,6 +23,8 @@ const UserAddresses = () => {
         records: response.data.data.data,
       });
       setAddresses(addressesAtom.value.records)
+      cache.set("addresses", response.data.data.data);
+
     } catch (error) {
       console.log(error)
     }
