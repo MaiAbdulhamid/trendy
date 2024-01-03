@@ -165,7 +165,8 @@
     "noResult": "لا يوجد أي طلبات",
     "orderHistory": "سجل الطلب",
     "on": "على",
-    "off": "خصم"
+    "off": "خصم",
+    "noResults":"لا توجد نتائج"
   },
   "Profile": {
     "profile": "الملف الشخصي",

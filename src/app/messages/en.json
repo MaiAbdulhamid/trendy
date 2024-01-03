@@ -165,7 +165,8 @@
     "noResult": "There is No Orders",
     "orderHistory": "Order History",
     "on": "On",
-    "off": "Off"
+    "off": "Off",
+    "noResults": "There is No Results"
   },
   "Profile": {
     "profile": "Profile",
