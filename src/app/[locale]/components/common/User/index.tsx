@@ -47,7 +47,7 @@ export default function User() {
 
   return (
     <>
-      {token ? (
+      {!token ? (
         <Wrapper>
           <Button noStyle href={`/auth${URLS.auth.login}`}>
             <UserIcon size={40} color={theme.colors.black[300]} />

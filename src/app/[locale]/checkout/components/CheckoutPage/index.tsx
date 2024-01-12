@@ -7,6 +7,7 @@ import React, { useEffect, useState } from "react";
 import AddressAndPaymentMethods from "../AddressAndPaymentMethods";
 import OrderSummary from "../OrderSummary";
 import { Form } from "@mongez/react-form";
+import { showNotification } from "@/app/[locale]/components/Notifications/showNotification";
 
 const CheckoutPage = () => {
   const trans = useTranslations("Checkout");
@@ -26,8 +27,25 @@ const CheckoutPage = () => {
     getCheckout();
   }, []);
 
-  const onSubmit = ({values} : any) => {
-    console.log(values)
+  const onSubmit = async ({values} : any) => {
+    console.log(values);
+    try {
+      const response: any = await axiosInstance.post(
+        "order/complete",
+        {...values}
+      );
+      showNotification({
+        type: "success",
+        message: response.data.message,
+      });
+    } catch (error: any) {
+      if (error.response) {
+        showNotification({
+          type: "danger",
+          message: error.response.data.message,
+        });
+      }
+    }
   }
   return (
     <Container>
