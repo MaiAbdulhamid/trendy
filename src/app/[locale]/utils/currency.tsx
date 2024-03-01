@@ -12,7 +12,7 @@ export const Format = (value: number | string = "") => {
       setUserCountry(response)
     }
     getUserCountry()
-  }, []);
+  }, [setUserCountry]);
 
   return (
     <span className="formatted--value">
