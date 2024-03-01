@@ -6,7 +6,6 @@ import {
   OrdersIcon,
   ProfileIcon,
   SignOutIcon,
-  UserIcon,
   UserWishlistIcon,
 } from "../../../assets/svgs";
 import theme from "../../../utils/theme";
@@ -26,7 +25,7 @@ const Sidebar = () => {
     <Menu shadow="md" width={250}>
       <WrapperDropdown>
         <div className="bg">
-          <Menu.Item component={Link} href={URLS.account.orders} className="active">
+          <Menu.Item component={Link} href={URLS.account.orders}>
             <Flex className="item" gap="0.5rem" justify="center">
               <div className="icon">
                 <OrdersIcon color={theme.colors.primaryColor} />
@@ -44,7 +43,7 @@ const Sidebar = () => {
             </Flex>
           </Menu.Item>
           <Hr />
-          <Menu.Item component={Link} href={URLS.account.wallet}>
+          <Menu.Item component={Link} href={URLS.account.wallet} className="active">
             <Flex className="item" gap="0.5rem" justify="center">
               <div className="icon">
                 <UserWishlistIcon />
@@ -53,7 +52,7 @@ const Sidebar = () => {
             </Flex>
           </Menu.Item>
           <Hr />
-          <Menu.Item component={Link} href={URLS.account.wishlist}>
+          <Menu.Item component={Link} href={URLS.account.wishlist} >
             <Flex className="item" gap="0.5rem" justify="center">
               <div className="icon">
                 <UserWishlistIcon />

@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import Currency from "../../../utils/currency";
+import { Format } from "../../../utils/currency";
 import { CartItemWrapper, PercentCard, Wrapper } from "./style";
 import axiosInstance from "@/app/[locale]/lib/axios";
 import { showNotification } from "@/app/[locale]/components/Notifications/showNotification";
@@ -86,11 +86,11 @@ export default function CartItem({
             </Flex>
             <Flex direction="column">
               <H6 color={theme.colors.primaryColor}>
-                {Currency.format(price_after)}
+                {Format(price_after)}
               </H6>
               <Flex align="center" gap="0.5rem">
                 <P4 opacity="0.5" textDecoration="line-through">
-                  {Currency.format(price_before)}
+                  {Format(price_before)}
                 </P4>
                 {discount_percentage && (
                   <PercentCard>{discount_percentage}%</PercentCard>

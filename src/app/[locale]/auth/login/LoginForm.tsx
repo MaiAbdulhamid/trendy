@@ -17,6 +17,7 @@ import VerificationModal from "../components/VerificationCodeModal";
 import axiosInstance from "../../lib/axios";
 import Loader from "../../components/Loader";
 import cache from "@mongez/cache";
+import PhoneNumberInput from "../../components/Form/PhoneNumberInput";
 
 const LoginForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -54,7 +55,8 @@ const LoginForm = () => {
       router.push("/");
     } catch (error: any) {
       // setCookie("email", error.response?.data?.data?.email);
-      cache.set("email", error.response?.data?.data?.email);
+      cache.set("email", values.key);
+      cache.set("country_id", values.country_id)
       if (error.response) {
         showNotification({
           type: "danger",
@@ -81,10 +83,10 @@ const LoginForm = () => {
     <>
       <Form onSubmit={onSubmit} method="post">
         <Flex direction="column" gap="0.5rem" fullWidth>
-          <EmailInput
+          <PhoneNumberInput
             name="key"
-            label="email"
-            placeholder="example@example.com"
+            label="phoneNumber"
+            placeholder="51700500"
             icon
             required
           />

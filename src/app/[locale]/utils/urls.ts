@@ -16,7 +16,8 @@ const URLS = {
     resetPassword: "/reset-password",
     editProfile: "/profile",
     orders: "/orders",
-    addressBook: "/addresses"
+    addressBook: "/addresses",
+    wallet: "/wallet"
   },
   category: {
     dashboard: "/category"

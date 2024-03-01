@@ -10,11 +10,12 @@ import cache from "@mongez/cache";
 
 const ResendCode = ({ timerReset, resetTimer } : any) => {
   const trans = useTranslations("Auth");
-  const email = cache.get("email");
-
+  const phone = cache.get("email");
+  const country_id = cache.get('country_id');
+  
   const resendCodeHandler = async () => {
     try{
-      const response: any = await axiosInstance.post("check-email", { email });
+      const response: any = await axiosInstance.post("check-phone", { phone, country_id });
       showNotification({
         type: "success",
         message: response.data.message,

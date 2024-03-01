@@ -9,14 +9,22 @@ import Button from "@/app/[locale]/components/Button/Button";
 import { ArrowDownIcon, ArrowLeftIcon } from "@/app/[locale]/assets/svgs";
 import CheckboxInput from "@/app/[locale]/components/Form/CheckboxInput";
 import MultiRangeSlider from "@/app/[locale]/components/Form/MultiRangeSlider";
+import PriceRangeSlider from "@/app/[locale]/components/Form/PriceRangeSlider";
 
 const Filter = ({ filter, onChangeFilters, setFilteredProducts }: any) => {
   const [openFilters, setOpenFilters] = useState<Boolean>(true);
 
-  const onChangePrice = async (e: any, min_price : number, max_price: number) => {
-    if(e.max !== max_price || e.min !== min_price){
+  const onChangePrice = async (
+    e: any,
+    min_price: number,
+    max_price: number
+  ) => {
+    console.log(e)
+    if (e.max !== max_price || e.min !== min_price) {
       try {
-        const response: any = await axiosInstance.get(`products?max_price=${e.max}&min_price=${e.min}`);
+        const response: any = await axiosInstance.get(
+          `products?max_price=${e.max}&min_price=${e.min}`
+        );
         const data = response.data.data.data;
         setFilteredProducts(data);
       } catch (error: any) {
@@ -46,22 +54,17 @@ const Filter = ({ filter, onChangeFilters, setFilteredProducts }: any) => {
           if (filter.type === "price") {
             return (
               <MultiRangeSliderWrapper key={section.id}>
-                {/* <MultiRangeSlider
+                {/* <PriceRangeSlider
                   min={section.min_price}
                   max={section.max_price}
-                  step={5}
-                  ruler={false}
-                  onChange={(e: any) => {
-                    onChangePrice(e);
-                  }}
-                  thumbLeftColor={theme.colors.primaryColor}
-                  thumbRightColor={theme.colors.primaryColor}
-                  barLeftColor="#D9D9D9"
-                  barRightColor="#D9D9D9"
-                  barInnerColor={theme.colors.primaryColor}
+                  onChange={(e: any) =>
+                    onChangePrice(e, section.min_price, section.max_price)
+                  }
                 /> */}
                 <MultiRangeSlider
-                  onChange={(e: any) => onChangePrice(e, section.min_price, section.max_price)}
+                  onChange={(e: any) =>
+                    onChangePrice(e, section.min_price, section.max_price)
+                  }
                   min={section.min_price}
                   max={section.max_price}
                 />

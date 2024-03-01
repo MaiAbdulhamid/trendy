@@ -18,7 +18,8 @@ const axiosInstance = axios.create({
   headers: {
     "Content-Type": "application/json",
     "lang": getCookie("NEXT_LOCALE"),
-    "device_token" : getCookie("user-ip") || userIp
+    "device" : getCookie("user-ip") || userIp,
+    "country": getCookie("country")
   },
 });
 
@@ -40,9 +41,13 @@ axiosInstance.interceptors.request.use(async (config : any) => {
   //   }
   // }
   const token = cache.get("token");
+  const guestToken = cache.get("guestToken");
 
   if (token) {
     config.headers["Authorization"] = `Bearer ${token}`;
+  }
+  if (guestToken) {
+    config.headers["Authorization"] = `Bearer ${guestToken}`;
   }
   return config;
 });

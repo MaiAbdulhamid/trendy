@@ -30,7 +30,8 @@ const VerificationModal = ({ opened, close, verify }: any) => {
     try {
       const response: any = await axiosInstance.post("activate-account", {
         code,
-        email: cache.get("email"),
+        phone: cache.get("email"),
+        country_id: cache.get('country_id')
       });
       // setCookie("token", response.data.data.jwt_token);
       cache.set('token', response.data.data.jwt_token)

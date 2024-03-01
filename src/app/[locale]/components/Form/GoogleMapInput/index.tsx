@@ -1,11 +1,10 @@
-import { useFormControl, HiddenInput } from "@mongez/react-form";
+import { HiddenInput } from "@mongez/react-form";
 import { GoogleMap, Marker, useLoadScript } from "@react-google-maps/api";
 import {
   getAddressByLatLng,
   getAddressByPlaceId,
 } from "./google-map-service";
 import React, { useState } from "react";
-// import { ListGroup, ListGroupItem } from "reactstrap";
 import usePlacesAutocomplete from "use-places-autocomplete";
 import { GoogleMapInputProps, LocationType } from "./GoogleMapInput.types";
 import Loader from "../../Loader";
@@ -45,19 +44,6 @@ export default function GoogleMapInput({
   );
 
   const styles = { ...defaultStyles, ...incomingStyles };
-
-  const onMapClick = (e : any) => {
-    getAddressByLatLng(e.latLng.lat(), e.latLng.lng()).then((response: any) => {
-      const newLocation: LocationType = {
-        lat: e.latLng.lat(),
-        lng: e.latLng.lng(),
-        address: response.results[0].formatted_address,
-      };
-      setLocation(newLocation);
-      setValue(newLocation.address as any, false);
-    });
-  };
-
   const {
     ready,
     value,
@@ -77,6 +63,18 @@ export default function GoogleMapInput({
     defaultValue: defaultValue?.address,
   });
 
+  const onMapClick = (e : any) => {
+    getAddressByLatLng(e.latLng.lat(), e.latLng.lng()).then((response: any) => {
+      const newLocation: LocationType = {
+        lat: e.latLng.lat(),
+        lng: e.latLng.lng(),
+        address: response.results[0].formatted_address,
+      };
+      setLocation(newLocation);
+      setValue(newLocation.address as any, false);
+    });
+  };
+
   const mapRef = React.useRef(null);
   const onMapLoad = (map: any) => {
     mapRef.current = map;
@@ -88,8 +86,8 @@ export default function GoogleMapInput({
   // });
 
   const handleInput = (e : any) => {
-    console.log(e)
     setValue(e);
+    console.log(value)
   };
 
   const handleSelect =
@@ -135,14 +133,14 @@ export default function GoogleMapInput({
     <>
       <HiddenInput name={`lat`} value={location.lat} />
       <HiddenInput name={`lng`} value={location.lng} />
-      <HiddenInput name={`address_1`} value={location.address} />
+      <HiddenInput name={`address`} value={value} />
       <Grid>
         <Col xs={12}>
           <TextInput
             placeholder={props.placeholder}
             label={props.label}
             required={props.required}
-            name={`address`}
+            name={`address_1`}
             value={value}
             onChange={handleInput}
             disabled={!ready}

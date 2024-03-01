@@ -4,6 +4,7 @@ import { Flex } from "../Grids";
 import theme from "../../utils/theme";
 import devices from "../../utils/devices";
 import { Select, Input, Textarea } from "@mantine/core";
+import { RangeSlider } from '@mantine/core';
 
 type Types = any & {
   error?: boolean;
@@ -190,3 +191,52 @@ export const StyledTextArea = styled("textarea")<Types>`
     padding: 14px;
   }
 `;
+export const StyledRangeSlider = styled(RangeSlider)`
+  .ltr-Slider-track::before,
+  .rtl-Slider-track::before{
+    border-radius: 0;
+  }
+  .ltr-Slider-bar,
+  .rtl-Slider-bar{
+    background-color: ${theme.colors.primaryColor};
+  }
+  .ltr-Slider-thumb,
+  .rtl-Slider-thumb{
+    background-color: ${theme.colors.primaryColor};
+    border-color: transparent;
+    width: 22px;
+    height: 22px;
+  }
+  .ltr-Slider-track,
+  .rtl-Slider-track{
+    height: 5px;
+  }
+  .ltr-Slider-markLabel,
+  .rtl-Slider-markLabel{
+    color: ${theme.colors.primaryColor};
+    position: absolute;
+    /* top: -45px; */
+  }
+  .ltr-Slider-label,
+  .rtl-Slider-label{
+    /* display: none; */
+    background-color: transparent;
+    color: ${theme.colors.primaryColor}
+  }
+`;
+export const CountryIconWrapper = styled.div`
+  > div {
+    width: 120px;
+  }
+  .select-input-wrapper{
+    /* width: 50%; */
+    .input-wrapper{
+      > div {
+        border: 0;
+      }
+    }
+  }
+  input::placeholder{
+color:blue;
+}
+`

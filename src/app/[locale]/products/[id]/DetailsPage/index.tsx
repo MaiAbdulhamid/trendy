@@ -23,6 +23,8 @@ function DetailsPage({ product }: any) {
     link: URLS.viewProduct(product),
   });
 
+  console.log(product)
+
   if (!product) return null;
 
   return (

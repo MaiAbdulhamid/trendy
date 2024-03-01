@@ -19,11 +19,13 @@ function SelectInput({
   const trans = useTranslations("Auth");
 
   return (
-    <Flex direction="column" gap="0" fullWidth>
-      <InputLabel htmlFor={id} required={props.required}>
-        {trans(label)}
-      </InputLabel>
-      <WrapperInput>
+    <Flex direction="column" gap="0" fullWidth className="select-input-wrapper">
+      {label && (
+        <InputLabel htmlFor={id} required={props.required}>
+          {trans(label)}
+        </InputLabel>
+      )}
+      <WrapperInput className="input-wrapper">
         <Wrapper>
           <StyledSelectInput
             placeholder={placeholder}

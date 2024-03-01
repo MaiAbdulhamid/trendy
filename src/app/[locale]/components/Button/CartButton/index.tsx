@@ -20,11 +20,11 @@ export default function CartButton({
   const trans = useTranslations("Cart");
   const [loading, isLoading] = useState(false);
   const dispatch = useDispatch();
-
+  console.log(product.id)
   const addToCartHandler = () => {
     isLoading(true);
     // const preparedData = {
-    //   product_id: product.id,
+    //   product_id: product.redirect_id,
     //   qty: quantity,
     //   variation_id: variationId,
     // };
@@ -45,7 +45,7 @@ export default function CartButton({
     //       message: error.response.data.message,
     //     });
     //   });
-      dispatch(addToCart(product.id, variationId, quantity) as any);
+      dispatch(addToCart(product.redirect_id || product.id, variationId, quantity) as any);
       isLoading(false);
   };
   return (

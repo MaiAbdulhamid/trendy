@@ -12,12 +12,29 @@ import NewDeals from "./modules/NewDeals";
 import SpecialDeals from "./modules/SpecialDeals";
 import Popup from "./modules/Popup";
 import { useDisclosure } from "@mantine/hooks";
+import CountryPopup from "./modules/CountryPopup";
+import { getCookie } from "cookies-next";
+
+export const isFirstVisit = () => {
+  if (typeof window !== "undefined") {
+    const visited = getCookie("country");
+    if (!visited) {
+      localStorage.setItem("visited", "true");
+      return true;
+    }
+  }
+  return false;
+};
 
 const HomePage = () => {
   const [homeData, setHomeData] = useState<any>([]);
   const [isPageLoading, setIsPageLoading] = useState(true);
   const [openedPopup, { open: openPopup, close: closePopup }] =
     useDisclosure(false);
+  const [
+    openedCountryPopup,
+    { open: openCountryPopup, close: closeCountryPopup },
+  ] = useDisclosure(false);
 
   const fetchHomeData = async () => {
     setIsPageLoading(true);
@@ -30,10 +47,21 @@ const HomePage = () => {
   };
 
   useEffect(() => {
-    openPopup()
+    openPopup();
     fetchHomeData();
   }, [setHomeData]);
 
+  useEffect(() => {
+    const showMantineModal = async () => {
+      if (isFirstVisit()) {
+        // You can show the Mantine modal here
+        // For example:
+        // setOpen(true);
+        openCountryPopup();
+      }
+    };
+    showMantineModal();
+  }, []);
   const modules = homeData.map((module: any) => {
     switch (module.type) {
       case 2:
@@ -105,13 +133,15 @@ const HomePage = () => {
         break;
     }
   });
-  
+
   if (!isPageLoading) return <Loader />;
 
   return (
     <>
       <Promo />
       {modules}
+
+      <CountryPopup opened={openedCountryPopup} close={closeCountryPopup} />
     </>
   );
 };

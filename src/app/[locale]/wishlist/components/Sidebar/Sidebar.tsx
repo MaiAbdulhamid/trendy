@@ -43,6 +43,15 @@ const Sidebar = () => {
             </Flex>
           </Menu.Item>
           <Hr />
+          <Menu.Item component={Link} href={URLS.account.wallet}>
+            <Flex className="item" gap="0.5rem" justify="center">
+              <div className="icon">
+                <UserWishlistIcon />
+              </div>
+              <P4>{trans("wallet")}</P4>
+            </Flex>
+          </Menu.Item>
+          <Hr />
           <Menu.Item component={Link} href={URLS.account.wishlist} className="active">
             <Flex className="item" gap="0.5rem" justify="center">
               <div className="icon">

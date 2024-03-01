@@ -12,8 +12,8 @@ import VerificationModal from "../../components/VerificationCodeModal";
 import { useDisclosure } from "@mantine/hooks";
 import { showNotification } from "../../../components/Notifications/showNotification";
 import axiosInstance from "../../../lib/axios";
-import { setCookie } from "cookies-next";
 import cache from "@mongez/cache";
+import PhoneNumberInput from "@/app/[locale]/components/Form/PhoneNumberInput";
 
 const ForgotPasswordModal = ({ opened, close }: any) => {
   const [openedVerify, { open: openVerify, close: closeVerify }] =
@@ -25,9 +25,8 @@ const ForgotPasswordModal = ({ opened, close }: any) => {
   const onSubmit = async ({ form, values }: any) => {
     setIsSubmitting(true);
     try {
-      const response: any = await axiosInstance.post("check-email", values);
-      console.log(response)
-      cache.set("email", values.email);
+      const response: any = await axiosInstance.post("check-phone", values);
+      cache.set("email", values.phone);
       showNotification({
         type: "success",
         message: response.data.message,
@@ -58,10 +57,10 @@ const ForgotPasswordModal = ({ opened, close }: any) => {
           <Heading title="forgotPassword" subTitle="enterEmail" />
           <Form onSubmit={onSubmit} method="post">
             <Flex direction="column" gap="0.5rem" fullWidth>
-              <EmailInput
-                name="email"
-                label="email"
-                placeholder="example@example.com"
+              <PhoneNumberInput
+                name="phone"
+                label="phoneNumber"
+                placeholder="51700500"
                 icon
                 required
               />

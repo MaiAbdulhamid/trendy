@@ -13,14 +13,37 @@ import {
 import { ProductCardProps } from "./type";
 import { resolveLink, trimmed } from "../../utils/general";
 import theme from "../../utils/theme";
-import Currency from "../../utils/currency";
+import { Format } from "../../utils/currency";
 import { Flex } from "../Grids";
 import { useState } from "react";
 import Link from "next/link";
+import axiosInstance from "../../lib/axios";
+import { showNotification } from "../Notifications/showNotification";
+import QuantityInput from "../Form/QuantityInput";
 
 export default function ProductCard(props: ProductCardProps) {
   const [style, setStyle] = useState({ display: "none" });
   const { product, color } = props;
+  // console.log(product)
+  const updateProductQuantity = (quantity: any) => {
+    axiosInstance
+      .post("cart/AddOrUpdate", {
+        product_id: product.redirect_id,
+        qty: quantity,
+      })
+      .then((response) => {
+        showNotification({
+          type: "success",
+          message: response.data.message,
+        });
+      })
+      .catch((error) => {
+        showNotification({
+          type: "danger",
+          message: error.response.data.errors,
+        });
+      });
+  };
   return (
     <ProductBox>
       <Options>
@@ -43,14 +66,24 @@ export default function ProductCard(props: ProductCardProps) {
         }}
       >
         <ProductWishlistButton style={style} product={product} />
-        <img src={product?.image} className="img-responsive" />
-        <StyledCartButton
-          product={product}
-          size="md"
-          variant="primary"
-          fullWidth
-          style={style}
-        />
+        <Link href={resolveLink(product)}>
+          <img src={product?.image} className="img-responsive" />
+        </Link>
+        {product.qty === 0 ? (
+          <StyledCartButton
+            product={product}
+            size="md"
+            variant="primary"
+            fullWidth
+            style={style}
+          />
+        ) : (
+          <QuantityInput
+            defaultValue={product.qty}
+            onChange={updateProductQuantity}
+            min={1}
+          />
+        )}
       </ImageBox>
       <Link href={resolveLink(product)}>
         <CaptionBox>
@@ -59,10 +92,10 @@ export default function ProductCard(props: ProductCardProps) {
           </P3>
           <Flex gap="1rem" fullWidth>
             <P4 color={theme.colors.primaryColor}>
-              {Currency.format(product.price_after)}
+              {Format(product.price_after)}
             </P4>
             <P4 color="#AEABA4" textDecoration="line-through">
-              {Currency.format(product.price_before)}
+              {Format(product.price_before)}
             </P4>
           </Flex>
         </CaptionBox>

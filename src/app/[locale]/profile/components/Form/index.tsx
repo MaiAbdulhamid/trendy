@@ -21,6 +21,7 @@ import NewPasswordModal from "../NewPasswordModal";
 import ChangeEmailModal from "../ChangeEmailModal";
 import ChangePhoneModal from "../ChangePhoneModal";
 import DeleteAccountModal from "../DeleteAccountModal";
+import dayjs from 'dayjs';
 
 const ProfileForm = () => {
   const [user, setUser] = useState<any>(cache.get('user'));
@@ -63,7 +64,7 @@ const ProfileForm = () => {
       }
     }
   }
-
+  console.log(dayjs(user?.dob).format('YYYY/MM/DD'))
   return (
     <>
       <H2>{trans("profile")}</H2>
@@ -86,7 +87,7 @@ const ProfileForm = () => {
                 name="dob"
                 label={"dateOfBirth"}
                 placeholder={trans("date")}
-                defaultValue={new Date(user?.dob)}
+                defaultValue={dayjs(user?.dob).format('YYYY/MM/DD')}
                 required
                 icon
               />
@@ -100,7 +101,7 @@ const ProfileForm = () => {
                   { label: trans("female"), value: "2" },
                   { label: trans("other"), value: "3" },
                 ]}
-                defaultValue={user?.gender}
+                defaultValue={String(user?.gender)}
                 required
                 clearable
               />
@@ -132,6 +133,7 @@ const ProfileForm = () => {
                 defaultValue={user?.phone}
                 required
                 icon
+                country_id={String(user?.country_id)}
               />
             </Col>
           </Grid>

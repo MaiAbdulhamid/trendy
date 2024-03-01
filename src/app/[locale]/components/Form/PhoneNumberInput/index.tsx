@@ -1,10 +1,15 @@
 "use client";
-import { StyledInput, Wrapper, WrapperInput } from "../styles";
+import {
+  CountryIconWrapper,
+  StyledInput,
+  Wrapper,
+  WrapperInput,
+} from "../styles";
 import InputError from "../InputError";
 import InputLabel from "../InputLabel";
 import { Flex } from "../../Grids";
 import { useTranslations } from "next-intl";
-import { EmailIcon, FlagIcon, LineIcon } from "../../../assets/svgs";
+import { LineIcon } from "../../../assets/svgs";
 import { InputPropsType } from "../types";
 import {
   maxLengthRule,
@@ -14,31 +19,61 @@ import {
   requiredRule,
   useFormControl,
 } from "@mongez/react-form";
+import { useEffect, useState } from "react";
+import axiosInstance from "@/app/[locale]/lib/axios";
+import SelectInput from "../SelectInput";
+import Image from "next/image";
 
 function PhoneNumberInput({
   placeholder,
   label,
   icon,
   id,
+  onChangeCountry,
   ...props
 }: InputPropsType) {
   const { value, changeValue, error, otherProps } = useFormControl(props);
 
   const trans = useTranslations("Auth");
+  const [countries, setCountries] = useState<any>([]);
 
+  const getCountries = async () => {
+    try {
+      const response: any = await axiosInstance.get("countries");
+      const filteredCountries = response.data.data.data.map((c: any) => {
+        return {
+          label: c.code,
+          value: String(c.id),
+        };
+      });
+      setCountries(filteredCountries);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getCountries();
+  }, []);
   return (
     <Flex direction="column" gap="0" fullWidth>
-        <InputLabel htmlFor={id} required={props.required}>
-          {trans(label)}
-        </InputLabel>
+      <InputLabel htmlFor={id} required={props.required}>
+        {trans(label)}
+      </InputLabel>
       <WrapperInput>
         <Wrapper style={{ overflow: "hidden" }}>
           {icon && (
-            <Flex align="center" gap="5px">
-              <FlagIcon />
-              <span>+974</span>
-              <LineIcon />
-            </Flex>
+            <CountryIconWrapper>
+              <Flex align="center" gap="5px">
+                <SelectInput
+                  name="country_id"
+                  data={countries}
+                  defaultValue={props.country_id || "3"}
+                  onChange={onChangeCountry}
+                />
+                <LineIcon />
+              </Flex>
+            </CountryIconWrapper>
           )}
           <StyledInput
             placeholder={placeholder}

@@ -5,7 +5,7 @@ import { Wrapper } from "./style";
 import { Line } from "@/app/[locale]/components/shapes/Lines";
 import { H5, P4 } from "@/app/[locale]/components/Typography";
 import theme from "@/app/[locale]/utils/theme";
-import Currency from "@/app/[locale]/utils/currency";
+import { Format } from "@/app/[locale]/utils/currency";
 import Button from "@/app/[locale]/components/Button/Button";
 import URLS from "@/app/[locale]/utils/urls";
 import cart from "../../utils/CartManager";
@@ -45,7 +45,7 @@ export default function Invoice() {
 
       <Flex align="center" fullWidth justify="space-between">
         <P4>{trans("totalPrice")}</P4>
-        <H5>{Currency.format(totalPrice)} </H5>
+        <H5>{Format(totalPrice)} </H5>
       </Flex>
 
       <Button

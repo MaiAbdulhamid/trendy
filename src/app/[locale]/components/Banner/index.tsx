@@ -17,8 +17,8 @@ export default function Banner(props: BannerProps) {
       <Grid>
         <Col span={12 / Number(col)}>
           <BannerBox radius={radius}>
-            <Link href={data[0].link}>
-              <img src={data[0].image} className="full-width" />
+            <Link href={data[0]?.link || ""}>
+              <img src={data[0]?.image || ""} className="full-width" />
             </Link>
           </BannerBox>
         </Col>

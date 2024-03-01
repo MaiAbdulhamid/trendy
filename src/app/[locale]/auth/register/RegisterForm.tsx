@@ -2,17 +2,14 @@ import React, { useEffect, useState } from "react";
 import { useDisclosure } from "@mantine/hooks";
 import TermsAndConditionsModal from "./TermsAndConditionsModal";
 import { Form } from "@mongez/react-form";
-import { useDispatch } from "react-redux";
-import { authActions } from "@/app/store";
-import { ThunkDispatch } from "@reduxjs/toolkit";
 import { showNotification } from "../../components/Notifications/showNotification";
-import { useRouter } from "next/navigation";
 import moment from "moment";
 import Inputs from "./Inputs";
 import VerificationModal from "../components/VerificationCodeModal";
 import axiosInstance from "../../lib/axios";
 import { setCookie } from "cookies-next";
 import Loader from "../../components/Loader";
+import cache from "@mongez/cache";
 
 const RegisterForm = () => {
   const [openedTerms, { open: openTerms, close: closeTerms }] = useDisclosure(false);
@@ -20,8 +17,6 @@ const RegisterForm = () => {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isPageLoading, setIsPageLoading] = useState(true);
-
-  const router = useRouter();
 
   useEffect(() => {
     setIsPageLoading(false)
@@ -40,7 +35,9 @@ const RegisterForm = () => {
         type: "success",
         message: response.data.message,
       });
-      setCookie('email', values.email)
+      cache.set('email', values.phone)
+      cache.set('country_id', values.country_id)
+
       openVerify();
 
     } catch (error: any) {

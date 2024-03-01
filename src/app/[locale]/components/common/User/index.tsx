@@ -20,6 +20,9 @@ import { authActions } from "../../../../store";
 import Button from "../../Button/Button";
 import { useCallback, useEffect, useState } from "react";
 import cache from "@mongez/cache";
+import SelectInput from "../../Form/SelectInput";
+import axiosInstance from "@/app/[locale]/lib/axios";
+import { setCookie } from "cookies-next";
 
 export default function User() {
   const trans = useTranslations("Layout");
@@ -27,24 +30,39 @@ export default function User() {
   const [token, setToken] = useState();
 
   const fetchToken = useCallback(() => {
-    return cache.get('token');
+    return cache.get("token");
   }, []);
 
   useEffect(() => {
     setToken(fetchToken());
   }, []);
+  const [countries, setCountries] = useState<any>([]);
 
-  // console.log(cache)
-  // if (!token) {
-  //   return (
-  //     <Wrapper>
-  //       <Button noStyle href={`auth${URLS.auth.login}`}>
-  //         <UserIcon size={40} color={theme.colors.black[300]} />
-  //       </Button>
-  //     </Wrapper>
-  //   );
-  // }
+  const getCountries = async () => {
+    try {
+      const response: any = await axiosInstance.get("countries");
+      const filteredCountries = response.data.data.data.map((c: any) => {
+        return {
+          label: c.name,
+          value: String(c.id),
+        };
+      });
+      setCountries(filteredCountries);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
+  useEffect(() => {
+    getCountries();
+  }, []);
+
+  const onChangeHandler = (e: any) => {
+    console.log(e)
+    setCookie("country", e);
+    // close();
+    window.location.reload();
+  }
   return (
     <>
       {!token ? (
@@ -83,7 +101,16 @@ export default function User() {
                     </Flex>
                   </Menu.Item>
                   <Hr />
-                  <Menu.Item component={Link} href={URLS.account.addressBook}>
+                  <Menu.Item component={Link} href={URLS.account.wallet}>
+                    <Flex className="item" gap="0.5rem" justify="center">
+                      <div className="icon">
+                        <UserWishlistIcon />
+                      </div>
+                      <P4>{trans("wallet")}</P4>
+                    </Flex>
+                  </Menu.Item>
+                  <Hr />
+                  <Menu.Item component={Link} href={URLS.account.wishlist}>
                     <Flex className="item" gap="0.5rem" justify="center">
                       <div className="icon">
                         <UserWishlistIcon />
@@ -101,6 +128,21 @@ export default function User() {
                     </Flex>
                   </Menu.Item>
                   <Hr />
+                  {/* <Menu.Item component={`div`}>
+                    <Flex className="item" gap="0.5rem" justify="center">
+                      <div className="icon">
+                        <SelectInput
+                          name="country"
+                          label="country"
+                          data={countries}
+                          // defaultValue={"3"}
+                          onChange={onChangeHandler}
+                          clearable
+                        />
+                      </div>
+                    </Flex>
+                  </Menu.Item>
+                  <Hr /> */}
                   <Menu.Item
                     component={Link}
                     href={URLS.home}

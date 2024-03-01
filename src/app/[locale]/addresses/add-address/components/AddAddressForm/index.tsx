@@ -16,6 +16,7 @@ import { P4 } from "@/app/[locale]/components/Typography";
 import SubmitButton from "@/app/[locale]/components/Form/SubmitButton";
 import GoogleMapInput from "@/app/[locale]/components/Form/GoogleMapInput";
 import { showNotification } from "@/app/[locale]/components/Notifications/showNotification";
+import cache from "@mongez/cache";
 
 const AddAddressForm = () => {
   const trans = useTranslations("Auth");
@@ -23,13 +24,19 @@ const AddAddressForm = () => {
   const [cities, setCities] = useState<any>([]);
   const [selectedCity, setSelectedCity] = useState<any>("");
   const [regions, setRegions] = useState<any>([]);
+  const [selectedCountry, setSelectedCountry] = useState<any>(3);
 
+  const onChangeCountry = (e: any) => {
+    console.log(e)
+    setSelectedCountry(e);
+  }
   const getCities = async () => {
     try {
-      const response = await axiosInstance.get("countries");
+      const response = await axiosInstance.get(`getCitiesRegions?country_id=${selectedCountry}`);
       const formattedCities = response.data.data.data.map((city: any) => ({
         label: city.name,
         value: String(city.id),
+        regions: city.regions
       }));
       setCities(formattedCities);
     } catch (error) {
@@ -39,29 +46,20 @@ const AddAddressForm = () => {
 
   useEffect(() => {
     getCities();
-  }, []);
+    console.log(cities)
+  }, [selectedCountry]);
 
   const selectedCityHandler = (value: any) => {
     setSelectedCity(value);
-  };
-  const getRegions = async () => {
-    try {
-      const response = await axiosInstance.get(
-        `getCitiesRegions?country_id=${selectedCity}`
-      );
-      const formattedRegions = response.data.data.data.map((region: any) => ({
+    const regions = cities.find((city: any) => city.value === value )
+    const formattedRegions = regions.regions.map((region :any) => (
+      {
         label: region.name,
-        value: String(region.id),
-      }));
-      console.log(formattedRegions);
-      setRegions(formattedRegions);
-    } catch (error) {
-      console.log(error);
-    }
+        value: String(region.id)
+      }
+    ))
+    setRegions(formattedRegions)
   };
-  useEffect(() => {
-    getRegions();
-  }, [selectedCity]);
 
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 
@@ -73,10 +71,14 @@ const AddAddressForm = () => {
         "address/updateOrCreate",
         {...values}
       );
+      cache.set("address", response.data.data)
       showNotification({
         type: "success",
         message: response.data.message,
       });
+
+      window.location.reload();
+
     } catch (error: any) {
       if (error.response) {
         showNotification({
@@ -135,6 +137,8 @@ const AddAddressForm = () => {
                   name="phone"
                   label="phoneNumber"
                   placeholder="phoneNumber"
+                  icon
+                  onChangeCountry={onChangeCountry}
                 />
               </Col>
             </Grid>
@@ -154,7 +158,7 @@ const AddAddressForm = () => {
                   name="region_id"
                   label="region"
                   data={regions}
-                  required
+                  // required
                   clearable
                 />
               </Col>

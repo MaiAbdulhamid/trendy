@@ -53,7 +53,8 @@
      "makeDefault": "اجعله افتراضيًا",
      "cancel": "إلغاء",
      "save": "حفظ",
-     "location": "الموقع"
+     "location": "الموقع",
+     "country": "البلد"
   },
   "Layout": {
     "search": "بحث",
@@ -80,7 +81,8 @@
     "results": "النتائج",
     "searchHistory": "سجل البحث",
     "clear": "مسح",
-    "nothingFound": "لم يتم العثور على شيء..."
+    "nothingFound": "لم يتم العثور على شيء...",
+    "wallet": "المحفظة"
   },
 
   "Home": {
@@ -110,7 +112,8 @@
     "priceHighToLow" : "السعر من الأعلى إلى الأقل",
     "topRated" : "الأعلى تقييمًا",
     "noResults": "لا توجد نتائج",
-    "wishlist": "قائمة الامنيات"
+    "wishlist": "قائمة الامنيات",
+    "wallet": "المحفظة"
   },
   "Product": {
     "brand": "العلامة التجارية",

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { WishlistButtonStyled } from "./style";
 import { WishlistButtonProps } from "./type";
 import { HeartIcon } from "../../../assets/svgs";
@@ -15,7 +15,9 @@ export default function WishlistButton({
   const [loading, isLoading] = useState(false);
   const [inWishlist, setInWishlist] = useState(product.is_favorite);
   const trans = useTranslations('Product');
-
+  useEffect(() => {
+    setInWishlist(product.is_favorite)
+  }, [])
   const addOrRemoveWishlist = () => {
 
     if(!cache.get('token')) {

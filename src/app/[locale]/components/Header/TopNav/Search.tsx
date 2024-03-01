@@ -3,7 +3,7 @@ import { Flex } from "../../Grids";
 import AutoComplete from "../../Form/AutoComplete";
 import { useTranslations } from "next-intl";
 import { spotlight, Spotlight, SpotlightActionData } from "@mantine/spotlight";
-import { SearchIcon } from "../../../assets/svgs";
+import { CloseIcon, SearchIcon } from "../../../assets/svgs";
 import axiosInstance from "../../../lib/axios";
 import { useRouter } from "next/navigation";
 import { resolveSearchLink } from "../../../utils/general";
@@ -103,13 +103,18 @@ const SearchInput = () => {
       >
         <Spotlight.ActionsList style={{ minHeight: "100vh" }}>
           <MainSearchWrapper>
-            <SearchWrapper>
-              <Spotlight.Search
-                placeholder="Search..."
-                leftSection={<SearchIcon />}
-                onBlur={setLatestSearchHandler}
-              />
-            </SearchWrapper>
+            <Flex justify="space-between" align="center" fullWidth>
+              <SearchWrapper>
+                <Spotlight.Search
+                  placeholder="Search..."
+                  leftSection={<SearchIcon />}
+                  onBlur={setLatestSearchHandler}
+                />
+              </SearchWrapper>
+              <Button noStyle onClick={spotlight.close}>
+                <CloseIcon color={theme.colors.primaryColor} />
+              </Button>
+            </Flex>
             <Flex justify="space-between" fullWidth>
               {items?.length > 0 ? (
                 <div style={{ width: "50%" }}>

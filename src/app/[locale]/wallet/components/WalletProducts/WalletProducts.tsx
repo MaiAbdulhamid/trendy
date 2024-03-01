@@ -8,32 +8,32 @@ import Is from '@mongez/supportive-is';
 import { useTranslations } from 'next-intl';
 import React, { useCallback, useEffect, useState } from 'react'
 
-const WishlistProducts = () => {
+const WalletProducts = () => {
   const trans = useTranslations("Products");
   
-  const [wishlist, setWishlist] = useState([]);
+  const [wallet, setWallet] = useState([]);
 
-  const getWishlist =async () => {
+  const getWallet =async () => {
     try {
-      const response = await axiosInstance.get('wishlist');
-      setWishlist(response.data.data.data)
+      const response = await axiosInstance.get('user/wallet');
+      setWallet(response.data.data.data)
     } catch (error) {
       console.log(error)
     }
   }
   
   useEffect(() => {
-    getWishlist()
+    getWallet()
   }, []);
-  // if (!token) return null;
+  
   return (
     <>
-      <H2>{trans('wishlist')}</H2>
-      {Is.empty(wishlist) ? (
+      <H2>{trans('wallet')}</H2>
+      {Is.empty(wallet) ? (
         <P4 textAlign="center">{trans("noResults")}</P4>
       ) : (
         <Grid>
-          {wishlist.map((product: any) => (
+          {wallet.map((product: any) => (
             <Col span={4} key={product.id}>
               <ProductCard product={product} />
             </Col>
@@ -44,4 +44,4 @@ const WishlistProducts = () => {
   )
 }
 
-export default WishlistProducts
+export default WalletProducts

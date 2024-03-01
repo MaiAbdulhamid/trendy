@@ -53,7 +53,8 @@
     "makeDefault": "Make Default",
     "cancel": "Cancel",
     "save": "Save",
-    "location": "Location"
+    "location": "Location",
+    "country": "Country"
   },
   "Layout": {
     "search": "Search",
@@ -80,7 +81,8 @@
     "results": "results",
     "searchHistory": "Search History",
     "clear": "Clear",
-    "nothingFound": "Nothing found..."
+    "nothingFound": "Nothing found...",
+    "wallet": "Wallet"
   },
 
   "Home": {
@@ -110,7 +112,8 @@
     "priceHighToLow" : "Price high to low",
     "topRated" : "Top Rated",
     "noResults": "There is No Results",
-    "wishlist": "Wishlist"
+    "wishlist": "Wishlist",
+    "wallet": "Wallet"
   },
   "Product": {
     "brand": "Brand",

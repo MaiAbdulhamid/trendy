@@ -14,7 +14,6 @@ import { showNotification } from "@/app/[locale]/components/Notifications/showNo
 const FormPage = () => {
   const trans = useTranslations("ContactUs");
   const onSubmit = async ({form, values}: any) => {
-    console.log(values)
     try {
       const response = await axiosInstance.post('contact/send', { ...values })
       console.log(response.data)
