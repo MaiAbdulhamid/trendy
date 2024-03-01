@@ -1,7 +1,6 @@
 import { trans } from "@mongez/localization";
 import Is from "@mongez/supportive-is";
 import { useEffect, useState } from "react";
-import Currency from "../../../../../utils/currency";
 import { ProductQuantityContainer } from "./style";
 import { cartItemAtom } from "@/app/[locale]/shared/atoms/cart-atom";
 import QuantityInput from "@/app/[locale]/components/Form/QuantityInput";
