@@ -113,7 +113,9 @@
     "topRated" : "Top Rated",
     "noResults": "There is No Results",
     "wishlist": "Wishlist",
-    "wallet": "Wallet"
+    "wallet": "Wallet",
+    "walletBalance": "Wallet Balance",
+    "noOperations": "No Operations"
   },
   "Product": {
     "brand": "Brand",
