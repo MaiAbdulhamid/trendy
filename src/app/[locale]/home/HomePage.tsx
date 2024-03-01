@@ -140,7 +140,6 @@ const HomePage = () => {
     <>
       <Promo />
       {modules}
-
       <CountryPopup opened={openedCountryPopup} close={closeCountryPopup} />
     </>
   );
