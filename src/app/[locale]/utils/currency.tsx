@@ -17,7 +17,7 @@ export const Format = (value: number | string = "") => {
   return (
     <span className="formatted--value">
       {value || 0}
-      {" " + userCountry[`currency_${locale}`] || ''}
+      {userCountry !== undefined && " " + userCountry[`currency_${locale}`]}
     </span>
   );
 };
