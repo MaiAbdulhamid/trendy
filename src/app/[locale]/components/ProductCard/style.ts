@@ -14,6 +14,7 @@ export const ProductBox = styled.div`
     max-width: 100%;
     border-radius: 5px;
     width: 100%;
+    height: 390px;
   }
   .price--before{
     color: #AEABA4;
