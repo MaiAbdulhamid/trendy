@@ -30,6 +30,7 @@ const ChangePhoneModal = ({ opened, close }: any) => {
         message: response.data.message,
       });
       close();
+      window.location.reload();
     } catch (error: any) {
       if (error.response) {
         showNotification({

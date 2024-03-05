@@ -20,11 +20,12 @@ const Address = ({ address }: any) => {
       const response: any = axiosInstance.delete(
         `address/delete/${address.id}`
       );
-      console.log(response)
+      
       showNotification({
         type: "success",
         message: response.message,
       });
+      window.location.reload()
     } catch (error: any) {
       if (error.response) {
         showNotification({

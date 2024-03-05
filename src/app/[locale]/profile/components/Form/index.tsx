@@ -145,7 +145,7 @@ const ProfileForm = () => {
               <P4>{trans('changePassword')}</P4>
             </Button>
             <Button variant="outline" className="outline" onClick={openChangePhone}>
-              <P4>{trans('addPhoneNumber')}</P4>
+              <P4>{trans('changePhoneNumber')}</P4>
             </Button>
             <Button noStyle onClick={openDeleteAccount}>
               <P4 color={theme.colors.error[300]}>{trans('deleteAccount')}</P4>

@@ -34,7 +34,7 @@ export default function WishlistButton({
     axiosInstance.post("wishlist/add_or_remove", {product_id: product.id})
      .then((response) => {
         isLoading(false);
-        // setInWishlist(true)
+        setInWishlist(true)
         showNotification({
           type: "success",
           message: response.data.message,

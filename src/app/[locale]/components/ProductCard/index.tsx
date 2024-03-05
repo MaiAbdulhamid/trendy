@@ -24,7 +24,7 @@ import QuantityInput from "../Form/QuantityInput";
 export default function ProductCard(props: ProductCardProps) {
   const [style, setStyle] = useState({ display: "none" });
   const { product, color } = props;
-  console.log(product)
+
   const updateProductQuantity = (quantity: any) => {
     axiosInstance
       .post("cart/AddOrUpdate", {
@@ -59,7 +59,7 @@ export default function ProductCard(props: ProductCardProps) {
       </Options>
       <ImageBox
         onMouseEnter={(e) => {
-          setStyle({ display: "block" });
+          setStyle({ display: "flex" });
         }}
         onMouseLeave={(e) => {
           setStyle({ display: "none" });
@@ -82,6 +82,7 @@ export default function ProductCard(props: ProductCardProps) {
             defaultValue={product.qty}
             onChange={updateProductQuantity}
             min={1}
+            style={style}
           />
         )}
       </ImageBox>

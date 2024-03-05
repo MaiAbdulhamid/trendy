@@ -30,15 +30,21 @@ const AddAddressForm = ({useAddress} : any) => {
   console.log(useAddress)
 
   const [cities, setCities] = useState<any>([]);
-  const [selectedCity, setSelectedCity] = useState<any>(String(address?.city?.id));
+  const [selectedCity, setSelectedCity] = useState<any>("");
   const [regions, setRegions] = useState<any>([]);
+  const [selectedCountry, setSelectedCountry] = useState<any>(3);
 
+  const onChangeCountry = (e: any) => {
+    console.log(e)
+    setSelectedCountry(e);
+  }
   const getCities = async () => {
     try {
-      const response = await axiosInstance.get("countries");
+      const response = await axiosInstance.get(`getCitiesRegions?country_id=${selectedCountry}`);
       const formattedCities = response.data.data.data.map((city: any) => ({
         label: city.name,
         value: String(city.id),
+        regions: city.regions
       }));
       setCities(formattedCities);
     } catch (error) {
@@ -48,31 +54,20 @@ const AddAddressForm = ({useAddress} : any) => {
 
   useEffect(() => {
     getCities();
-    setSelectedCity(address?.city?.id)
-  }, []);
+    console.log(cities)
+  }, [selectedCountry]);
 
   const selectedCityHandler = (value: any) => {
     setSelectedCity(value);
-  };
-  const getRegions = async () => {
-    try {
-      const response = await axiosInstance.get(
-        `getCitiesRegions?country_id=${selectedCity}`
-      );
-      const formattedRegions = response.data.data.data.map((region: any) => ({
+    const regions = cities.find((city: any) => city.value === value )
+    const formattedRegions = regions.regions.map((region :any) => (
+      {
         label: region.name,
-        value: String(region.id),
-      }));
-      console.log(formattedRegions);
-      setRegions(formattedRegions);
-    } catch (error) {
-      console.log(error);
-    }
+        value: String(region.id)
+      }
+    ))
+    setRegions(formattedRegions)
   };
-  
-  useEffect(() => {
-    getRegions();
-  }, [selectedCity]);
 
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 
@@ -119,7 +114,9 @@ const AddAddressForm = ({useAddress} : any) => {
               required
               placeholder={"addressLineOne"}
               label={"addressLineOne"}
-              defaultValue={address?.address || address?.address_1}
+              address={address?.address}
+              lat={address?.lat}
+              lng={address?.lng}
             />
             <TextInput
               name="address_2"
@@ -153,6 +150,9 @@ const AddAddressForm = ({useAddress} : any) => {
                   label="phoneNumber"
                   placeholder="phoneNumber"
                   defaultValue={address?.phone}
+                  icon
+                  onChangeCountry={onChangeCountry}
+                  country_id={String(address?.country?.id)}
                 />
               </Col>
             </Grid>
@@ -183,7 +183,7 @@ const AddAddressForm = ({useAddress} : any) => {
               <SwitchInput
                 name="default"
                 label={trans("makeDefault")}
-                defaultValue={Boolean(address?.default)}
+                defaultValue={Number(address?.default)}
               />
               <Flex gap="2rem">
                 <Button variant="outline">

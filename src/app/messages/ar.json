@@ -54,7 +54,8 @@
      "cancel": "إلغاء",
      "save": "حفظ",
      "location": "الموقع",
-     "country": "البلد"
+     "country": "البلد",
+     "newEmail": "الايميل الجديد"
   },
   "Layout": {
     "search": "بحث",
@@ -113,7 +114,9 @@
     "topRated" : "الأعلى تقييمًا",
     "noResults": "لا توجد نتائج",
     "wishlist": "قائمة الامنيات",
-    "wallet": "المحفظة"
+    "wallet": "المحفظة",
+    "walletBalance": "رصيد المحفظة",
+    "noOperations": "لا توجد عمليات"
   },
   "Product": {
     "brand": "العلامة التجارية",
@@ -150,6 +153,7 @@
     "address" : "عنوان",
     "phoneNumber" : "رقم الهاتف",
     "addAddress": "إضافة عنوان",
+    "addNewAddress": "أضف عنوانًا جديدًا",
     "addAddressHint": "لضمان نجاح عملية التخليص الجمركي، يرجى إدخال اسمك الحقيقي."
   },
   "Checkout":{
@@ -161,7 +165,8 @@
     "placeOrder": "تقديم الطلب",
     "addNewAddress": "أضف عنوانًا جديدًا",
     "shipTo": "الشحن إلى",
-    "paymentMethod": "طريقة الدفع"
+    "paymentMethod": "طريقة الدفع",
+    "paymentByWallet": "الدفع عن طريق المحفظة"
   },
   "Orders": {
     "orders": "طلبات",
@@ -184,7 +189,7 @@
     "other": "أخرى",
     "updateInfo": "تعديل البيانات",
     "changeEmail": "تغيير البريد الإلكتروني",
-    "addPhoneNumber": "أضف رقم هاتف",
+    "changePhoneNumber": "تغيير رقم هاتف",
     "deleteAccount": "حذف الحساب",
     "phoneNumber":"رقم الهاتف",
     "security": "الأمان",

@@ -35,11 +35,7 @@ export default function ProductOptions({ product }: any) {
   };
 
   if (Is.empty(main_variations))
-    return (
-      <>
-        <ProductQuantity product={product} />
-      </>
-    );
+    return null;
 
   return (
     <>
@@ -56,6 +52,7 @@ export default function ProductOptions({ product }: any) {
                     label={<H6>{option.name}</H6>}
                     disabled={option.stock === 0}
                     onInput={(e) => chooseOption(e, option.id)}
+                    required
                   />
                 ))
               : main_variations.variations.map((option: any) => (
@@ -66,6 +63,7 @@ export default function ProductOptions({ product }: any) {
                     disabled={option.stock === 0}
                     color={option.color}
                     onInput={(e) => chooseOption(e, option.id)}
+                    required
                   />
                 ))}
           </ProductOption>
@@ -87,6 +85,7 @@ export default function ProductOptions({ product }: any) {
                         label={<H6>{subOption.name}</H6>}
                         disabled={subOption.stock === 0}
                         onInput={() => chooseSubOption(subOption.id)}
+                        required
                       />
                     ))
                   : subVariation.sub_sub_variations.map((subOption: any) => (
@@ -97,6 +96,7 @@ export default function ProductOptions({ product }: any) {
                         disabled={subOption.stock === 0}
                         color={subOption.color}
                         onInput={() => chooseSubOption(subOption.id)}
+                        required
                       />
                     ))}
               </ProductOption>

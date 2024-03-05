@@ -14,6 +14,7 @@ import useBreakpoints from "@/app/[locale]/shared/hooks/useBreakpoints";
 import { H4 } from "@/app/[locale]/components/Typography";
 import ProductsSlider from "@/app/[locale]/components/ProductsSlider";
 import Breadcrumb from "@/app/[locale]/components/Breadcrumb";
+import ProductQuantity from "./components/ProductQuantity";
 
 function DetailsPage({ product }: any) {
   const { medium } = useBreakpoints();
@@ -56,6 +57,8 @@ function DetailsPage({ product }: any) {
 
             <ProductOptions product={product} />
 
+            <ProductQuantity product={product} />
+            
             <Attachments product={product} />
           </Col>
           {!medium && (

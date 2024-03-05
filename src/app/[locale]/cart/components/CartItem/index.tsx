@@ -121,6 +121,7 @@ export default function CartItem({
         <QuantityInput
           defaultValue={quantityItem}
           onChange={updateProductQuantity}
+          min={1}
         />
       </Flex>
       {!lastItem && <Line />}

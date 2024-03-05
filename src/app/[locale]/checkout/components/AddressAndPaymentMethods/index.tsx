@@ -9,16 +9,17 @@ import URLS from "@/app/[locale]/utils/urls";
 import { HomeIcon } from "@/app/[locale]/assets/svgs";
 import PaymentMethods from "./PaymentMethods";
 import { HiddenInput } from "@mongez/react-form";
+import SwitchInput from "@/app/[locale]/components/Form/SwitchInput";
 
 const AddressAndPaymentMethods = ({ checkout }: any) => {
   const trans = useTranslations("Checkout");
   const router = useRouter();
-  const [addressId, setAddressId] = useState('');
+  const [addressId, setAddressId] = useState("");
 
   useEffect(() => {
-    setAddressId(checkout?.address?.id)
+    setAddressId(checkout?.address?.id);
   }, [checkout]);
-  console.log(addressId)
+  
   return (
     <>
       <Padding>
@@ -46,6 +47,13 @@ const AddressAndPaymentMethods = ({ checkout }: any) => {
         <Flex fullWidth>
           <P4>{trans("paymentMethod")}</P4>
         </Flex>
+      </Padding>
+      <Padding>
+        <SwitchInput
+          name="is_wallet"
+          label={trans("paymentByWallet")}
+          defaultValue={Boolean(checkout?.is_wallet)}
+        />
       </Padding>
       <Wrapper>
         <PaymentMethods methods={checkout?.data} />

@@ -54,7 +54,8 @@
     "cancel": "Cancel",
     "save": "Save",
     "location": "Location",
-    "country": "Country"
+    "country": "Country",
+    "newEmail": "New Email"
   },
   "Layout": {
     "search": "Search",
@@ -152,7 +153,8 @@
     "address" : "Address",
     "phoneNumber" : "Phone Number",
     "addAddress": "Add Address",
-    "addAddressHint": "To ensure successful customs clearance, please enter you real name."
+    "addAddressHint": "To ensure successful customs clearance, please enter you real name.",
+    "addNewAddress": "Add a New Address"
   },
   "Checkout":{
     "checkout": "Checkout",
@@ -163,7 +165,8 @@
     "placeOrder": "Place Order",
     "addNewAddress": "Add a New Address",
     "shipTo": "Ship To",
-    "paymentMethod": "Payment Method"
+    "paymentMethod": "Payment Method",
+    "paymentByWallet": "Payment By Wallet"
   },
   "Orders": {
     "orders": "Orders",
@@ -186,7 +189,7 @@
     "other": "Other",
     "updateInfo": "Update Info",
     "changeEmail": "Change Email",
-    "addPhoneNumber": "Add Phone Number",
+    "changePhoneNumber": "Change Phone Number",
     "deleteAccount": "Delete Account",
     "phoneNumber":"Phone Number",
     "security": "Security",

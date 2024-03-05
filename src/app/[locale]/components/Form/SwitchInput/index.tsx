@@ -20,12 +20,11 @@ function SwitchInput({
   clearable,
   ...props
 }: InputPropsType) {
-  const { checked, setChecked, value, changeValue, error, otherProps } =
-    useFormControl(props);
+  const { value, changeValue, error, otherProps } = useFormControl(props);
   const handleCheck = (event: any) => {
-    console.log(event.currentTarget.checked)
-    changeValue(Number(event.currentTarget.checked))
-  }
+    console.log(event.currentTarget.checked);
+    changeValue(Number(event.currentTarget.checked));
+  };
   return (
     <Flex direction="column" gap="0" fullWidth>
       <Switch
@@ -44,5 +43,5 @@ export default SwitchInput;
 
 SwitchInput.defaultProps = {
   rules: [requiredRule],
-  defaultValue: 1
+  defaultValue: 1,
 };

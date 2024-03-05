@@ -128,11 +128,11 @@ export default function GoogleMapInput({
   if (loadError || !isLoaded) {
     return <Loader />;
   }
-
+  console.log(props.address)
   return (
     <>
-      <HiddenInput name={`lat`} value={location.lat} />
-      <HiddenInput name={`lng`} value={location.lng} />
+      <HiddenInput name={`lat`} value={location.lat} defaultValue={props.lat} />
+      <HiddenInput name={`lng`} value={location.lng} defaultValue={props.lng} />
       <HiddenInput name={`address`} value={value} />
       <Grid>
         <Col xs={12}>
@@ -144,7 +144,7 @@ export default function GoogleMapInput({
             value={value}
             onChange={handleInput}
             disabled={!ready}
-            defaultValue={props.defaultValue}
+            defaultValue={props.address}
           />
         </Col>
 

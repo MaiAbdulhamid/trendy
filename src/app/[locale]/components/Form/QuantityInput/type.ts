@@ -5,5 +5,7 @@ export type QuantityInputProps = {
 
     min?: number;
 
-    defaultValue?: number
+    defaultValue?: number;
+
+    style?: any
 }

@@ -12,6 +12,7 @@ export default function QuantityInput({
   max,
   min,
   defaultValue,
+  style
 }: QuantityInputProps) {
   const [value, setValue] = useState<any>(defaultValue || 1);
 
@@ -39,6 +40,7 @@ export default function QuantityInput({
     <QuantityInputContainer
       align="center"
       className="quantity--input--container"
+      style={style}
     >
       <ActionIcon
         size={35}

@@ -44,6 +44,7 @@ function createReducers() {
     state.user = null;
     setCookie('token', '');
     cache.set('token', '');
+    cache.set('country', '')
   }
   return {
     logout,

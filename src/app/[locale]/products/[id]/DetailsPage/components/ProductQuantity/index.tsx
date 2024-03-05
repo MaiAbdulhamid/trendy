@@ -9,6 +9,8 @@ import theme from "@/app/[locale]/utils/theme";
 import { Flex } from "@/app/[locale]/components/Grids";
 import CartButton from "@/app/[locale]/components/Button/CartButton";
 import { Line } from "@/app/[locale]/components/shapes/Lines";
+import axiosInstance from "@/app/[locale]/lib/axios";
+import { showNotification } from "@/app/[locale]/components/Notifications/showNotification";
 
 export default function ProductQuantity({ product, variationId }: any) {
   const [quantity, setQuantity] = useState(product.qty || 1);
@@ -16,33 +18,55 @@ export default function ProductQuantity({ product, variationId }: any) {
   const onChangeQty = (value: any) => {
     setQuantity(value);
   };
-
+  const updateProductQuantity = (quantity: any) => {
+    axiosInstance
+      .post("cart/AddOrUpdate", {
+        product_id: product.id,
+        qty: quantity,
+      })
+      .then((response) => {
+        showNotification({
+          type: "success",
+          message: response.data.message,
+        });
+      })
+      .catch((error) => {
+        showNotification({
+          type: "danger",
+          message: error.response.data.errors,
+        });
+      });
+  };
   // if(product.qty === 0 ) return null;
 
   return (
     <>
-      <ProductQuantityContainer>
-        <H7>{trans("quantity")}</H7>
-        <Flex justify="space-between" fullWidth>
-          <QuantityInput
-            min={0}
-            max={product.stock}
-            onChange={onChangeQty}
-            defaultValue={quantity}
+      {product.qty === 0 ? (
+        <>
+          <CartButton
+            quantity={quantity}
+            fullWidth
+            size="lg"
+            product={product}
+            variationId={variationId}
+            className="add--to--cart"
           />
-        </Flex>
-      </ProductQuantityContainer>
-      <Line color="#3434344D" />
-      <CartButton
-        quantity={quantity}
-        fullWidth
-        size="lg"
-        product={product}
-        variationId={variationId}
-        className="add--to--cart"
-      />
-      <Line color="#3434344D" />
-
+          <Line color="#3434344D" />
+        </>
+      ) : (
+        <ProductQuantityContainer>
+          <H7>{trans("quantity")}</H7>
+          <Flex justify="space-between" fullWidth>
+            <QuantityInput
+              min={0}
+              max={product.stock}
+              onChange={updateProductQuantity}
+              defaultValue={quantity}
+            />
+          </Flex>
+          <Line color="#3434344D" />
+        </ProductQuantityContainer>
+      )}
     </>
   );
 }
