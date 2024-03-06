@@ -69,19 +69,19 @@ export default function ProductCard(props: ProductCardProps) {
         <Link href={resolveLink(product)}>
           <img src={product?.image} className="img-responsive" />
         </Link>
-        {product.qty === 0 ? (
+        {product.qty >= 1 ? (
+          <QuantityInput
+            defaultValue={product.qty}
+            onChange={updateProductQuantity}
+            min={1}
+            style={style}
+          />
+        ) : (
           <StyledCartButton
             product={product}
             size="md"
             variant="primary"
             fullWidth
-            style={style}
-          />
-        ) : (
-          <QuantityInput
-            defaultValue={product.qty}
-            onChange={updateProductQuantity}
-            min={1}
             style={style}
           />
         )}
