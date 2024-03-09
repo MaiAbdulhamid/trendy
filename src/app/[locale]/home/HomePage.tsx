@@ -55,8 +55,6 @@ const HomePage = () => {
     const showMantineModal = async () => {
       if (isFirstVisit()) {
         // You can show the Mantine modal here
-        // For example:
-        // setOpen(true);
         openCountryPopup();
       }
     };

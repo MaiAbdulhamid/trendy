@@ -27,8 +27,6 @@ const AddAddressForm = ({useAddress} : any) => {
     setAddress(useAddress)
   }, [useAddress]);
 
-  console.log(useAddress)
-
   const [cities, setCities] = useState<any>([]);
   const [selectedCity, setSelectedCity] = useState<any>("");
   const [regions, setRegions] = useState<any>([]);
@@ -173,7 +171,6 @@ const AddAddressForm = ({useAddress} : any) => {
                   name="region_id"
                   label="region"
                   data={regions}
-                  required
                   clearable
                   defaultValue={String(address?.region.id)}
                 />

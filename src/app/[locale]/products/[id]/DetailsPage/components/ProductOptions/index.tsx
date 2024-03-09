@@ -105,7 +105,7 @@ export default function ProductOptions({ product }: any) {
         )}
       </ProductOptionsContainer>
       <Line color="#3434344D" />
-      <ProductQuantity variationId={variationId} product={product} />
+      {/* <ProductQuantity variationId={variationId} product={product} /> */}
     </>
   );
 }

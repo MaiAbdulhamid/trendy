@@ -41,7 +41,7 @@ const CountryPopup = ({ opened, close }: ModalProps) => {
   if (!countries) return null;
   return (
     <>
-      <Modal.Root opened={opened} onClose={close} size="xl" centered>
+      <Modal.Root opened={opened} onClose={close} size="xl" centered closeOnClickOutside={false}>
         <Modal.Overlay />
         <Modal.Content style={{ padding: "0" }}>
           <Modal.Body style={{ padding: "0" }}>

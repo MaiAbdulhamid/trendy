@@ -24,7 +24,7 @@ import QuantityInput from "../Form/QuantityInput";
 export default function ProductCard(props: ProductCardProps) {
   const [style, setStyle] = useState({ display: "none" });
   const { product, color } = props;
-
+  
   const updateProductQuantity = (quantity: any) => {
     axiosInstance
       .post("cart/AddOrUpdate", {
