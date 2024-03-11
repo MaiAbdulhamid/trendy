@@ -9,8 +9,8 @@ export const Format = (value: number | string = "") => {
   
   useEffect(() => {
     const getUserCountry = () => {
-      const response : any= getCookie('country_object');
-      setUserCountry(JSON.parse(response))
+      const response : any = getCookie('country_object');
+      setUserCountry(response !== undefined && JSON.parse(response))
     }
     getUserCountry()
   }, [setUserCountry]);
