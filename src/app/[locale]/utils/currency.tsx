@@ -10,7 +10,9 @@ export const Format = (value: number | string = "") => {
   useEffect(() => {
     const getUserCountry = () => {
       const response : any = getCookie('country_object');
-      if(response !== "undefined"){
+      if(response == undefined){
+        return;
+      }else{
         setUserCountry(JSON.parse(response))
       }
     }
