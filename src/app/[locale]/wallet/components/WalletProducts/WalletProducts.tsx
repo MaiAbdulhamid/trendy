@@ -42,8 +42,11 @@ const WalletProducts = () => {
         <P4 textAlign="center">{trans('noOperations')}</P4>
       ) : (
         <Grid>
+          <Col span={12}>
+            <P4 >{trans('operations')}</P4>
+          </Col>
           {wallet.map((wallet: any) => (
-            <Col span={4} key={wallet.id}>
+            <Col span={12} key={wallet.id}>
               <WalletCard wallet={wallet} />
             </Col>
           ))}

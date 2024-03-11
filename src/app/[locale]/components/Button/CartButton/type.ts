@@ -12,4 +12,6 @@ export type CartButtonProps = ButtonProps & {
   variationId?: any;
 
   iconSize?: number;
+
+  setShowCart?: any
 };

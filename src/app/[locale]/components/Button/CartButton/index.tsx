@@ -15,12 +15,13 @@ export default function CartButton({
   quantity = 1,
   variationId,
   iconSize = 31,
+  setShowCart,
   ...other
 }: CartButtonProps) {
   const trans = useTranslations("Cart");
   const [loading, isLoading] = useState(false);
   const dispatch = useDispatch();
-  console.log(product.id)
+
   const addToCartHandler = () => {
     isLoading(true);
     // const preparedData = {
@@ -47,6 +48,7 @@ export default function CartButton({
     //   });
       dispatch(addToCart(product.redirect_id || product.id, variationId, quantity) as any);
       isLoading(false);
+      setShowCart(false)
   };
   return (
     <CartButtonStyled

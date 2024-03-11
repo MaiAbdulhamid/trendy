@@ -14,10 +14,11 @@ import { showNotification } from "@/app/[locale]/components/Notifications/showNo
 
 export default function ProductQuantity({ product, variationId }: any) {
   const [quantity, setQuantity] = useState(product.qty || 1);
+  const [showCart, setShowCart] = useState(product.qty === 0);
 
-  const onChangeQty = (value: any) => {
-    setQuantity(value);
-  };
+  // const onChangeQty = (value: any) => {
+  //   setQuantity(value);
+  // };
   const updateProductQuantity = (quantity: any) => {
     axiosInstance
       .post("cart/AddOrUpdate", {
@@ -36,12 +37,15 @@ export default function ProductQuantity({ product, variationId }: any) {
           message: error.response.data.errors,
         });
       });
+      if(quantity === 0){
+        setShowCart(true)
+      }
   };
   // if(product.qty === 0 ) return null;
 
   return (
     <>
-      {product.qty === 0 ? (
+      {showCart ? (
         <>
           <CartButton
             quantity={quantity}
@@ -50,6 +54,7 @@ export default function ProductQuantity({ product, variationId }: any) {
             product={product}
             variationId={variationId}
             className="add--to--cart"
+            setShowCart={setShowCart}
           />
           <Line color="#3434344D" />
         </>
@@ -62,6 +67,7 @@ export default function ProductQuantity({ product, variationId }: any) {
               max={product.stock}
               onChange={updateProductQuantity}
               defaultValue={quantity}
+              setShowCart={setShowCart}
             />
           </Flex>
           <Line color="#3434344D" />

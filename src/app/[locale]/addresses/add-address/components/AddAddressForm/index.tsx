@@ -14,7 +14,7 @@ import SwitchInput from "@/app/[locale]/components/Form/SwitchInput";
 import Button from "@/app/[locale]/components/Button/Button";
 import { P4 } from "@/app/[locale]/components/Typography";
 import SubmitButton from "@/app/[locale]/components/Form/SubmitButton";
-import GoogleMapInput from "@/app/[locale]/components/Form/GoogleMapInput";
+import GoogleMapInput from "@/app/[locale]/components/Form/GoogleMapInput/AddGoogleMap";
 import { showNotification } from "@/app/[locale]/components/Notifications/showNotification";
 import cache from "@mongez/cache";
 

@@ -7,5 +7,7 @@ export type QuantityInputProps = {
 
     defaultValue?: number;
 
-    style?: any
+    style?: any;
+
+    setShowCart?: any
 }

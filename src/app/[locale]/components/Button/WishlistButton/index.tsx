@@ -31,7 +31,7 @@ export default function WishlistButton({
 
     isLoading(true);
 
-    axiosInstance.post("wishlist/add_or_remove", {product_id: product.id})
+    axiosInstance.post("wishlist/add_or_remove", {product_id: product.redirect_id || product.id})
      .then((response) => {
         isLoading(false);
         setInWishlist(true)
@@ -39,6 +39,7 @@ export default function WishlistButton({
           type: "success",
           message: response.data.message,
         });
+        window.location.reload();
       })
       .catch((error) => {
         isLoading(false);

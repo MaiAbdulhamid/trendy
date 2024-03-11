@@ -14,7 +14,7 @@ import SwitchInput from "@/app/[locale]/components/Form/SwitchInput";
 import Button from "@/app/[locale]/components/Button/Button";
 import { P4 } from "@/app/[locale]/components/Typography";
 import SubmitButton from "@/app/[locale]/components/Form/SubmitButton";
-import GoogleMapInput from "@/app/[locale]/components/Form/GoogleMapInput";
+import GoogleMapInput from "@/app/[locale]/components/Form/GoogleMapInput/EditGoogleMap";
 import { showNotification } from "@/app/[locale]/components/Notifications/showNotification";
 import cache from "@mongez/cache";
 import Loader from "@/app/[locale]/components/Loader";
@@ -30,10 +30,12 @@ const AddAddressForm = ({useAddress} : any) => {
   const [cities, setCities] = useState<any>([]);
   const [selectedCity, setSelectedCity] = useState<any>("");
   const [regions, setRegions] = useState<any>([]);
-  const [selectedCountry, setSelectedCountry] = useState<any>(3);
+  const [selectedCountry, setSelectedCountry] = useState<any>(address?.country?.id);
+  useEffect(() => {
+    setSelectedCountry(address?.country?.id)
+  }, [setSelectedCountry]);
 
   const onChangeCountry = (e: any) => {
-    console.log(e)
     setSelectedCountry(e);
   }
   const getCities = async () => {

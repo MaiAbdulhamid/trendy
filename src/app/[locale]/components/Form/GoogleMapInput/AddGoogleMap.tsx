@@ -36,7 +36,7 @@ export default function GoogleMapInput({
   });
 
   const [location, setLocation] = useState<LocationType>(
-    {lat: props.lat, lng: props.lng, address: props.address} || defaultCenter
+    defaultValue || defaultCenter
   );
 
   const styles = { ...defaultStyles, ...incomingStyles };

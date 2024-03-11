@@ -64,7 +64,7 @@ const ProfileForm = () => {
       }
     }
   }
-  console.log(dayjs(user?.dob).format('YYYY/MM/DD'))
+  console.log(user?.dob)
   return (
     <>
       <H2>{trans("profile")}</H2>
@@ -87,7 +87,8 @@ const ProfileForm = () => {
                 name="dob"
                 label={"dateOfBirth"}
                 placeholder={trans("date")}
-                defaultValue={dayjs(user?.dob).format('YYYY/MM/DD')}
+                defaultValue={dayjs(user?.dob)}
+                //defaultValue={user?.dob}
                 required
                 icon
               />

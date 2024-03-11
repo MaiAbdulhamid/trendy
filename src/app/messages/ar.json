@@ -116,7 +116,8 @@
     "wishlist": "قائمة الامنيات",
     "wallet": "المحفظة",
     "walletBalance": "رصيد المحفظة",
-    "noOperations": "لا توجد عمليات"
+    "noOperations": "لا توجد عمليات",
+    "operations": "العمليات"
   },
   "Product": {
     "brand": "العلامة التجارية",

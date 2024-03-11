@@ -12,7 +12,8 @@ export default function QuantityInput({
   max,
   min,
   defaultValue,
-  style
+  style,
+  setShowCart
 }: QuantityInputProps) {
   const [value, setValue] = useState<any>(defaultValue || 1);
 

@@ -21,7 +21,7 @@ function DateInput({ placeholder, label, icon, id, ...props }: any) {
   });
 
   const trans = useTranslations("Auth");
-  console.log(props.defaultValue)
+  //console.log(props.defaultValue)
   return (
     <Flex direction="column" fullWidth gap="0">
       <InputLabel htmlFor={id} required={props.required}>
@@ -35,6 +35,7 @@ function DateInput({ placeholder, label, icon, id, ...props }: any) {
               valueFormat="YYYY/MM/DD"
               // wrapperClassName={"datePicker"}
               onChange={changeValue}
+              defaultValue={props.defaultValue}
               {...otherProps}
             />
           </DateWrapper>

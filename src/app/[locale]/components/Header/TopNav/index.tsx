@@ -3,13 +3,17 @@ import { useDisclosure } from "@mantine/hooks";
 import { GlobalIcon, LogoIcon } from "../../../assets/svgs";
 import Button from "../../Button/Button";
 import { Flex } from "../../Grids";
-import { StyledHeader } from "./style";
+import { CountrySelectWrapper, StyledHeader } from "./style";
 import Search from "./Search";
 import Icons from "../Icons";
 import Link from "next/link";
 import URLS from "../../../utils/urls";
 import { useLocale } from "next-intl";
-import { usePathname } from "next-intl/client"
+import { usePathname } from "next-intl/client";
+import axiosInstance from "@/app/[locale]/lib/axios";
+import { useEffect, useState } from "react";
+import { getCookie, setCookie } from "cookies-next";
+import SelectInput from "../../Form/SelectInput";
 
 export function TopNav() {
   const [opened, { toggle }] = useDisclosure(false);
@@ -18,9 +22,36 @@ export function TopNav() {
 
   const toggleLanguage = () => {
     const newLocale = locale === "en" ? "ar" : "en";
-    if (typeof window !== 'undefined') {
+    if (typeof window !== "undefined") {
       window.location.href = `/${newLocale}/${pathName}`;
     }
+  };
+  const [countries, setCountries] = useState<any>([]);
+
+  const getCountries = async () => {
+    try {
+      const response: any = await axiosInstance.get("countries");
+      const filteredCountries = response.data.data.data.map((c: any) => {
+        return {
+          label: c.name,
+          value: String(c.id),
+        };
+      });
+      setCountries(filteredCountries);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getCountries();
+  }, []);
+
+  const onChangeHandler = (e: any) => {
+    console.log(e);
+    setCookie("country", e);
+    // close();
+    window.location.reload();
   };
   return (
     <StyledHeader>
@@ -30,6 +61,16 @@ export function TopNav() {
           <LogoIcon />
         </Link>
       </Group>
+      
+      <CountrySelectWrapper>
+        <SelectInput
+          name="country"
+          label="country"
+          data={countries}
+          onChange={onChangeHandler}
+          defaultValue={getCookie('country')}
+        />
+      </CountrySelectWrapper>
 
       <Search />
 

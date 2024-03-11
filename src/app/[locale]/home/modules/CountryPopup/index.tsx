@@ -32,9 +32,11 @@ const CountryPopup = ({ opened, close }: ModalProps) => {
     getCountries();
   }, []);
 
-  const onChangeHandler = (e: any) => {
-    console.log(e)
-    setCookie("country", e);
+  const onChangeHandler = async (value: any) => {
+    setCookie("country", value);
+    const response: any = await axiosInstance.get("countries");
+    console.log(response.data.data.data.find((c: any) => c.id == value))
+    setCookie("country_object", response.data.data.data.find((c: any) => c.id == value))
     // close();
     window.location.reload();
   }

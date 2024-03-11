@@ -9,7 +9,9 @@ export const WalletBalanceWrapper = styled.div`
   background-color: ${theme.colors.secondary[300]};
 `;
 export const WalletCardWrapper = styled.div<any>`
-
   background-color: ${(props) => props.backgroundColor};
-
+  width: 100%;
+  border-radius: 5px;
+  margin: 10px 0;
+  padding: 20px;
 `;
