@@ -8,26 +8,28 @@ export function trimmed(value: string, length: number) {
 
 export function resolveLink(data: any) {
   let link = '';
-
-  const { redirect_type, redirect_id } = data;
-
-  if(redirect_type === 1){
-    link = URLS.viewProduct({ id: redirect_id });
+  if(data === undefined){
+    return;
+  }else{
+    const { redirect_type, redirect_id } = data;
+    if(redirect_type === 1){
+      link = URLS.viewProduct({ id: redirect_id });
+    }
+  
+    if(redirect_type === 2 ){
+      link = URLS.products + '?category_id[]=' + redirect_id;
+    }
+  
+    if(redirect_type === 3){
+      link = data.link;
+    }
+  
+    if(redirect_type === 4){
+      link = URLS.products + '?brand_id[]=' + redirect_id;
+    }
+    return link;
   }
 
-  if(redirect_type === 2 ){
-    link = URLS.products + '?category_id[]=' + redirect_id;
-  }
-
-  if(redirect_type === 3){
-    link = data.link;
-  }
-
-  if(redirect_type === 4){
-    link = URLS.products + '?brand_id[]=' + redirect_id;
-  }
-
-  return link;
 }
 export function resolveSearchLink(data: any) {
   let link = '';

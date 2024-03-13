@@ -24,7 +24,7 @@ export default function SlideShow({ record }: ModuleProp) {
         {record.map((banner: any) => (
           <SwiperSlide key={banner.id}>
             <SliderWrapper>
-              <Link href={resolveLink(banner)}>
+              <Link href={resolveLink(banner) || ""}>
                 <img src={banner.image} className="full-width" />
               </Link>
             </SliderWrapper>

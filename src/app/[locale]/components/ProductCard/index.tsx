@@ -66,7 +66,7 @@ export default function ProductCard(props: ProductCardProps) {
         }}
       >
         <ProductWishlistButton style={style} product={product} />
-        <Link href={resolveLink(product)}>
+        <Link href={resolveLink(product) || ""}>
           <img src={product?.image} className="img-responsive" />
         </Link>
         {product.qty >= 1 ? (
@@ -86,7 +86,7 @@ export default function ProductCard(props: ProductCardProps) {
           />
         )}
       </ImageBox>
-      <Link href={resolveLink(product)}>
+      <Link href={resolveLink(product) || ""}>
         <CaptionBox>
           <P3 color={color ?? theme.colors.black[300]}>
             {trimmed(product.name, 20)}

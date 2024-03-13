@@ -10,7 +10,7 @@ import { resolveLink } from "../../utils/general";
 export default function SpecialDealsCard(props: ProductCardProps) {
   const { product } = props;
   return (
-  <Link href={resolveLink(product)}>  
+  <Link href={resolveLink(product) || ""}>  
     <ProductBox>
       <ImageBox>
         <img src={product?.image} className="img-responsive" />

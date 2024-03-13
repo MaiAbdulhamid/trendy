@@ -25,7 +25,7 @@ const Popup = ({ opened, close, record }: ModalProps) => {
           </CloseIconWrapper>
           <Modal.Body style={{ padding: "0" }}>
             <ModalWrapper>
-              <Link href={resolveLink(record[0])}>
+              <Link href={resolveLink(record[0]) || ""}>
                 <img src={record[0]?.image} />
               </Link>
             </ModalWrapper>
