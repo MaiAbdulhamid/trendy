@@ -3,6 +3,7 @@ import { CategoriesContainer } from "./style";
 import CircleCard from "../../../components/CircleCard";
 
 export default function Categories({ record }: any) {
+  console.log(record)
   return (
     <>
       <CategoriesContainer>

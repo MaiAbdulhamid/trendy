@@ -10,7 +10,6 @@ import Filters from "./components/Filters";
 import axiosInstance from "../lib/axios";
 
 function ProductsPage({ searchParams }: any) {
-  console.log(searchParams)
   const [isPageLoading, setIsPageLoading] = useState(true);
   const [filteredProducts, setFilteredProducts] = useState<any>([]);
 

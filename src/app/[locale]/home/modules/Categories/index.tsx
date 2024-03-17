@@ -10,7 +10,7 @@ import theme from "../../../utils/theme";
 
 export default function Categories({ record, title }: ModuleProp) {
   const trans = useTranslations("Home");
-
+  // console.log(record)
   return (
     <>
       <CategoriesContainer>
@@ -36,7 +36,7 @@ export default function Categories({ record, title }: ModuleProp) {
           {record.map((category: any) => (
             <SwiperSlide key={category.id}>
               <CircleCard
-                to={`${URLS.products}?category_id[]=${category.id}`}
+                to={`${URLS.products}?category_id[]=${category.redirect_id}`}
                 item={category}
               />
             </SwiperSlide>
