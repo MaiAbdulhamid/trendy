@@ -48,7 +48,7 @@ function ProductsPage({ searchParams }: any) {
     } catch (error: any) {
       console.log(error);
     }
-  }, [searchParams.widget_id]);
+  }, [searchParams.widget_id, searchParams[`category_id[]`], searchParams.q, searchParams[`brands[]`]]);
 
   useEffect(() => {
     setIsPageLoading(false);
