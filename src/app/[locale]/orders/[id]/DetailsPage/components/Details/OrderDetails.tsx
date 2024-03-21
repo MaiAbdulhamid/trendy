@@ -45,7 +45,7 @@ const OrderDetails = ({ order }: any) => {
                 </H5>
                 <P4>{product.variation.name}</P4>
               </Flex>
-              {product.can_rate && Is.empty(product.rate) ? (
+              {product.can_rate && Is.empty(product.user_rate) ? (
                 <Button noStyle onClick={openRateProduct}>
                   <P4 color="#DEB156">{trans("rateProduct")}</P4>
                 </Button>
