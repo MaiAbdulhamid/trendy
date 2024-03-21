@@ -55,7 +55,10 @@
      "save": "حفظ",
      "location": "الموقع",
      "country": "البلد",
-     "newEmail": "الايميل الجديد"
+     "newEmail": "الايميل الجديد",
+     "rate": "تقييم",
+     "comment": "التعليق",
+     "rateProduct":"تقييم المنتج"
   },
   "Layout": {
     "search": "بحث",
@@ -126,7 +129,8 @@
     "productDetails": "تفاصيل المنتج",
     "promotions": "العروض الترويجية",
     "quantity": "الكمية",
-    "mustLogin": "يجب عليك تسجيل الدخول أولاً"
+    "mustLogin": "يجب عليك تسجيل الدخول أولاً",
+    "reviews": "التقييمات"
   },
   "Breadcrumb": {
     "home": "الرئيسية"
@@ -175,7 +179,8 @@
     "orderHistory": "سجل الطلب",
     "on": "على",
     "off": "خصم",
-    "noResults":"لا توجد نتائج"
+    "noResults":"لا توجد نتائج",
+    "rateProduct": "تقييم المنتج"
   },
   "Profile": {
     "profile": "الملف الشخصي",

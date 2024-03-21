@@ -25,7 +25,7 @@ export default function ProductPrice({ product }: any) {
           {product.is_express && <IsExpress>{trans("express")}</IsExpress>}
         </Flex>
       </PriceContainer>
-      <Reviews rate={product.rate} />
+      <Reviews rate={product.rate} product={product}/>
       <Line color="#3434344D" />
     </>
   );

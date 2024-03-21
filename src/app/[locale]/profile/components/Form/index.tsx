@@ -2,7 +2,7 @@ import TextInput from "@/app/[locale]/components/Form/TextInput";
 import { H2, H4, P4 } from "@/app/[locale]/components/Typography";
 import { Form } from "@mongez/react-form";
 import { useTranslations } from "next-intl";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Card } from "./style";
 import { Grid } from "@mantine/core";
 import { Col, Flex } from "@/app/[locale]/components/Grids";
@@ -64,7 +64,7 @@ const ProfileForm = () => {
       }
     }
   }
-  console.log(user?.dob)
+
   return (
     <>
       <H2>{trans("profile")}</H2>

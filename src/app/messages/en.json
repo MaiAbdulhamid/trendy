@@ -55,7 +55,10 @@
     "save": "Save",
     "location": "Location",
     "country": "Country",
-    "newEmail": "New Email"
+    "newEmail": "New Email",
+    "rate": "Rate",
+    "comment": "Comment",
+    "rateProduct":"Rate Product"
   },
   "Layout": {
     "search": "Search",
@@ -126,7 +129,8 @@
     "productDetails": "Product Details",
     "promotions": "promotions",
     "quantity": "Quantity",
-    "mustLogin": "Tou Must login first"
+    "mustLogin": "Tou Must login first",
+    "reviews": "Reviews"
   },
   "Breadcrumb": {
     "home": "Home"
@@ -175,7 +179,8 @@
     "orderHistory": "Order History",
     "on": "On",
     "off": "Off",
-    "noResults": "There is No Results"
+    "noResults": "There is No Results",
+    "rateProduct": "Rate Product"
   },
   "Profile": {
     "profile": "Profile",
