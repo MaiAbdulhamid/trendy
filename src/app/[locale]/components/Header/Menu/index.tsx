@@ -7,7 +7,7 @@ export default function Menu() {
   return (
     <>
       <MenuContainer>
-        <Group position="center" spacing={35}>
+        <Group>
           <Links />
         </Group>
       </MenuContainer>
