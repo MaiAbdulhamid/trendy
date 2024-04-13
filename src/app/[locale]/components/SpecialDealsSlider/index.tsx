@@ -39,13 +39,13 @@ export default function SpecialDealsSlider({
             // autoplay={true}
             breakpoints={{
               300: {
-                slidesPerView: 2,
+                slidesPerView: 1,
               },
               550: {
-                slidesPerView: 3,
+                slidesPerView: 1,
               },
               991: {
-                slidesPerView: 3,
+                slidesPerView: 2,
               },
               1150: {
                 slidesPerView: 3,

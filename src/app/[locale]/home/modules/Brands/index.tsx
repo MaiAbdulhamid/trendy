@@ -22,13 +22,13 @@ export default function Brands({ record, title }: ModuleProp) {
           slidesPerView={5}
           breakpoints={{
             300: {
-              slidesPerView: 3,
+              slidesPerView: 1,
             },
             500: {
-              slidesPerView: 4,
+              slidesPerView: 1,
             },
             991: {
-              slidesPerView: 4,
+              slidesPerView: 3,
             },
             1150: {
               slidesPerView: 4,
