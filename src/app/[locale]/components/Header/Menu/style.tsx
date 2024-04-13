@@ -1,5 +1,5 @@
+import theme from "@/app/[locale]/utils/theme";
 import styled from "@emotion/styled";
-import theme from "theme";
 
 export const MenuContainer = styled.div`
   margin: 30px 0;
