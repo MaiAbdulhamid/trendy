@@ -28,7 +28,7 @@ const OrdersIcon = ({ size, color }: SvgsTypes) => {
             <stop offset="1" stop-color={color ?? "white"} />
           </linearGradient>
         </defs>
-      </svg>{" "}
+      </svg>
     </>
   );
 };

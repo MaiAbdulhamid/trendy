@@ -60,7 +60,7 @@ function DetailsPage({ product }: any) {
             <Attachments product={product} />
           </Col>
           {!medium && (
-            <Col span={6}>
+            <Col span={12}>
               <ProductThumb product={product} />
             </Col>
           )}

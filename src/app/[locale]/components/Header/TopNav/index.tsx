@@ -4,7 +4,7 @@ import { GlobalIcon, LogoIcon } from "../../../assets/svgs";
 import Button from "../../Button/Button";
 import { Flex } from "../../Grids";
 import { CountrySelectWrapper, StyledHeader } from "./style";
-import Search from "./Search";
+import Search from "../Search/Search";
 import Icons from "../Icons";
 import Link from "next/link";
 import URLS from "../../../utils/urls";

@@ -17,7 +17,7 @@ const Products = ({ record }: any) => {
       ) : (
         <Grid>
           {record.map((product: any) => (
-            <Col span={4} key={product.id}>
+            <Col span={12} lg={4} key={product.id}>
               <ProductCard product={product} />
             </Col>
           ))}

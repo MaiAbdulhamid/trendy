@@ -138,7 +138,7 @@ const ProfileForm = () => {
               />
             </Col>
           </Grid>
-          <Flex gap="1rem" align="center">
+          <Flex gap="1rem" align="center" style={{flexWrap: "wrap"}}>
             <Button variant="outline" className="outline" onClick={openChangeEmail}>
               <P4>{trans('changeEmail')}</P4>
             </Button>

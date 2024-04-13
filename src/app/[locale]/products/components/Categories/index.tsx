@@ -12,10 +12,10 @@ export default function Categories({ record }: any) {
           draggable={true}
           breakpoints={{
             300: {
-              slidesPerView: 3,
+              slidesPerView: 2,
             },
             500: {
-              slidesPerView: 4,
+              slidesPerView: 3,
             },
             991: {
               slidesPerView: 5,

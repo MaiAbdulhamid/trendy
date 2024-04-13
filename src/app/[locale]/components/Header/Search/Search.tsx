@@ -9,15 +9,17 @@ import { useRouter } from "next/navigation";
 import { resolveSearchLink } from "../../../utils/general";
 import { P4 } from "../../Typography";
 import theme from "../../../utils/theme";
-import { Hr, MainSearchWrapper, SearchWrapper, TotalResults } from "./style";
+import { Hr, MainSearchWrapper, SearchWrapper, TotalResults } from "../TopNav/style";
 import cache from "@mongez/cache";
 import Button from "../../Button/Button";
 import URLS from "../../../utils/urls";
 import Is from "@mongez/supportive-is";
+import useBreakpoints from "@/app/[locale]/shared/hooks/useBreakpoints";
 
 const SearchInput = () => {
   const trans = useTranslations("Layout");
   const [latestSearch, setLatestSearch] = useState<any[]>([]);
+  const { large } = useBreakpoints();
 
   const router = useRouter();
   const resolveLatestSearch = useCallback(
@@ -112,7 +114,7 @@ const SearchInput = () => {
                 />
               </SearchWrapper>
               <Button noStyle onClick={spotlight.close}>
-                <CloseIcon color={theme.colors.primaryColor} />
+                <CloseIcon color={theme.colors.primaryColor} size={large ? 40 : 50} />
               </Button>
             </Flex>
             <Flex justify="space-between" fullWidth>

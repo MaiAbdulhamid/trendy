@@ -5,9 +5,10 @@ import Link from "next/link";
 import { HoverDropdown } from "./style";
 import { Flex } from "../../Grids";
 import URLS from "../../../utils/urls";
+import Is from "@mongez/supportive-is";
 
 const NavHoverCard = ({ subCategories }: any) => {
-  if (!subCategories) return null;
+  if (Is.empty(subCategories.section)) return null;
 
   return (
     <HoverCard.Dropdown

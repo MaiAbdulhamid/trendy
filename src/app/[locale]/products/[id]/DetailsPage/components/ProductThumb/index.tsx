@@ -44,6 +44,20 @@ export default function ProductThumb({ product }: any) {
             freeMode
             spaceBetween={8}
             slidesPerView={4}
+            breakpoints={{
+              300: {
+                slidesPerView: 2,
+              },
+              550: {
+                slidesPerView: 2,
+              },
+              991: {
+                slidesPerView: 3,
+              },
+              1150: {
+                slidesPerView: 4,
+              },
+            }}
             watchSlidesProgress={true}
             modules={[FreeMode, Thumbs]}
             className="product--thumb--slider"

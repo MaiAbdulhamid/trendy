@@ -24,5 +24,9 @@ export const FormWrapper = styled.div`
     padding: 42px;
     width: 417px;
     margin-top: 1rem;
+    ${devices.largeMax}{
+      width: auto;
+      padding: 20px;
+    }
   }
 `;

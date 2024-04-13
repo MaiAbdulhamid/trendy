@@ -1,11 +1,20 @@
 import { Col, Container } from '@/app/[locale]/components/Grids'
 import { Grid } from '@mantine/core'
-import React from 'react'
+import React, { useEffect } from 'react'
 import Sidebar from '../Sidebar'
 import WishlistProducts from '../WishlistProducts'
 import { WishlistPageWrapper } from './style'
+import { useRouter } from "next/navigation";
+import cache from '@mongez/cache'
 
 const WishlistPage = () => {
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!cache.get("token")) {
+      router.push("/auth?mode=login");
+    }
+  }, [router]);
   return (
     <WishlistPageWrapper>
       <Container>

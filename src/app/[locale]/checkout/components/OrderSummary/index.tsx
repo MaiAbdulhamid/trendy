@@ -60,11 +60,11 @@ const OrderSummary = ({ orderSummery }: any) => {
           required
         />
         {!promoCodeApplied ? (
-          <Button onClick={applyPromoCode}>
+          <Button onClick={applyPromoCode} variant="primary">
             <P4>{trans("apply")}</P4>
           </Button>
         ) : (
-          <Button onClick={removePromoCode}>
+          <Button onClick={removePromoCode} variant="primary">
             <P4>{trans("remove")}</P4>
           </Button>
         )}

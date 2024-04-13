@@ -38,5 +38,6 @@ export { default as HomeIcon } from "./HomeIcon";
 export { default as DeleteIcon } from "./DeleteIcon";
 export { default as StatusCircleIcon } from "./StatusCircleIcon";
 export { default as StatusLineIcon } from "./StatusLineIcon";
-
+export { default as MenuIcon } from "./MenuIcon";
+export { default as MainPageIcon } from "./MainPageIcon";
 

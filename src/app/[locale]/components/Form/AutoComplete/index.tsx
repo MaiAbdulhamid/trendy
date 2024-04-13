@@ -33,6 +33,7 @@ function AutoComplete({
             value={value}
             onChange={changeValue}
             // visibleFrom="xs"
+            {...otherProps}
           />
         </AutoCompleteWrapper>
       </WrapperInput>

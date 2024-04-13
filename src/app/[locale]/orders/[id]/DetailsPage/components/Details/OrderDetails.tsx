@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Card, OrderImage, Padding } from "./style";
 import { Flex } from "@/app/[locale]/components/Grids";
 import Button from "@/app/[locale]/components/Button/Button";
@@ -13,13 +13,19 @@ import UserRate from "./UserRate";
 
 const OrderDetails = ({ order }: any) => {
   const trans = useTranslations("Orders");
+  const [selectedProduct, setSelectedProduct] = useState("")
   const [
     openedRateProduct,
     { open: openRateProduct, close: closeRateProduct },
   ] = useDisclosure(false);
+
+  const handleRateProduct = (productId : any) => {
+    setSelectedProduct(productId);
+    openRateProduct();
+  }
   return (
     <Card>
-      <Flex justify="space-between" fullWidth align="center">
+      <Flex justify="space-between" fullWidth align="center" style={{flexWrap: "wrap"}}>
         <Button color="#DEB156">
           <P4>{order.status}</P4>
         </Button>
@@ -29,7 +35,7 @@ const OrderDetails = ({ order }: any) => {
       </Flex>
       {order.products.map((product: any) => (
         <Padding key={product.id}>
-          <Flex gap="1rem">
+          <Flex gap="1rem" style={{flexWrap: "wrap"}}>
             <OrderImage>
               <img src={product.image} />
             </OrderImage>
@@ -46,20 +52,20 @@ const OrderDetails = ({ order }: any) => {
                 <P4>{product.variation.name}</P4>
               </Flex>
               {product.can_rate && Is.empty(product.user_rate) ? (
-                <Button noStyle onClick={openRateProduct}>
+                <Button noStyle onClick={() => handleRateProduct(product.product_id)}>
                   <P4 color="#DEB156">{trans("rateProduct")}</P4>
                 </Button>
-              ) : <UserRate value={product.rate} />}
+              ) : <UserRate value={product.user_rate.rate} />}
             </Flex>
           </Flex>
-          <RateProductModal
-            productId={product.product_id}
-            orderId={order.id}
-            opened={openedRateProduct}
-            close={closeRateProduct}
-          />
         </Padding>
       ))}
+      <RateProductModal
+        productId={selectedProduct}
+        orderId={order.id}
+        opened={openedRateProduct}
+        close={closeRateProduct}
+      />
     </Card>
   );
 };

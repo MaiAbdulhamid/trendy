@@ -79,6 +79,7 @@ export default function CartItem({
             gap="15px"
             justify="space-between"
             fullWidth
+            style={{flexWrap: "wrap"}}
           >
             <Flex direction="column">
               <H6 className="product--name"> {name}</H6>

@@ -57,7 +57,7 @@ const Footer = () => {
   return (
     <Container>
       <FooterWrapper>
-        <Flex justify='space-between' fullWidth>
+        <Flex justify='space-between' fullWidth className='footer-columns'>
           <Flex direction='column'>
             <H2 uppercase color={theme.colors.white}>{trans('about')}</H2>
             {aboutLinks.map((link: any) => (

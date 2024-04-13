@@ -1,16 +1,9 @@
-"use client"
-import React from 'react'
-import { TopNav } from './TopNav'
-import { Container } from '../Grids'
-import { Nav } from './Nav'
+import useBreakpoints from "../../shared/hooks/useBreakpoints";
+import DesktopHeader from "./DesktopHeader";
+import MobileHeader from "./MobileHeader";
 
-const Header = () => {
-  return (
-    <Container>
-      <TopNav />
-      <Nav />
-    </Container>
-  )
+export default function Header() {
+  const { large } = useBreakpoints();
+
+  return <>{large ? <DesktopHeader /> : <MobileHeader />}</>;
 }
-
-export default Header

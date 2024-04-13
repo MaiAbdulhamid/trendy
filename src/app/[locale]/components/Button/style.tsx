@@ -47,6 +47,10 @@ export const BaseButton = styled(MantineButton)<ButtonProps>`
         }
         background: ${theme.colors.primaryColor};
         border-color: ${theme.colors.primaryColor};
+        :hover{
+          background: ${theme.colors.primaryColor};
+          border-color: ${theme.colors.primaryColor};
+        }
       `
     );
   }}
@@ -72,6 +76,7 @@ export const BaseButton = styled(MantineButton)<ButtonProps>`
         width: ${!fullWidth ? "auto" : "100%"};
         &:hover {
           background: none;
+          color: ${color ?? theme.colors.black[300]};
         }
 
         &[data-disabled] {

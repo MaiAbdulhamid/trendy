@@ -1,4 +1,5 @@
 import TextInput from "@/app/[locale]/components/Form/TextInput";
+import devices from "@/app/[locale]/utils/devices";
 import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
@@ -20,12 +21,18 @@ export const PromoCodeWrapper = styled.div`
     background-color: #deb156;
     height: 44px;
     width: 125px;
+    ${devices.largeMax}{
+      width: auto;
+    }
   }
 `;
 export const PromoCode = styled.input`
   background: transparent;
   border: none;
   outline: none;
+  ${devices.largeMax}{
+    max-width: 70%;
+  }
 `;
 export const OrderSummaryWrapper = styled.div`
   border: 1px solid #ADADAD80;

@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import { HoverCard } from "@mantine/core";
 import NavHoverCard from "./NavHoverCard";
 import PolygonIcon from "../../../assets/svgs/PolygonIcon";
+import Is from "@mongez/supportive-is";
 
 export function Nav() {
   const [categories, setCategories] = useState<any>([]);
@@ -56,9 +57,6 @@ export function Nav() {
       <HoverCard position="bottom" withinPortal>
         <Flex align="center" gap="1rem">
           {items}
-          <PolygonWrapper style={style}>
-            <PolygonIcon />
-          </PolygonWrapper>
         </Flex>
         <NavHoverCard subCategories={subCategories} />
       </HoverCard>

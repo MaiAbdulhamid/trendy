@@ -86,7 +86,10 @@
     "searchHistory": "Search History",
     "clear": "Clear",
     "nothingFound": "Nothing found...",
-    "wallet": "Wallet"
+    "wallet": "Wallet",
+    "menu": "Menu",
+    "home": "Home",
+    "cart": "Cart"
   },
 
   "Home": {

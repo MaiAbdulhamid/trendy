@@ -67,6 +67,7 @@ const Address = ({ address }: any) => {
       </Flex>
       <Flex>
         <P4>{trans("phoneNumber")}:</P4>
+        <P4>{address.country.code}</P4>
         <P4>{address.phone}</P4>
       </Flex>
     </AddressCard>
