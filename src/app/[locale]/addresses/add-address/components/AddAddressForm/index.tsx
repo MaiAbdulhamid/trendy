@@ -27,7 +27,6 @@ const AddAddressForm = () => {
   const [selectedCountry, setSelectedCountry] = useState<any>(3);
 
   const onChangeCountry = (e: any) => {
-    console.log(e)
     setSelectedCountry(e);
   }
   const getCities = async () => {
@@ -130,6 +129,7 @@ const AddAddressForm = () => {
                   name="postal_code"
                   label={trans("postalCode")}
                   placeholder={trans("postalCode")}
+                  required
                 />
               </Col>
               <Col span={{ base: 12, md: 6 }}>
@@ -139,6 +139,7 @@ const AddAddressForm = () => {
                   placeholder="phoneNumber"
                   icon
                   onChangeCountry={onChangeCountry}
+                  required
                 />
               </Col>
             </Grid>
@@ -158,7 +159,7 @@ const AddAddressForm = () => {
                   name="region_id"
                   label="region"
                   data={regions}
-                  // required
+                  required
                   clearable
                 />
               </Col>
