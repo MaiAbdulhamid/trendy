@@ -10,15 +10,35 @@ import { HomeIcon } from "@/app/[locale]/assets/svgs";
 import PaymentMethods from "./PaymentMethods";
 import { HiddenInput } from "@mongez/react-form";
 import SwitchInput from "@/app/[locale]/components/Form/SwitchInput";
+import { getCookie } from "cookies-next";
 
 const AddressAndPaymentMethods = ({ checkout }: any) => {
   const trans = useTranslations("Checkout");
   const router = useRouter();
   const [addressId, setAddressId] = useState("");
+  const [totalAmount, setTotalAmount] = useState(0);
+  const [phoneNumber, setPhoneNumber] = useState(0);
+  const [countryCode, setCountryCode] = useState(0);
+  const [currency, setCurrency] = useState(0);
 
   useEffect(() => {
     setAddressId(checkout?.address?.id);
+    setTotalAmount(Number(checkout?.total));
+    setPhoneNumber(checkout?.address?.phone);
+    setCountryCode(checkout?.country?.code);
   }, [checkout]);
+
+  useEffect(() => {
+    const getUserCountry = () => {
+      const response : any = getCookie('country_object');
+      if(response == undefined){
+        return;
+      }else{
+        setCurrency(JSON.parse(response).currency_en)
+      }
+    }
+    getUserCountry()
+  }, []);
   
   return (
     <>
@@ -33,6 +53,12 @@ const AddressAndPaymentMethods = ({ checkout }: any) => {
       <Wrapper>
         <Flex direction="column" justify="space-between" fullWidth>
           <HiddenInput name="address_id" value={addressId} />
+          <HiddenInput name="totalAmount" value={totalAmount} />
+          <HiddenInput name="phoneNumber" value={phoneNumber} />
+          <HiddenInput name="countryCode" value={countryCode} />
+          <HiddenInput name="currency" value={currency} />
+
+
           <H4>
             <Flex gap="1rem">
               <HomeIcon />
@@ -40,7 +66,7 @@ const AddressAndPaymentMethods = ({ checkout }: any) => {
             </Flex>
           </H4>
           <P4>{checkout?.address?.address}</P4>
-          <P4>{checkout?.address?.phone}</P4>
+          <P4>{checkout?.address?.country?.code}{checkout?.address?.phone}</P4>
         </Flex>
       </Wrapper>
       <Padding>

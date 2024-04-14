@@ -8,6 +8,7 @@ import AddressAndPaymentMethods from "../AddressAndPaymentMethods";
 import OrderSummary from "../OrderSummary";
 import { Form } from "@mongez/react-form";
 import { showNotification } from "@/app/[locale]/components/Notifications/showNotification";
+import axios from "axios";
 
 const CheckoutPage = () => {
   const trans = useTranslations("Checkout");
@@ -27,8 +28,30 @@ const CheckoutPage = () => {
     getCheckout();
   }, []);
 
+  const handlePayment = async (values: any) => {
+
+    try {
+        const response = await axios.post('/api/myFatoorah', 
+          {
+            totalAmount: values.totalAmount,
+            phoneNumber: values.phoneNumber,
+            countryCode: values.countryCode,
+            currency: values.currency
+          }
+        );
+
+        const { paymentUrl } = response.data;
+        // Redirect the user to the payment URL
+        window.location.href = paymentUrl;
+    } catch (error) {
+        console.error('Payment error:', error);
+    }
+};
   const onSubmit = async ({values} : any) => {
-    console.log(values);
+
+    if(values.payment_method === "1"){
+      handlePayment(values)
+    }
     try {
       const response: any = await axiosInstance.post(
         "order/complete",

@@ -1,5 +1,4 @@
 import { getCookie } from "cookies-next";
-import { getCountry } from "./getCurrentCounrty";
 import { useLocale } from "next-intl";
 import { useEffect, useState } from "react";
 
