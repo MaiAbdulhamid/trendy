@@ -34,7 +34,7 @@ const WishlistProducts = () => {
       ) : (
         <Grid>
           {wishlist.map((product: any) => (
-            <Col span={4} key={product.id}>
+            <Col span={{base: 12, md: 4}} key={product.id}>
               <ProductCard product={product} />
             </Col>
           ))}

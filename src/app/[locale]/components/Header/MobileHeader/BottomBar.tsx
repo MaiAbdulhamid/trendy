@@ -118,7 +118,7 @@ export default function BottomBar() {
               </IconMenuWrapper>
             </Link>
             {token && (
-              <Link href={URLS.home}>
+              <Link href={URLS.home} onClick={() => window.location.reload()}>
                 <IconMenuWrapper
                   direction="column"
                   align="center"

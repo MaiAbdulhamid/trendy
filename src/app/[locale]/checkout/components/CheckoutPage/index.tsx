@@ -29,34 +29,29 @@ const CheckoutPage = () => {
   }, []);
 
   const handlePayment = async (values: any) => {
-
     try {
-        const response = await axios.post('/api/myFatoorah', 
-          {
-            totalAmount: values.totalAmount,
-            phoneNumber: values.phoneNumber,
-            countryCode: values.countryCode,
-            currency: values.currency
-          }
-        );
+      const response = await axios.post("/api/myFatoorah", {
+        totalAmount: values.totalAmount,
+        phoneNumber: values.phoneNumber,
+        countryCode: values.countryCode,
+        currency: values.currency,
+      });
 
-        const { paymentUrl } = response.data;
-        // Redirect the user to the payment URL
-        window.location.href = paymentUrl;
+      const { paymentUrl } = response.data;
+      // Redirect the user to the payment URL
+      window.location.href = paymentUrl;
     } catch (error) {
-        console.error('Payment error:', error);
+      console.error("Payment error:", error);
     }
-};
-  const onSubmit = async ({values} : any) => {
-
-    if(values.payment_method === "1"){
-      handlePayment(values)
+  };
+  const onSubmit = async ({ values }: any) => {
+    if (values.payment_method === "1") {
+      handlePayment(values);
     }
     try {
-      const response: any = await axiosInstance.post(
-        "order/complete",
-        {...values}
-      );
+      const response: any = await axiosInstance.post("order/complete", {
+        ...values,
+      });
       showNotification({
         type: "success",
         message: response.data.message,
@@ -69,7 +64,7 @@ const CheckoutPage = () => {
         });
       }
     }
-  }
+  };
   return (
     <Container>
       <Grid>

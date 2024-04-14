@@ -1,5 +1,4 @@
-import { Col, Flex } from "@/app/[locale]/components/Grids";
-import ProductCard from "@/app/[locale]/components/ProductCard";
+import { Flex } from "@/app/[locale]/components/Grids";
 import { H2, P4 } from "@/app/[locale]/components/Typography";
 import axiosInstance from "@/app/[locale]/lib/axios";
 import { Grid } from "@mantine/core";

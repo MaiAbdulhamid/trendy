@@ -43,7 +43,7 @@ export default function ProductsSlider({
                 slidesPerView: 1,
               },
               550: {
-                slidesPerView: 2,
+                slidesPerView: 1,
               },
               991: {
                 slidesPerView: 3,

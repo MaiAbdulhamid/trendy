@@ -69,13 +69,13 @@ function ProductsPage({ searchParams }: any) {
       <Header />
       <Container>
         <Grid>
-          <Col span={12} lg={3}>
+          <Col span={{base: 12, md: 3}}>
             <Filters
               getProductsFilters={getProductsFilters}
               setFilteredProducts={setFilteredProducts}
             />
           </Col>
-          <Col span={12} lg={9}>
+          <Col  span={{base: 12, md: 9}}>
             <CategoriesAndProducts products={filteredProducts} />
           </Col>
         </Grid>
