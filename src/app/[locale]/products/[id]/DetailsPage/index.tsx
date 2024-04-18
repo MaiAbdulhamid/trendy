@@ -15,10 +15,12 @@ import { H4 } from "@/app/[locale]/components/Typography";
 import ProductsSlider from "@/app/[locale]/components/ProductsSlider";
 import Breadcrumb from "@/app/[locale]/components/Breadcrumb";
 import ProductQuantity from "./components/ProductQuantity";
+import variationsAtom from "./atoms";
 
 function DetailsPage({ product }: any) {
   const { medium } = useBreakpoints();
-
+  const value = variationsAtom.useValue()
+  console.log(value.variationId)
   useBreadcrumb({
     text: product?.name,
     link: URLS.viewProduct(product),
@@ -55,7 +57,7 @@ function DetailsPage({ product }: any) {
 
             <ProductOptions product={product} />
 
-            <ProductQuantity product={product} />
+            <ProductQuantity product={product} variationId={value.variationId} />
             
             <Attachments product={product} />
           </Col>

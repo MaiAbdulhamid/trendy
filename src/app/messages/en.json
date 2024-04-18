@@ -206,5 +206,8 @@
     "sure": "Are You Sure you want to delete Account?",
     "yes": "Yes",
     "no": "No"
+  },
+  "Error": {
+    "someThingWrong": "something went wrong, please try again"
   }
 }

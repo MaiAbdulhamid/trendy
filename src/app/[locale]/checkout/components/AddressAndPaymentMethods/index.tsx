@@ -58,7 +58,6 @@ const AddressAndPaymentMethods = ({ checkout }: any) => {
           <HiddenInput name="countryCode" value={countryCode} />
           <HiddenInput name="currency" value={currency} />
 
-
           <H4>
             <Flex gap="1rem">
               <HomeIcon />

@@ -1,8 +1,7 @@
 import devices from "@/app/[locale]/utils/devices";
-import { Container } from "../../../components/Grids";
 import styled from "@emotion/styled";
 
-export const NewDealsContainer = styled(Container)`
+export const NewDealsContainer = styled.div`
   .bg {
     background-color: #074432;
     width: 100%;
@@ -12,11 +11,11 @@ export const NewDealsContainer = styled(Container)`
     justify-content: space-between;
     padding: 10px;
     overflow: hidden;
-    ${devices.mediumMax}{
+    /* ${devices.mediumMax}{
       img{
         width: auto;
       }
-    }
+    } */
   }
   .wrapper{
     ${devices.mediumMax}{

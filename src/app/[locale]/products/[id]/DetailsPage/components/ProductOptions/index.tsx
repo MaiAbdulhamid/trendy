@@ -11,6 +11,7 @@ import { Flex } from "@/app/[locale]/components/Grids";
 import ColorRadio from "@/app/[locale]/components/Form/ColorRadio";
 import { useState } from "react";
 import ProductQuantity from "../ProductQuantity";
+import variationsAtom from "../../atoms";
 
 export default function ProductOptions({ product }: any) {
   const { main_variations } = product;
@@ -20,7 +21,8 @@ export default function ProductOptions({ product }: any) {
 
   const chooseOption = (e: any, optionId: number) => {
     setVariationId(optionId);
-    console.log(optionId);
+    // console.log(optionId);
+    variationsAtom.update({variationId: optionId})
 
     const subVariations = main_variations.variations.find(
       (variation: any) => variation.id === optionId
@@ -31,7 +33,8 @@ export default function ProductOptions({ product }: any) {
 
   const chooseSubOption = (optionId: number) => {
     console.log(optionId);
-    setVariationId(optionId);
+    // setVariationId(optionId);
+    variationsAtom.update({variationId: optionId})
   };
 
   if (Is.empty(main_variations))
@@ -51,7 +54,7 @@ export default function ProductOptions({ product }: any) {
                     value={String(option.id)}
                     label={<H6>{option.name}</H6>}
                     disabled={option.stock === 0}
-                    onInput={(e) => chooseOption(e, option.id)}
+                    onClick={(e) => chooseOption(e, option.id)}
                     required
                   />
                 ))
@@ -62,7 +65,7 @@ export default function ProductOptions({ product }: any) {
                     value={String(option.id)}
                     disabled={option.stock === 0}
                     color={option.color}
-                    onInput={(e) => chooseOption(e, option.id)}
+                    onClick={(e) => chooseOption(e, option.id)}
                     required
                   />
                 ))}
@@ -84,7 +87,7 @@ export default function ProductOptions({ product }: any) {
                         value={String(subOption.id)}
                         label={<H6>{subOption.name}</H6>}
                         disabled={subOption.stock === 0}
-                        onInput={() => chooseSubOption(subOption.id)}
+                        onClick={() => chooseSubOption(subOption.id)}
                         required
                       />
                     ))
@@ -95,7 +98,7 @@ export default function ProductOptions({ product }: any) {
                         value={String(subOption.id)}
                         disabled={subOption.stock === 0}
                         color={subOption.color}
-                        onInput={() => chooseSubOption(subOption.id)}
+                        onClick={() => chooseSubOption(subOption.id)}
                         required
                       />
                     ))}

@@ -13,7 +13,9 @@ export async function POST(request: NextRequest) {
     CustomerMobile: phoneNumber,
     CustomerName: "Trendy Customer",
     MobileCountryCode: countryCode,
-    DisplayCurrencyIso: currency
+    DisplayCurrencyIso: currency,
+    CallBackUrl: 'https://trendy-maiabdulhamids-projects.vercel.app/api/myfatoorah-callback',
+    ErrorUrl: 'https://trendy-maiabdulhamids-projects.vercel.app/error'
   };
 
   const headers = {

@@ -1,10 +1,7 @@
 import { ActionIcon, NumberInput, NumberInputHandlers } from "@mantine/core";
-// import MinusIcon from "assets/svgs/MinusIcon";
-// import PlusIcon from "assets/svgs/PlusIcon";
 import { useEffect, useRef, useState } from "react";
 import { QuantityInputContainer } from "./style";
 import { QuantityInputProps } from "./type";
-import theme from "@/app/[locale]/utils/theme";
 import { MinusIcon, PlusIcon } from "@/app/[locale]/assets/svgs";
 
 export default function QuantityInput({

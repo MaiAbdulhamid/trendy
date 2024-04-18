@@ -11,3 +11,10 @@ export const ProductsContainer = styled(Container)`
     margin-top: 20px;
   }
 `;
+export const ProductsContainerMedium = styled.div`
+  margin-top: 60px;
+
+  ${devices.smallMax} {
+    margin-top: 20px;
+  }
+`;

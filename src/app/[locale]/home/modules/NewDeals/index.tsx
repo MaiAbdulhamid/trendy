@@ -5,7 +5,7 @@ import SectionTitle from "../../../components/SectionTitle";
 import theme from "../../../utils/theme";
 import URLS from "../../../utils/urls";
 import { Flex } from "../../../components/Grids";
-import { H2, H3, P1, H1 } from "../../../components/Typography";
+import { H3, P1, H1 } from "../../../components/Typography";
 import { useTranslations } from "next-intl";
 
 export default function NewDeals({

@@ -24,6 +24,7 @@ export default function ProductQuantity({ product, variationId }: any) {
       .post("cart/AddOrUpdate", {
         product_id: product.id,
         qty: quantity,
+        variation_id: variationId
       })
       .then((response) => {
         showNotification({

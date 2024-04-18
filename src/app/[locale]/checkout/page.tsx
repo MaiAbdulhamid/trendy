@@ -6,7 +6,6 @@ import Footer from "../components/Footer";
 import CheckoutPage from "./components/CheckoutPage";
 import cache from "@mongez/cache";
 import AddAddress from "../addresses/add-address/page";
-import axiosInstance from "../lib/axios";
 import Is from "@mongez/supportive-is";
 
 const PrivacyPolicy = () => {
@@ -15,42 +14,35 @@ const PrivacyPolicy = () => {
     setIsPageLoading(false);
   }, []);
 
-  // const [address, setAddress] = useState();
+  const [token, setToken] = useState(null);
+  const [guestToken, setGuestToken] = useState(null);
 
-  // const fetchAddress = useCallback(() => {
-  //   return cache.get("address");
-  // }, []);
+  const fetchToken = useCallback(() => {
+    return cache.get("token");
 
-  // useEffect(() => {
-  //   setAddress(fetchAddress());
-  // }, []);
+  }, []);
 
-  const [addresses, setAddresses] = useState(null);
-
-  const getAddresses = async () => {
-    try {
-      const response = await axiosInstance.get("address");
-      setAddresses(response.data.data.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const fetchGuestToken = useCallback(() => {
+    return cache.get("guestToken");
+  }, []);
 
   useEffect(() => {
-    getAddresses();
-  }, []);
+    setToken(fetchToken());
+    setGuestToken(fetchGuestToken())
+  }, [setToken, setGuestToken]);
+
   if (isPageLoading) return <Loader />;
 
   return (
     <>
-      {!Is.empty(addresses) ? (
+      {guestToken && !Is.empty(token) && (
         <>
           <Header />
           <CheckoutPage />
           <Footer />
         </>
-      ) : <AddAddress />} 
-      {/* {Is.empty(addresses) && <AddAddress />} */}
+      )} 
+      {guestToken && Is.empty(token) && <AddAddress />}
     </>
   );
 };
