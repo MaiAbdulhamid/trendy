@@ -31,9 +31,11 @@ const AddressAndPaymentMethods = ({ checkout }: any) => {
   useEffect(() => {
     const getUserCountry = () => {
       const response : any = getCookie('country_object');
+      console.log(response)
       if(response == undefined){
         return;
       }else{
+        console.log(JSON.parse(response).currency_en)
         setCurrency(JSON.parse(response).currency_en)
       }
     }

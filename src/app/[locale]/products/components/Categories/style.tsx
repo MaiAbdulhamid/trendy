@@ -16,9 +16,9 @@ export const CategoriesContainer = styled.div`
   ${devices.smallMax} {
     margin-top: 20px;
 
-    .title--card {
+    /* .title--card {
       word-spacing: 100px;
-    }
+    } */
   }
   .circle--image {
     ${devices.smallMax} {

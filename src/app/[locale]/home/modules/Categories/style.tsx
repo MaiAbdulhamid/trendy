@@ -17,7 +17,7 @@ export const CategoriesContainer = styled(Container)`
     margin-top: 20px;
 
     .title--card {
-      word-spacing: 100px;
+      /* word-spacing: 100px; */
     }
   }
   .circle--image {
