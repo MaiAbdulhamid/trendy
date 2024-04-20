@@ -20,7 +20,7 @@ import variationsAtom from "./atoms";
 function DetailsPage({ product }: any) {
   const { medium } = useBreakpoints();
   const value = variationsAtom.useValue()
-  console.log(value.variationId)
+
   useBreadcrumb({
     text: product?.name,
     link: URLS.viewProduct(product),

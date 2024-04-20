@@ -16,33 +16,38 @@ const PrivacyPolicy = () => {
 
   const [token, setToken] = useState(null);
   const [guestToken, setGuestToken] = useState(null);
+  const [addresses, setAddresses] = useState(null);
 
   const fetchToken = useCallback(() => {
     return cache.get("token");
-
   }, []);
 
   const fetchGuestToken = useCallback(() => {
     return cache.get("guestToken");
   }, []);
 
+  const fetchAddresses = useCallback(() => {
+    return cache.get("addresses");
+  }, []);
+
   useEffect(() => {
     setToken(fetchToken());
     setGuestToken(fetchGuestToken())
-  }, [setToken, setGuestToken]);
+    setAddresses(fetchAddresses())
+  }, [setToken, setGuestToken, setAddresses]);
 
   if (isPageLoading) return <Loader />;
 
   return (
     <>
-      {guestToken && !Is.empty(token) && (
+      {token && addresses || !token && addresses && (
         <>
           <Header />
           <CheckoutPage />
           <Footer />
         </>
       )} 
-      {guestToken && Is.empty(token) && <AddAddress />}
+      {!token && !addresses && <AddAddress />}
     </>
   );
 };

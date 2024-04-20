@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Card, PageWrapper } from "./style";
 import Title from "../Title";
 import { Form } from "@mongez/react-form";
@@ -17,14 +17,30 @@ import SubmitButton from "@/app/[locale]/components/Form/SubmitButton";
 import GoogleMapInput from "@/app/[locale]/components/Form/GoogleMapInput/AddGoogleMap";
 import { showNotification } from "@/app/[locale]/components/Notifications/showNotification";
 import cache from "@mongez/cache";
+import { useRouter } from "next/navigation";
 
 const AddAddressForm = () => {
   const trans = useTranslations("Auth");
-
+  const router = useRouter();
   const [cities, setCities] = useState<any>([]);
   const [selectedCity, setSelectedCity] = useState<any>("");
   const [regions, setRegions] = useState<any>([]);
   const [selectedCountry, setSelectedCountry] = useState<any>(3);
+  const [token, setToken] = useState(null);
+  const [guestToken, setGuestToken] = useState(null);
+
+  const fetchToken = useCallback(() => {
+    return cache.get("token");
+  }, []);
+
+  const fetchGuestToken = useCallback(() => {
+    return cache.get("guestToken");
+  }, []);
+
+  useEffect(() => {
+    setToken(fetchToken());
+    setGuestToken(fetchGuestToken())
+  }, [setToken, setGuestToken]);
 
   const onChangeCountry = (e: any) => {
     setSelectedCountry(e);
@@ -76,7 +92,12 @@ const AddAddressForm = () => {
         message: response.data.message,
       });
 
-      window.location.reload();
+      // window.location.reload();
+      if(guestToken && !token){
+        router.push('/checkout')
+      }else{
+        router.push('/addresses')
+      }
 
     } catch (error: any) {
       if (error.response) {
