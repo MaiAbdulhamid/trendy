@@ -27,7 +27,7 @@ const PrivacyPolicy = () => {
   }, []);
 
   const fetchAddresses = useCallback(() => {
-    return cache.get("addresses");
+    return cache.get("address");
   }, []);
 
   useEffect(() => {
