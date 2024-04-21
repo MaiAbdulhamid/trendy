@@ -1,11 +1,12 @@
 import { TopBarContainer } from "./style";
 import URLS from "@/app/[locale]/utils/urls";
-import Link from "next/link";
 import { GlobalIcon, LogoIcon } from "@/app/[locale]/assets/svgs";
 import { useLocale } from "next-intl";
-import { usePathname } from "next-intl/client";
 import { Flex } from "../../Grids";
 import Button from "../../Button/Button";
+import { usePathname } from "@/navigation";
+import Link from "next/link";
+
 
 export default function TopBar() {
   const locale = useLocale();

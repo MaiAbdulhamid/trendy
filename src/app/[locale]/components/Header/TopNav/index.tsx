@@ -6,14 +6,15 @@ import { Flex } from "../../Grids";
 import { CountrySelectWrapper, StyledHeader } from "./style";
 import Search from "../Search/Search";
 import Icons from "../Icons";
-import Link from "next/link";
 import URLS from "../../../utils/urls";
 import { useLocale } from "next-intl";
-import { usePathname } from "next-intl/client";
 import axiosInstance from "@/app/[locale]/lib/axios";
 import { useEffect, useState } from "react";
 import { getCookie, setCookie } from "cookies-next";
 import SelectInput from "../../Form/SelectInput";
+import { usePathname } from "@/navigation";
+import Link from "next/link";
+
 
 export function TopNav() {
   const [opened, { toggle }] = useDisclosure(false);

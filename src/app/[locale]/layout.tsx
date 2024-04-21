@@ -50,7 +50,7 @@ export default async function RootLayout({
 }) {
   let messages;
   try {
-    messages = (await import(`../messages/${locale}.json`)).default;
+    messages = (await import(`../../../messages/${locale}.json`)).default;
   } catch (error) {
     notFound();
   }
@@ -62,7 +62,12 @@ export default async function RootLayout({
       </head>
       <Body className={universeFont.className}>
         <DirectionProvider>
-          <NextIntlClientProvider locale={locale} messages={messages}>
+          <NextIntlClientProvider
+            locale={locale}
+            messages={messages}
+            timeZone="Europe/Vienna"
+            now={new Date()}
+          >
             <MantineProvider defaultColorScheme="light">
               <Notifications position="top-left" autoClose={5000} />
               <ClientSetup />
