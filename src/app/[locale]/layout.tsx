@@ -19,6 +19,7 @@ import { notFound } from "next/navigation";
 import RootStyleRegistry from "./RootStyleRegistry";
 import Body from "./Body";
 import ClientSetup from "./components/ClientSetup";
+import Favicon from '/public/favicon.ico';
 
 export function generateStaticParams() {
   return [{ locale: "en" }, { locale: "ar" }];
@@ -39,6 +40,7 @@ const universeFont = localFont({
 export const metadata: Metadata = {
   title: process.env.NEXT_PUBLIC_NAME,
   description: process.env.NEXT_PUBLIC_DESCRIPTION,
+  icons: [{ rel: 'icon', url: Favicon.src }],
 };
 
 export default async function RootLayout({
