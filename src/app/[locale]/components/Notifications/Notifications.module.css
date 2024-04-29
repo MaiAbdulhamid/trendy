@@ -1,0 +1,20 @@
+
+.root {
+  /* background-color: var(--notification-color, var(--mantine-primary-color-filled)); */
+  padding: 1.5rem;
+  &::before {
+    background-color: transparent;
+  }
+}
+
+.description,
+.title {
+  color: #343434;
+}
+
+.closeButton {
+
+  @mixin hover {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+}
