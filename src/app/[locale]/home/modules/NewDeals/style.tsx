@@ -1,7 +1,8 @@
+import { Container } from "@/app/[locale]/components/Grids";
 import devices from "@/app/[locale]/utils/devices";
 import styled from "@emotion/styled";
 
-export const NewDealsContainer = styled.div`
+export const NewDealsContainer = styled(Container)`
   .bg {
     background-color: #074432;
     width: 100%;
@@ -18,6 +19,7 @@ export const NewDealsContainer = styled.div`
     } */
   }
   .wrapper{
+    width: 100%;
     ${devices.mediumMax}{
        flex-direction: column;
        max-width: 100%;

@@ -4,16 +4,9 @@ import { Container } from "../Grids";
 
 export const SliderContainer = styled.div``;
 
-export const ProductsContainer = styled(Container)`
+export const ProductsContainer = styled.div`
   margin-top: 60px;
-
-  ${devices.smallMax} {
-    margin-top: 20px;
-  }
-`;
-export const ProductsContainerMedium = styled.div`
-  margin-top: 60px;
-
+  width: 100%;
   ${devices.smallMax} {
     margin-top: 20px;
   }

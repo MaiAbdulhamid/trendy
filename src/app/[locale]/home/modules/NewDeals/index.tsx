@@ -25,7 +25,7 @@ export default function NewDeals({
         color={theme.colors.black[300]}
       />
       <div className="bg">
-        <Flex className="wrapper">
+        <Flex className="wrapper" fullWidth>
           <Flex className="details" direction="column" justify="center">
             <H3 color={theme.colors.white}>{name}</H3>
             <H1 color="#FBBC05">
