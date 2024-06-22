@@ -11,12 +11,7 @@ import CheckboxInput from "@/app/[locale]/components/Form/CheckboxInput";
 import PriceRange from "./PriceRange";
 import { debounce } from "lodash";
 
-const Filter = ({
-  filter,
-  onChangeFilters,
-  setFilteredProducts,
-  categoryId,
-}: any) => {
+const Filter = ({ filter, onChangeFilters, setFilteredProducts }: any) => {
   const [openFilters, setOpenFilters] = useState<Boolean>(true);
 
   const debouncedOnChangePrice = useCallback(

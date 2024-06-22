@@ -51,10 +51,6 @@ const Sort = ({ onChangeFilters }: any) => {
     },
   ];
 
-  // useEffect(() => {
-  //   cache.remove("filters");
-  // }, []);
-
   return (
     <>
       <Flex fullWidth align="center" justify="space-between">
@@ -79,6 +75,7 @@ const Sort = ({ onChangeFilters }: any) => {
                   onChange={(value) =>
                     onChangeFilters(value, section.type, section.value)
                   }
+                  checked={cache.get("filters").sort === section.value}
                 />
               </Flex>
             )
