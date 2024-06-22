@@ -17,7 +17,7 @@ export async function GET(request: NextRequest) {
       {
         key: searchParams.get("paymentId"),
         keyType: "paymentId",
-        ErrorUrl: "http://localhost:3000/error",
+        ErrorUrl: "https://trendy-eta.vercel.app/error",
       },
       { headers }
     );
@@ -25,7 +25,7 @@ export async function GET(request: NextRequest) {
     console.log(response.data.Data.InvoiceId);
     // Send the payment URL back to the client
     return NextResponse.redirect(
-      `http://localhost:3000/checkout?invoiceId=${response.data.Data.InvoiceId}`
+      `https://trendy-eta.vercel.app/checkout?invoiceId=${response.data.Data.InvoiceId}`
     );
   } catch (error) {
     console.error("MyFatoorah Callback error:", error);

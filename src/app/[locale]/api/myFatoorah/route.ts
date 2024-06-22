@@ -16,7 +16,7 @@ export async function POST(request: NextRequest) {
     CustomerName: customerName,
     MobileCountryCode: countryCode,
     DisplayCurrencyIso: currency,
-    CallBackUrl: "http://localhost:3000/api/myfatoorah-callback",
+    CallBackUrl: "https://trendy-eta.vercel.app/api/myfatoorah-callback",
     // ErrorUrl: "http://localhost:3000/error",
   };
 
