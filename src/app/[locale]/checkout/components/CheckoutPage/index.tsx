@@ -6,93 +6,110 @@ import { useTranslations } from "next-intl";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import AddressAndPaymentMethods from "../AddressAndPaymentMethods";
 import OrderSummary from "../OrderSummary";
-import { Form, HiddenInput, getActiveForm, useForm } from "@mongez/react-form";
+import { Form, HiddenInput, useForm } from "@mongez/react-form";
 import { showNotification } from "@/app/[locale]/components/Notifications/showNotification";
 import axios from "axios";
 import { useSearchParams } from "next/navigation";
-import cache from "@mongez/cache";
 import { useRouter } from "next/navigation";
 import Is from "@mongez/supportive-is";
+import Loader from "@/app/[locale]/components/Loader";
 
 const CheckoutPage = () => {
   const trans = useTranslations("Checkout");
   const searchParams = useSearchParams();
   const invoiceId = searchParams.get("invoiceId");
   const [checkout, setCheckout] = useState<any>([]);
-  const formRef: any = useRef();
+  const formRef = useRef<any>(null);
   const router = useRouter();
-  console.log(invoiceId)
-  const getCheckout = async () => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const form = useForm();
+
+  const getCheckout = useCallback(async () => {
     try {
       const response: any = await axiosInstance.get("checkout");
       setCheckout(response.data.data);
     } catch (error) {
       console.log(error);
     }
-  };
+  }, []);
 
   useEffect(() => {
     getCheckout();
-  }, []);
+  }, [getCheckout]);
 
-  const handlePayment = async (values: any) => {
+  const handlePayment = useCallback(async (values: any) => {
     try {
       const response = await axios.post("/api/myFatoorah", {
         totalAmount: values.totalAmount,
         phoneNumber: values.phoneNumber,
         countryCode: values.countryCode,
         currency: values.currency,
+        customerName: values.customerName,
       });
 
       const { paymentUrl } = response.data;
-      // Redirect the user to the payment URL
       window.location.href = paymentUrl;
-      // window.open(paymentUrl, '_blank');
-    } catch (error) {
-      console.error("Payment error:", error);
+    } catch (error: any) {
+      if (error.response) {
+        showNotification({
+          type: "danger",
+          message: error.response.data.message,
+        });
+      }
     }
-  };
+  }, []);
+
+  const sendOrder = useCallback(async (values: any) => {
+    try {
+      const response: any = await axiosInstance.post("order/complete", values);
+      showNotification({
+        type: "success",
+        message: response.data.message,
+      });
+      router.push("/success-page");
+    } catch (error: any) {
+      if (error.response) {
+        showNotification({
+          type: "danger",
+          message: error.response.data.message,
+        });
+      }
+    }
+  }, []);
 
   const onSubmit = useCallback(
     async ({ values }: any) => {
-      if (values?.payment_method === "1" && !invoiceId) {
-        handlePayment(values);
-      } else {
-        try {
-          const response: any = await axiosInstance.post("order/complete", {
-            ...values,
-          });
-          showNotification({
-            type: "success",
-            message: response.data.message,
-          });
-        } catch (error: any) {
-          if (error.response) {
-            showNotification({
-              type: "danger",
-              message: error.response.data.message,
-            });
-          }
+      if (isSubmitting) return; // Prevent multiple submissions
+      setIsSubmitting(true);
+
+      try {
+        if (values?.payment_method === "1" && !invoiceId) {
+          await handlePayment(values);
+        } else {
+          await sendOrder(values);
         }
+        setIsSubmitting(false);
+      } catch (error: any) {
+        if (error.response) {
+          showNotification({
+            type: "danger",
+            message: error.response.data.message,
+          });
+        }
+        setIsSubmitting(false);
       }
     },
-    [invoiceId]
+    [invoiceId, isSubmitting, handlePayment, router]
   );
 
   useEffect(() => {
-    const form = formRef.current;
-    if (
-      invoiceId &&
-      !Is.empty(checkout) &&
-      form &&
-      !Is.empty(form.value('address_id'))
-    ) {
+    if (!Is.empty(checkout) && invoiceId) {
       const formData = {
-        ...form.values,
-        inovice_id: invoiceId,
+        payment_method: "1",
+        invoice_id: invoiceId,
+        address_id: checkout.address.id,
       };
-      form.submit(formData);
-      router.push("/orders");
+      sendOrder(formData);
     }
   }, [invoiceId, checkout]);
 
@@ -109,7 +126,7 @@ const CheckoutPage = () => {
         <Grid gutter={20}>
           <Col span={{ base: 12, md: 8 }}>
             {invoiceId !== undefined && (
-              <HiddenInput name="inovice_id" value={invoiceId} />
+              <HiddenInput name="invoice_id" value={invoiceId} />
             )}
             <AddressAndPaymentMethods checkout={checkout} />
           </Col>

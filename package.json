@@ -3,9 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "node server.js",
+    "dev": "next dev",
     "build": "next build",
-    "start": "NODE_ENV=production node server.js"
+    "start": "next start",
+    "lint": "next lint"
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",
@@ -33,6 +34,7 @@
     "embla-carousel-react": "^7.0.0",
     "geoip-lite": "^1.4.7",
     "leaflet": "^1.9.4",
+    "lodash": "^4.17.21",
     "moment": "^2.29.4",
     "multi-range-slider-react": "^2.0.5",
     "next": "^14.2.2",

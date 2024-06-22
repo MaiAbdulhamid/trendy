@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState, useMemo } from "react";
 import {
   OrderSummaryWrapper,
   PromoCode,
@@ -6,49 +6,87 @@ import {
   Wrapper,
 } from "./style";
 import Button from "@/app/[locale]/components/Button/Button";
-import { H3, H6, P4 } from "@/app/[locale]/components/Typography";
+import { H6, P4 } from "@/app/[locale]/components/Typography";
 import { useTranslations } from "next-intl";
-import { Form } from "@mongez/react-form";
 import axiosInstance from "@/app/[locale]/lib/axios";
 import { showNotification } from "@/app/[locale]/components/Notifications/showNotification";
-import Is from "@mongez/supportive-is";
 import { Flex } from "@/app/[locale]/components/Grids";
 import { Line } from "@/app/[locale]/components/shapes/Lines";
 import SubmitButton from "@/app/[locale]/components/Form/SubmitButton";
+import cache from "@mongez/cache";
 
 const OrderSummary = ({ orderSummery }: any) => {
   const trans = useTranslations("Checkout");
-  const [promoCode, setPromoCode] = useState("");
-  const [promoCodeApplied, setPromoCodeApplied] = useState(false);
+  const [promoCode, setPromoCode] = useState(() => cache.get("promoCode") || "");
+  const [promoCodeApplied, setPromoCodeApplied] = useState(!!cache.get("promoCode"));
   const [summary, setSummary] = useState(orderSummery);
+
+  const fetchPromoCode = useCallback(() => {
+    return cache.get("promoCode");
+  }, []);
+
   useEffect(() => {
-    setSummary(orderSummery)
+    setPromoCode(fetchPromoCode());
+    setPromoCodeApplied(!!fetchPromoCode());
+  }, [fetchPromoCode]);
+
+  useEffect(() => {
+    setSummary(orderSummery);
   }, [orderSummery]);
 
-  const applyPromoCode = async () => {
-    setPromoCodeApplied(true)
+  const applyPromoCode = useCallback(async () => {
+    setPromoCodeApplied(true);
     try {
       const response: any = await axiosInstance.post("promo/apply", {
         promo_code: promoCode,
       });
-      
       setSummary(response.data.data.order_summary);
-      console.log(response.data.data)
       showNotification({
         message: response.data.message,
       });
+      cache.set("promoCode", promoCode);
     } catch (error: any) {
       showNotification({
         type: "danger",
-        message: error.response.data.message,
+        message: error.response?.data?.message || trans("somethingWentWrong"),
       });
     }
-  };
-  const removePromoCode = () => {
-    setPromoCode("");
-    setPromoCodeApplied(false)
-  };
+  }, [promoCode, trans]);
 
+  const removePromoCode = useCallback(async () => {
+    setPromoCode("");
+    setPromoCodeApplied(false);
+
+    try {
+      const response: any = await axiosInstance.post("promo/apply", {
+        promo_code: "",
+      });
+
+      setSummary(response.data.data.order_summary);
+
+      showNotification({
+        message: response.data.message,
+      });
+      cache.remove("promoCode");
+    } catch (error: any) {
+      showNotification({
+        type: "danger",
+        message: error.response?.data?.message || trans("somethingWentWrong"),
+      });
+    }
+  }, [trans]);
+
+  const renderedSummary = useMemo(() => {
+    return summary?.map((summaryItem: any, index: number) => (
+      <React.Fragment key={summaryItem.id}>
+        <Flex justify="space-between" fullWidth>
+          <P4 color={summaryItem.color_code}>{summaryItem.title}</P4>
+          <P4 color={summaryItem.color_code}>{summaryItem.value}</P4>
+        </Flex>
+        {index === summary.length - 2 && <Line />}
+      </React.Fragment>
+    ));
+  }, [summary]);
 
   return (
     <Wrapper>
@@ -71,16 +109,7 @@ const OrderSummary = ({ orderSummery }: any) => {
       </PromoCodeWrapper>
       <OrderSummaryWrapper>
         <H6>{trans("orderSummary")}</H6>
-
-        {summary?.map((summary: any, index: number) => (
-          <>
-            <Flex key={summary.id} justify="space-between" fullWidth>
-              <P4 color={summary.color_code}>{summary.title}</P4>
-              <P4 color={summary.color_code}>{summary.value}</P4>
-            </Flex>
-            {index === orderSummery.length - 2 && <Line />}
-          </>
-        ))}
+        {renderedSummary}
         <SubmitButton>
           <P4>{trans("placeOrder")}</P4>
         </SubmitButton>

@@ -6,7 +6,6 @@ import Footer from "../components/Footer";
 import CheckoutPage from "./components/CheckoutPage";
 import cache from "@mongez/cache";
 import AddAddress from "../addresses/add-address/page";
-import Is from "@mongez/supportive-is";
 
 const PrivacyPolicy = () => {
   const [isPageLoading, setIsPageLoading] = useState(true);
@@ -15,39 +14,41 @@ const PrivacyPolicy = () => {
   }, []);
 
   const [token, setToken] = useState(null);
-  const [guestToken, setGuestToken] = useState(null);
-  const [addresses, setAddresses] = useState(null);
+  const [address, setAddress] = useState(null);
 
   const fetchToken = useCallback(() => {
     return cache.get("token");
   }, []);
 
-  const fetchGuestToken = useCallback(() => {
-    return cache.get("guestToken");
-  }, []);
-
-  const fetchAddresses = useCallback(() => {
+  const fetchAddress = useCallback(() => {
     return cache.get("address");
   }, []);
 
   useEffect(() => {
     setToken(fetchToken());
-    setGuestToken(fetchGuestToken())
-    setAddresses(fetchAddresses())
-  }, [setToken, setGuestToken, setAddresses]);
+    setAddress(fetchAddress());
+  }, [setToken, setAddress]);
 
   if (isPageLoading) return <Loader />;
 
   return (
     <>
-      {token && addresses || !token && addresses && (
+      {/* {token && (
         <>
           <Header />
           <CheckoutPage />
           <Footer />
         </>
-      )} 
-      {!token && !addresses && <AddAddress />}
+      )} */}
+      {!token && !address ? (
+        <AddAddress />
+      ) : (
+        <>
+          <Header />
+          <CheckoutPage />
+          <Footer />
+        </>
+      )}
     </>
   );
 };

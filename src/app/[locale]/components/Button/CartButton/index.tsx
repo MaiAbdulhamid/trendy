@@ -6,9 +6,7 @@ import { AddToCartIcon } from "@/app/[locale]/assets/svgs";
 import { P4 } from "../../Typography";
 import axiosInstance from "@/app/[locale]/lib/axios";
 import { showNotification } from "../../Notifications/showNotification";
-import { cartItemAtom } from "@/app/[locale]/shared/atoms/cart-atom";
-import { useDispatch } from "react-redux";
-import { addToCart, cartActions } from "@/app/store/cart.slice";
+import cart from "@/app/[locale]/cart/utils/CartManager";
 
 export default function CartButton({
   product,
@@ -19,42 +17,45 @@ export default function CartButton({
   ...other
 }: CartButtonProps) {
   const trans = useTranslations("Cart");
-  const [loading, isLoading] = useState(false);
-  const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false);
 
-  const addToCartHandler = () => {
-    isLoading(true);
-    // const preparedData = {
-    //   product_id: product.redirect_id,
-    //   qty: quantity,
-    //   variation_id: variationId,
-    // };
-    // axiosInstance
-    //   .post("cart/AddOrUpdate", preparedData)
-    //   .then((response) => {
-    //     isLoading(false);
-    //     showNotification({
-    //       type: "success",
-    //       message: response.data.message,
-    //     });
-    //   })
-    //   .catch((error) => {
-    //     isLoading(false);
+  const addToCartHandler = async () => {
+    if (loading) return; // Prevent multiple submissions
+    setLoading(true);
 
-    //     showNotification({
-    //       type: "danger",
-    //       message: error.response.data.message,
-    //     });
-    //   });
-      dispatch(addToCart(product.redirect_id || product.id, variationId, quantity) as any);
-      isLoading(false);
-      setShowCart(false)
+    const preparedData = {
+      product_id: product.redirect_id || product.id,
+      qty: quantity,
+      variation_id: variationId,
+    };
+
+    try {
+      const response = await axiosInstance.post(
+        "cart/AddOrUpdate",
+        preparedData
+      );
+      showNotification({
+        type: "success",
+        message: response.data.message,
+      });
+      cart.add(product.redirect_id || product.id, quantity, variationId);
+      if (setShowCart) setShowCart(false);
+    } catch (error: any) {
+      showNotification({
+        type: "danger",
+        message: error.response.data.message,
+      });
+    } finally {
+      setLoading(false);
+    }
   };
+
   return (
     <CartButtonStyled
       variant="primary"
       loading={loading}
       onClick={addToCartHandler}
+      disabled={loading || other.stock === 0} // Disable button if loading or out of stock
       {...other}
     >
       <AddToCartIcon size={iconSize} />

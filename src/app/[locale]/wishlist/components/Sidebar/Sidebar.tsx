@@ -11,7 +11,7 @@ import {
 import theme from "../../../utils/theme";
 import Link from "next/link";
 import { Menu } from "@mantine/core";
-import { authActions } from "../../../../store";
+import { authActions } from "@/app/[locale]/store";
 import { Flex } from "@/app/[locale]/components/Grids";
 import { P4 } from "@/app/[locale]/components/Typography";
 import { useTranslations } from "next-intl";
@@ -52,7 +52,11 @@ const Sidebar = () => {
             </Flex>
           </Menu.Item>
           <Hr />
-          <Menu.Item component={Link} href={URLS.account.wishlist} className="active">
+          <Menu.Item
+            component={Link}
+            href={URLS.account.wishlist}
+            className="active"
+          >
             <Flex className="item" gap="0.5rem" justify="center">
               <div className="icon">
                 <UserWishlistIcon />

@@ -34,7 +34,7 @@ function createInitialState() {
     forgotPassword: {
       email: "",
       code: "",
-      error: null
+      error: null,
     },
   };
 }
@@ -42,11 +42,11 @@ function createInitialState() {
 function createReducers() {
   function logout(state: any) {
     state.user = null;
-    setCookie('token', '');
-    cache.set('token', '');
-    cache.set('country', '');
-    setCookie("country", "")
-    
+    setCookie("token", "");
+    cache.set("token", "");
+    cache.set("country", "");
+    setCookie("country", "");
+    window.location.reload();
   }
   return {
     logout,
@@ -54,7 +54,6 @@ function createReducers() {
 }
 
 function createExtraActions() {
-
   function signup() {
     return createAsyncThunk(
       `${name}/signup`,
@@ -74,8 +73,7 @@ function createExtraActions() {
           password,
           type,
         });
-      },
-
+      }
     );
   }
 
@@ -90,17 +88,14 @@ function createExtraActions() {
   }
 
   function verifyEmail() {
-    return createAsyncThunk(
-      `${name}/verify-email`,
-      async ({ code }: any) => {
-        const email = JSON.parse(localStorage.getItem("email") as any);
+    return createAsyncThunk(`${name}/verify-email`, async ({ code }: any) => {
+      const email = JSON.parse(localStorage.getItem("email") as any);
 
-        await fetchWrapper.post(`activate-account`, {
-          email,
-          code
-        })
-      }
-    );
+      await fetchWrapper.post(`activate-account`, {
+        email,
+        code,
+      });
+    });
   }
 
   function newPassword() {
@@ -111,12 +106,11 @@ function createExtraActions() {
 
         await fetchWrapper.post(`change-forget-password`, {
           email,
-          new_password
-        })
+          new_password,
+        });
       }
     );
   }
-
 
   return {
     signup: signup(),
@@ -144,7 +138,7 @@ function createExtraReducers() {
         localStorage.setItem("user", JSON.stringify(user));
 
         state.user = user;
-        state.token = token
+        state.token = token;
       },
       [rejected]: (state: any, action: any) => {
         state.error = action.error;
@@ -197,7 +191,6 @@ function createExtraReducers() {
       },
       [fulfilled]: (state: any, action: any) => {
         state.forgotPassword.code = action.code;
-
       },
       [rejected]: (state: any, action: any) => {
         state.forgotPassword.error = action.error;
@@ -212,7 +205,7 @@ function createExtraReducers() {
         state.forgotPassword.error = null;
       },
       [fulfilled]: (state: any, action: any) => {
-        console.log(action)
+        console.log(action);
       },
       [rejected]: (state: any, action: any) => {
         state.forgotPassword.error = action.error;
@@ -225,6 +218,6 @@ function createExtraReducers() {
     ...login(),
     ...forgotPassword(),
     ...verifyEmail(),
-    ...newPassword()
+    ...newPassword(),
   };
 }

@@ -19,7 +19,7 @@ import variationsAtom from "./atoms";
 
 function DetailsPage({ product }: any) {
   const { medium } = useBreakpoints();
-  const value = variationsAtom.useValue()
+  const value = variationsAtom.useValue();
 
   useBreadcrumb({
     text: product?.name,
@@ -57,8 +57,12 @@ function DetailsPage({ product }: any) {
 
             <ProductOptions product={product} />
 
-            <ProductQuantity product={product} variationId={value.variationId} />
-            
+            <ProductQuantity
+              product={product}
+              variationId={value.variationId}
+              option={value.option}
+            />
+
             <Attachments product={product} />
           </Col>
           {!medium && (

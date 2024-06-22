@@ -7,11 +7,13 @@ type productProps = {
 export type CartButtonProps = ButtonProps & {
   product: productProps;
 
-  quantity?: string | number;
+  stock: number;
+
+  quantity?: number;
 
   variationId?: any;
 
   iconSize?: number;
 
-  setShowCart?: any
+  setShowCart?: (show: boolean) => void;
 };

@@ -3,55 +3,70 @@ import URLS from "./urls";
 export function trimmed(value: string, length: number) {
   if (value?.length < length) return value;
 
-  return  value?.substring(0, length) + ' ...';
+  return value?.substring(0, length) + " ...";
 }
 
 export function resolveLink(data: any) {
-  let link = '';
-  if(data === undefined){
+  let link = "";
+  if (data === undefined) {
     return;
-  }else{
-    const { redirect_type, redirect_id } = data;
-    if(redirect_type === 1){
-      link = URLS.viewProduct({ id: redirect_id });
+  } else {
+    const { redirect_type, redirect_id, id } = data;
+    switch (redirect_type) {
+      case 1:
+        link = URLS.viewProduct({ id: redirect_id });
+        break;
+      case 2:
+        link = URLS.products + "?category_id[]=" + redirect_id;
+        break;
+      case 3:
+        link = data.link;
+        break;
+      case 4:
+        link = URLS.products + "?brand_id[]=" + redirect_id;
+        break;
+      default:
+        link = URLS.viewProduct({ id: id });
+        break;
     }
-  
-    if(redirect_type === 2 ){
-      link = URLS.products + '?category_id[]=' + redirect_id;
-    }
-  
-    if(redirect_type === 3){
-      link = data.link;
-    }
-  
-    if(redirect_type === 4){
-      link = URLS.products + '?brand_id[]=' + redirect_id;
-    }
+    // if(redirect_type === 1){
+    //   link = URLS.viewProduct({ id: redirect_id });
+    // }
+
+    // if(redirect_type === 2 ){
+    //   link = URLS.products + '?category_id[]=' + redirect_id;
+    // }
+
+    // if(redirect_type === 3){
+    //   link = data.link;
+    // }
+
+    // if(redirect_type === 4){
+    //   link = URLS.products + '?brand_id[]=' + redirect_id;
+    // }
     return link;
   }
-
 }
 export function resolveSearchLink(data: any) {
-  let link = '';
+  let link = "";
 
   const { redirect_type, id } = data;
 
-  if(redirect_type === 1){
+  if (redirect_type === 1) {
     link = URLS.viewProduct({ id: id });
   }
 
-  if(redirect_type === 2 ){
-    link = URLS.products + '?category_id[]=' + id;
+  if (redirect_type === 2) {
+    link = URLS.products + "?category_id[]=" + id;
   }
 
-  if(redirect_type === 3){
+  if (redirect_type === 3) {
     link = data.link;
   }
 
-  if(redirect_type === 4){
-    link = URLS.products + '?brand_id[]=' + id;
+  if (redirect_type === 4) {
+    link = URLS.products + "?brand_id[]=" + id;
   }
 
   return link;
 }
-

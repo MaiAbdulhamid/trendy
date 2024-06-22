@@ -22,7 +22,6 @@ function SwitchInput({
 }: InputPropsType) {
   const { value, changeValue, error, otherProps } = useFormControl(props);
   const handleCheck = (event: any) => {
-    console.log(event.currentTarget.checked);
     changeValue(Number(event.currentTarget.checked));
   };
   return (

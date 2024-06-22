@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useState } from "react";
 import theme from "../../../utils/theme";
 import { MultiRangeSliderWrapper } from "../style";
 import axiosInstance from "@/app/[locale]/lib/axios";
@@ -8,34 +8,43 @@ import { P4 } from "@/app/[locale]/components/Typography";
 import Button from "@/app/[locale]/components/Button/Button";
 import { ArrowDownIcon, ArrowLeftIcon } from "@/app/[locale]/assets/svgs";
 import CheckboxInput from "@/app/[locale]/components/Form/CheckboxInput";
-import MultiRangeSlider from "@/app/[locale]/components/Form/MultiRangeSlider";
-import PriceRangeSlider from "@/app/[locale]/components/Form/PriceRangeSlider";
+import PriceRange from "./PriceRange";
+import { debounce } from "lodash";
 
-const Filter = ({ filter, onChangeFilters, setFilteredProducts }: any) => {
+const Filter = ({
+  filter,
+  onChangeFilters,
+  setFilteredProducts,
+  categoryId,
+}: any) => {
   const [openFilters, setOpenFilters] = useState<Boolean>(true);
 
-  const onChangePrice = async (
-    e: any,
-    min_price: number,
-    max_price: number
-  ) => {
-    console.log(e)
-    if (e.max !== max_price || e.min !== min_price) {
+  const debouncedOnChangePrice = useCallback(
+    debounce(async (min_price: number, max_price: number) => {
+      console.log("Debounced:", min_price, max_price);
+      let params = "";
+      params += `&${new URLSearchParams(cache.get("filters")).toString()}`;
       try {
         const response: any = await axiosInstance.get(
-          `products?max_price=${e.max}&min_price=${e.min}`
+          `products?${params}&max_price=${max_price}&min_price=${min_price}`
         );
         const data = response.data.data.data;
         setFilteredProducts(data);
+        cache.set("filters", {
+          ...cache.get("filters"),
+          min_price: min_price,
+          max_price: max_price,
+        });
       } catch (error: any) {
         console.log(error);
       }
-    }
-  };
+    }, 500), // 500ms debounce delay
+    [setFilteredProducts]
+  );
 
-  useEffect(() => {
-    cache.remove("filters");
-  }, []);
+  const onChangePrice = (min_price: number, max_price: number) => {
+    debouncedOnChangePrice(min_price, max_price);
+  };
 
   return (
     <>
@@ -50,23 +59,16 @@ const Filter = ({ filter, onChangeFilters, setFilteredProducts }: any) => {
         </Button>
       </Flex>
       <div>
-        {filter.section.map((section: any) => {
+        {filter.section?.map((section: any) => {
           if (filter.type === "price") {
             return (
               <MultiRangeSliderWrapper key={section.id}>
-                {/* <PriceRangeSlider
-                  min={section.min_price}
-                  max={section.max_price}
-                  onChange={(e: any) =>
-                    onChangePrice(e, section.min_price, section.max_price)
-                  }
-                /> */}
-                <MultiRangeSlider
-                  onChange={(e: any) =>
-                    onChangePrice(e, section.min_price, section.max_price)
-                  }
-                  min={section.min_price}
-                  max={section.max_price}
+                <PriceRange
+                  minPrice={Number(section.min_price)}
+                  maxPrice={Number(section.max_price)}
+                  onChange={(e: any) => {
+                    onChangePrice(Math.min(...e), Math.max(...e));
+                  }}
                 />
               </MultiRangeSliderWrapper>
             );

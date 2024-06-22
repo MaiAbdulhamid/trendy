@@ -3,8 +3,6 @@ import { Flex } from "../../../components/Grids";
 import { P4 } from "../../../components/Typography";
 import { useTranslations } from "next-intl";
 import React from "react";
-import { useDispatch } from "react-redux";
-import { authActions } from "@/app/store";
 
 const CodeExpired = ({resetTimer}: any) => {
   const trans = useTranslations("Auth");

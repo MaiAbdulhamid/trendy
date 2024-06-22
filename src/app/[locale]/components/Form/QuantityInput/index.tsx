@@ -10,28 +10,36 @@ export default function QuantityInput({
   min,
   defaultValue,
   style,
-  setShowCart
+  setShowCart, // Add this prop
 }: QuantityInputProps) {
-  const [value, setValue] = useState<any>(defaultValue || 1);
+  const [value, setValue] = useState<number>(defaultValue ?? 1);
 
   useEffect(() => {
-    setValue(defaultValue);
+    setValue(defaultValue ?? 1);
   }, [defaultValue]);
 
-  const handlers = useRef<NumberInputHandlers>();
+  const handlers = useRef<NumberInputHandlers>(null);
 
   const increment = () => {
-    handlers?.current?.increment();
+    const newValue = Math.min(value + 1, max ?? Infinity);
+    setValue(newValue);
+    onChange(newValue);
+    if (newValue === 0) setShowCart?.(true);
   };
 
   const decrement = () => {
-    handlers?.current?.decrement();
+    const newValue = Math.max(value - 1, min ?? -Infinity);
+    setValue(newValue);
+    onChange(newValue);
+    if (newValue === 0) setShowCart?.(true);
   };
 
-  const changeValue = (val: any) => {
-    setValue(val);
-
-    onChange && onChange(val);
+  const changeValue = (val: string | number | undefined) => {
+    let newValue = typeof val === "number" ? val : parseInt(val ?? "0", 10);
+    newValue = Math.max(Math.min(newValue, max ?? Infinity), min ?? -Infinity);
+    setValue(newValue);
+    onChange(newValue);
+    if (newValue === 0) setShowCart?.(true);
   };
 
   return (

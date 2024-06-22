@@ -9,7 +9,7 @@ import cache from "@mongez/cache";
 import { useTranslations } from "next-intl";
 
 const Sort = ({ onChangeFilters }: any) => {
-  const trans = useTranslations('Products');
+  const trans = useTranslations("Products");
   const [openFilters, setOpenFilters] = useState<Boolean>(true);
 
   const filter = [
@@ -23,42 +23,42 @@ const Sort = ({ onChangeFilters }: any) => {
       type: "sort",
       label: trans("mostPopular"),
       value: 2,
-      id: "sort2"
+      id: "sort2",
     },
     {
       type: "sort",
       label: trans("newArrival"),
       value: 3,
-      id: "sort3"
+      id: "sort3",
     },
     {
       type: "sort",
       label: trans("priceLowToHigh"),
       value: 4,
-      id: "sort4" 
+      id: "sort4",
     },
     {
       type: "sort",
       label: trans("priceHighToLow"),
       value: 5,
-      id: "sort5" 
+      id: "sort5",
     },
     {
       type: "sort",
       label: trans("topRated"),
       value: 6,
-      id: "sort6" 
+      id: "sort6",
     },
   ];
-  
-  useEffect(() => {
-    cache.remove("filters");
-  }, []);
+
+  // useEffect(() => {
+  //   cache.remove("filters");
+  // }, []);
 
   return (
     <>
       <Flex fullWidth align="center" justify="space-between">
-        <P4>{trans('sort')}</P4>
+        <P4>{trans("sort")}</P4>
         <Button noStyle onClick={() => setOpenFilters(!openFilters)}>
           {openFilters ? (
             <ArrowDownIcon />
@@ -77,11 +77,7 @@ const Sort = ({ onChangeFilters }: any) => {
                   label={section.label}
                   defaultChecked={false}
                   onChange={(value) =>
-                    onChangeFilters(
-                      value,
-                      section.type,
-                      section.value
-                    )
+                    onChangeFilters(value, section.type, section.value)
                   }
                 />
               </Flex>

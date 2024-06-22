@@ -16,7 +16,7 @@ import theme from "../../../utils/theme";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { useDispatch } from "react-redux";
-import { authActions } from "../../../../store";
+import { authActions } from "@/app/[locale]/store";
 import Button from "../../Button/Button";
 import { useCallback, useEffect, useState } from "react";
 import cache from "@mongez/cache";

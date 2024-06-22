@@ -20,11 +20,12 @@ import Link from "next/link";
 import axiosInstance from "../../lib/axios";
 import { showNotification } from "../Notifications/showNotification";
 import QuantityInput from "../Form/QuantityInput";
+import Is from "@mongez/supportive-is";
 
 export default function ProductCard(props: ProductCardProps) {
   const [style, setStyle] = useState({ display: "none" });
   const { product, color } = props;
-  
+
   const updateProductQuantity = (quantity: any) => {
     axiosInstance
       .post("cart/AddOrUpdate", {
@@ -73,12 +74,14 @@ export default function ProductCard(props: ProductCardProps) {
           <QuantityInput
             defaultValue={product.qty}
             onChange={updateProductQuantity}
-            min={1}
+            min={0}
+            max={product.stock}
             style={style}
           />
         ) : (
           <StyledCartButton
             product={product}
+            stock={product.stock}
             size="md"
             variant="primary"
             fullWidth
@@ -95,9 +98,12 @@ export default function ProductCard(props: ProductCardProps) {
             <P4 color={theme.colors.primaryColor}>
               {Format(product.price_after)}
             </P4>
-            <P4 color="#AEABA4" textDecoration="line-through">
-              {Format(product.price_before)}
-            </P4>
+            {product.price_before !== 0 ||
+              (!Is.empty(product.price_before) && (
+                <P4 color="#AEABA4" textDecoration="line-through">
+                  {Format(product.price_before)}
+                </P4>
+              ))}
           </Flex>
         </CaptionBox>
       </Link>

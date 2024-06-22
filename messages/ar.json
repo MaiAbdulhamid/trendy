@@ -108,7 +108,8 @@
     "remove": "ازالة",
     "orderSummary": "ملخص الطلب",
     "totalPrice": "السعر الإجمالي",
-    "checkout": "الدفع"
+    "checkout": "الدفع",
+    "deliveryTime": "وقت التسليم"
   },
   "Products": {
     "sort": "فرز",
@@ -133,7 +134,8 @@
     "promotions": "العروض الترويجية",
     "quantity": "الكمية",
     "mustLogin": "يجب عليك تسجيل الدخول أولاً",
-    "reviews": "التقييمات"
+    "reviews": "التقييمات",
+    "deliveryTime": "وقت التسليم"
   },
   "Breadcrumb": {
     "home": "الرئيسية"
@@ -174,7 +176,9 @@
     "addNewAddress": "أضف عنوانًا جديدًا",
     "shipTo": "الشحن إلى",
     "paymentMethod": "طريقة الدفع",
-    "paymentByWallet": "الدفع عن طريق المحفظة"
+    "paymentByWallet": "الدفع عن طريق المحفظة",
+    "paymentSuccess": "رائع! تم تقديم معاملتك بشكل صحيح",
+    "hearFromUs" : "سوف تسمع منا قريبا"
   },
   "Orders": {
     "orders": "طلبات",

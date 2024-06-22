@@ -1,30 +1,38 @@
-import { trans } from "@mongez/localization";
 import Is from "@mongez/supportive-is";
 import { ProductOption, ProductOptionsContainer } from "./style";
-import { cartItemAtom } from "@/app/[locale]/shared/atoms/cart-atom";
-import { H4, H6, H7 } from "@/app/[locale]/components/Typography";
-import theme from "@/app/[locale]/utils/theme";
-import CheckboxInput from "@/app/[locale]/components/Form/CheckboxInput";
+import { H6, H7 } from "@/app/[locale]/components/Typography";
 import Radio, { RadioGroup } from "@/app/[locale]/components/Form/Radio";
 import { Line } from "@/app/[locale]/components/shapes/Lines";
-import { Flex } from "@/app/[locale]/components/Grids";
 import ColorRadio from "@/app/[locale]/components/Form/ColorRadio";
-import { useState } from "react";
-import ProductQuantity from "../ProductQuantity";
-import variationsAtom from "../../atoms";
+import { useEffect, useState } from "react";
+import variationsAtom, { allVariationsAtom } from "../../atoms";
 
 export default function ProductOptions({ product }: any) {
   const { main_variations } = product;
+  const mainVariationsAtom = allVariationsAtom.useValue().allVariations;
 
   const [subVariation, setSubVariation] = useState<any>();
-  const [variationId, setVariationId] = useState<any>();
+  const [variationId, setVariationId] = useState<any>(null);
+  const [selectedOption, setSelectedOption] = useState<any>(null);
 
-  const chooseOption = (e: any, optionId: number) => {
+  useEffect(() => {
+    allVariationsAtom.update({
+      allVariations: main_variations,
+    });
+  }, [main_variations]);
+
+  useEffect(() => {
+    variationsAtom.update({
+      variationId: variationId,
+      option: selectedOption,
+    });
+  }, [variationId, selectedOption]);
+
+  const chooseOption = (option: any, optionId: number) => {
     setVariationId(optionId);
-    // console.log(optionId);
-    variationsAtom.update({variationId: optionId})
+    setSelectedOption(option);
 
-    const subVariations = main_variations.variations.find(
+    const subVariations = mainVariationsAtom.variations.find(
       (variation: any) => variation.id === optionId
     )?.sub_variations;
 
@@ -32,40 +40,40 @@ export default function ProductOptions({ product }: any) {
   };
 
   const chooseSubOption = (optionId: number) => {
-    console.log(optionId);
-    // setVariationId(optionId);
-    variationsAtom.update({variationId: optionId})
+    variationsAtom.update({
+      variationId: optionId,
+      option: selectedOption,
+    });
   };
 
-  if (Is.empty(main_variations))
-    return null;
+  if (Is.empty(mainVariationsAtom)) return null;
 
   return (
     <>
       <ProductOptionsContainer>
-        <H7>{main_variations.name}</H7>
+        <H7>{mainVariationsAtom.name}</H7>
         <RadioGroup>
           <ProductOption>
-            {main_variations.type === 1
-              ? main_variations.variations.map((option: any) => (
+            {mainVariationsAtom.type === 1 || mainVariationsAtom.type === 3
+              ? mainVariationsAtom.variations.map((option: any) => (
                   <Radio
                     key={option.id}
                     name="option"
                     value={String(option.id)}
                     label={<H6>{option.name}</H6>}
                     disabled={option.stock === 0}
-                    onClick={(e) => chooseOption(e, option.id)}
+                    onChange={(e) => chooseOption(option, option.id)}
                     required
                   />
                 ))
-              : main_variations.variations.map((option: any) => (
+              : mainVariationsAtom.variations.map((option: any) => (
                   <ColorRadio
                     key={option.id}
                     name="option"
                     value={String(option.id)}
                     disabled={option.stock === 0}
                     color={option.color}
-                    onClick={(e) => chooseOption(e, option.id)}
+                    onChange={(e) => chooseOption(option, option.id)}
                     required
                   />
                 ))}
@@ -74,12 +82,10 @@ export default function ProductOptions({ product }: any) {
         {subVariation && (
           <>
             <Line color="#3434344D" />
-
             <H7>{subVariation.name}</H7>
-
             <RadioGroup>
               <ProductOption>
-                {subVariation.type === 1
+                {subVariation.type === 1 || mainVariationsAtom.type === 3
                   ? subVariation.sub_sub_variations.map((subOption: any) => (
                       <Radio
                         key={subOption.id}
@@ -108,7 +114,6 @@ export default function ProductOptions({ product }: any) {
         )}
       </ProductOptionsContainer>
       <Line color="#3434344D" />
-      {/* <ProductQuantity variationId={variationId} product={product} /> */}
     </>
   );
 }

@@ -108,7 +108,8 @@
     "remove": "Remove",
     "orderSummary": "Order Summary",
     "totalPrice": "Total Price",
-    "checkout": "Checkout"
+    "checkout": "Checkout",
+    "deliveryTime": "Delivery Time"
   },
   "Products": {
     "sort": "Sort",
@@ -133,7 +134,8 @@
     "promotions": "promotions",
     "quantity": "Quantity",
     "mustLogin": "Tou Must login first",
-    "reviews": "Reviews"
+    "reviews": "Reviews",
+    "deliveryTime": "Delivery Time"
   },
   "Breadcrumb": {
     "home": "Home"
@@ -174,7 +176,9 @@
     "addNewAddress": "Add a New Address",
     "shipTo": "Ship To",
     "paymentMethod": "Payment Method",
-    "paymentByWallet": "Payment By Wallet"
+    "paymentByWallet": "Payment By Wallet",
+    "paymentSuccess": "Fantastic! Your transaction was submitted correctly.",
+    "hearFromUs" : "You'll hear from us soon."
   },
   "Orders": {
     "orders": "Orders",

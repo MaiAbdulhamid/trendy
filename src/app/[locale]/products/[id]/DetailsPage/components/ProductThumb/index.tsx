@@ -11,8 +11,8 @@ import Image from "next/image";
 
 export default function ProductThumb({ product }: any) {
   const [thumbsSwiper, setThumbsSwiper] = useState<any>(null);
-  const prevRef = useRef<HTMLDivElement>(null)
-  const nextRef = useRef<HTMLDivElement>(null)
+  const prevRef = useRef<HTMLDivElement>(null);
+  const nextRef = useRef<HTMLDivElement>(null);
 
   const images = product?.images;
 
@@ -22,7 +22,10 @@ export default function ProductThumb({ product }: any) {
         {thumbsSwiper && (
           <Swiper
             // spaceBetween={5}
-            thumbs={{ swiper: thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null }}
+            thumbs={{
+              swiper:
+                thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null,
+            }}
             modules={[Thumbs]}
             className="product--main-thumb--slider"
           >

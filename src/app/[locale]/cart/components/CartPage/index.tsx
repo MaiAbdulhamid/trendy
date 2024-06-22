@@ -43,7 +43,6 @@ export default function CartPage() {
       </>
     );
   }
-
   return (
     <>
       <Container>
@@ -76,8 +75,8 @@ export default function CartPage() {
             <Line />
             <ProductsSlider
               enableViewAllButton={false}
-              title={cache.get('cartWidget')?.title}
-              products={cache.get('cartWidget')?.widgetData}
+              title={cache.get("cartWidget")?.title}
+              products={cache.get("cartWidget")?.widgetData}
             />
           </Col>
         </Grid>

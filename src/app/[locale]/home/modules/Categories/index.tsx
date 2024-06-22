@@ -10,7 +10,6 @@ import theme from "../../../utils/theme";
 
 export default function Categories({ record, title }: ModuleProp) {
   const trans = useTranslations("Home");
-  // console.log(record)
   return (
     <>
       <CategoriesContainer>

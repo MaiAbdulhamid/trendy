@@ -28,8 +28,8 @@ import axiosInstance from "@/app/[locale]/lib/axios";
 import { getCookie, setCookie } from "cookies-next";
 import { useTranslations } from "next-intl";
 import { useDispatch } from "react-redux";
-import { authActions } from "@/app/store";
 import Links from "../Menu/Links";
+import { authActions } from "@/app/[locale]/store";
 
 export default function BottomBar() {
   const trans = useTranslations("Layout");

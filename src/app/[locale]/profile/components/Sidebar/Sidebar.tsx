@@ -12,7 +12,7 @@ import {
 import theme from "../../../utils/theme";
 import Link from "next/link";
 import { Menu } from "@mantine/core";
-import { authActions } from "../../../../store";
+import { authActions } from "@/app/[locale]/store";
 import { Flex } from "@/app/[locale]/components/Grids";
 import { P4 } from "@/app/[locale]/components/Typography";
 import { useTranslations } from "next-intl";

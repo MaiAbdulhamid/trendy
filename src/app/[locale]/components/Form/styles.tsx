@@ -4,7 +4,7 @@ import { Flex } from "../Grids";
 import theme from "../../utils/theme";
 import devices from "../../utils/devices";
 import { Select, Input, Textarea } from "@mantine/core";
-import { RangeSlider } from '@mantine/core';
+import { RangeSlider } from "@mantine/core";
 
 type Types = any & {
   error?: boolean;
@@ -24,7 +24,7 @@ export const WrapperInput = styled(Flex)<Types>`
 export const AutoCompleteWrapper = styled.div`
   .mantine-Autocomplete-input {
     min-width: 539px;
-    ${devices.mediumMax}{
+    ${devices.mediumMax} {
       min-width: auto;
     }
     height: 45px;
@@ -112,58 +112,6 @@ export const StyledSelectInput = styled(Select)<Types>`
     width: 100%;
   }
 `;
-// export const PhoneInputStyled = styled(PhoneInput)<Types>`
-//   direction: ltr;
-//   height: 100%;
-//   flex: 1;
-//   padding: 0;
-//   text-align: start;
-//   border: none;
-//   outline: none;
-//   font-family: inherit;
-//   margin-top: -4px;
-//   ${({ error }) => css`
-//     color: ${error ? theme.colors.error[200] : theme.colors.black};
-//   `}
-//   font-size: 16px;
-//   &::placeholder {
-//     font-weight: normal;
-//   }
-//   ${devices.large} {
-//     font-size: 18px;
-//     padding: 0;
-//   }
-
-//   &.react-tel-input {
-//     .form-control {
-//       border: 0;
-//       height: 100%;
-//       width: 100%;
-//       padding-bottom: 0;
-//       padding-top: 0;
-//       :focus,
-//       :active,
-//       :focus-visible {
-//         border: 0;
-//         box-shadow: none;
-//         outline: none;
-//       }
-//     }
-
-//     .special-label {
-//       display: none;
-//     }
-
-//     .search-box {
-//       border: 0 !important;
-//     }
-
-//     .flag-dropdown {
-//       background: none;
-//       border: none;
-//     }
-//   }
-// `;
 
 export const StyledTextArea = styled("textarea")<Types>`
   height: 100%;
@@ -192,51 +140,45 @@ export const StyledTextArea = styled("textarea")<Types>`
   }
 `;
 export const StyledRangeSlider = styled(RangeSlider)`
-  .ltr-Slider-track::before,
-  .rtl-Slider-track::before{
+  .mantine-Slider-track::before {
     border-radius: 0;
   }
-  .ltr-Slider-bar,
-  .rtl-Slider-bar{
+  .mantine-Slider-bar {
     background-color: ${theme.colors.primaryColor};
   }
-  .ltr-Slider-thumb,
-  .rtl-Slider-thumb{
+  .mantine-Slider-thumb {
     background-color: ${theme.colors.primaryColor};
     border-color: transparent;
     width: 22px;
     height: 22px;
   }
-  .ltr-Slider-track,
-  .rtl-Slider-track{
+  .mantine-Slider-track {
     height: 5px;
   }
-  .ltr-Slider-markLabel,
-  .rtl-Slider-markLabel{
+  .mantine-Slider-markLabel {
     color: ${theme.colors.primaryColor};
     position: absolute;
     /* top: -45px; */
   }
-  .ltr-Slider-label,
-  .rtl-Slider-label{
+  .mantine-Slider-label {
     /* display: none; */
     background-color: transparent;
-    color: ${theme.colors.primaryColor}
+    color: ${theme.colors.primaryColor};
   }
 `;
 export const CountryIconWrapper = styled.div`
   > div {
     width: 120px;
   }
-  .select-input-wrapper{
+  .select-input-wrapper {
     /* width: 50%; */
-    .input-wrapper{
+    .input-wrapper {
       > div {
         border: 0;
       }
     }
   }
-  input::placeholder{
-color:blue;
-}
-`
+  input::placeholder {
+    color: blue;
+  }
+`;

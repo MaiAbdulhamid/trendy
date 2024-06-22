@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Card, PageWrapper } from "./style";
 import Title from "../Title";
 import { Form } from "@mongez/react-form";
@@ -26,6 +26,7 @@ const AddAddressForm = () => {
   const [selectedCity, setSelectedCity] = useState<any>("");
   const [regions, setRegions] = useState<any>([]);
   const [selectedCountry, setSelectedCountry] = useState<any>(3);
+  const [selectedRegion, setSelectedRegion] = useState<any>("");
   const [token, setToken] = useState(null);
   const [guestToken, setGuestToken] = useState(null);
 
@@ -39,19 +40,24 @@ const AddAddressForm = () => {
 
   useEffect(() => {
     setToken(fetchToken());
-    setGuestToken(fetchGuestToken())
+    setGuestToken(fetchGuestToken());
   }, [setToken, setGuestToken]);
 
   const onChangeCountry = (e: any) => {
     setSelectedCountry(e);
-  }
+    setSelectedCity(null);
+    setSelectedRegion(null);
+  };
+
   const getCities = async () => {
     try {
-      const response = await axiosInstance.get(`getCitiesRegions?country_id=${selectedCountry}`);
+      const response = await axiosInstance.get(
+        `getCitiesRegions?country_id=${selectedCountry}`
+      );
       const formattedCities = response.data.data.data.map((city: any) => ({
         label: city.name,
         value: String(city.id),
-        regions: city.regions
+        regions: city.regions,
       }));
       setCities(formattedCities);
     } catch (error) {
@@ -61,44 +67,46 @@ const AddAddressForm = () => {
 
   useEffect(() => {
     getCities();
-    console.log(cities)
   }, [selectedCountry]);
 
   const selectedCityHandler = (value: any) => {
     setSelectedCity(value);
-    const regions = cities.find((city: any) => city.value === value )
-    const formattedRegions = regions.regions.map((region :any) => (
-      {
-        label: region.name,
-        value: String(region.id)
-      }
-    ))
-    setRegions(formattedRegions)
+    setSelectedRegion(null);
+    const regions = cities.find((city: any) => city.value === value);
+    const formattedRegions = regions.regions.map((region: any) => ({
+      label: region.name,
+      value: String(region.id),
+    }));
+    setRegions(formattedRegions);
+  };
+
+  const selectedRegionHandler = (value: any) => {
+    setSelectedRegion(value);
   };
 
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 
   const onSubmit = async ({ values }: any) => {
     setIsSubmitting(true);
-    
+
     try {
-      const response: any = await axiosInstance.post(
-        "address/updateOrCreate",
-        {...values}
-      );
-      cache.set("address", response.data.data)
+      const response: any = await axiosInstance.post("address/updateOrCreate", {
+        ...values,
+      });
+      cache.set("address", response.data.data);
       showNotification({
         type: "success",
         message: response.data.message,
       });
 
       // window.location.reload();
-      if(guestToken && !token){
-        router.push('/checkout')
-      }else{
-        router.push('/addresses')
-      }
 
+      if (guestToken && !token) {
+        router.push("/checkout");
+        window.location.reload();
+      } else {
+        router.push("/addresses");
+      }
     } catch (error: any) {
       if (error.response) {
         showNotification({
@@ -122,13 +130,12 @@ const AddAddressForm = () => {
               placeholder={"fullname"}
               required
             />
-            {/* <TextInput
-              name="address_1"
-              label={"addressLineOne"}
-              placeholder={"addressLineOne"}
+            <GoogleMapInput
               required
-            /> */}
-            <GoogleMapInput required placeholder={'addressLineOne'} label={"addressLineOne"} name="address_1" />
+              placeholder={"addressLineOne"}
+              label={"addressLineOne"}
+              name="address_1"
+            />
             <TextInput
               name="address_2"
               label={"addressLineTwo"}
@@ -167,6 +174,7 @@ const AddAddressForm = () => {
             <Grid>
               <Col span={{ base: 12, md: 6 }}>
                 <SelectInput
+                  value={selectedCity}
                   name="city_id"
                   label="city"
                   data={cities}
@@ -177,19 +185,18 @@ const AddAddressForm = () => {
               </Col>
               <Col span={{ base: 12, md: 6 }}>
                 <SelectInput
+                  value={selectedRegion}
                   name="region_id"
                   label="region"
                   data={regions}
+                  onChange={selectedRegionHandler}
                   required
                   clearable
                 />
               </Col>
             </Grid>
             <Flex justify="space-between" fullWidth align="center">
-              <SwitchInput
-                name='default'
-                label={trans('makeDefault')}
-              />
+              <SwitchInput name="default" label={trans("makeDefault")} />
               <Flex gap="2rem">
                 <Button variant="outline">
                   <P4>{trans("cancel")}</P4>

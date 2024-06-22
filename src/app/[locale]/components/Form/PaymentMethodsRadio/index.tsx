@@ -7,10 +7,10 @@ import { HiddenInput, requiredRule, useFormControl } from "@mongez/react-form";
 
 const PaymentMethodsRadio = (props: any) => {
   const { name, checked, changeValue, otherProps } = useFormControl(props);
-  const [paymentMethod, setPaymentMethod] = useState("1")
+  const [paymentMethod, setPaymentMethod] = useState("");
   return (
     <>
-      <HiddenInput name="payment_method" value={paymentMethod}/>
+      <HiddenInput name="payment_method" value={paymentMethod} />
       <RadioGroup required>
         {props.methods?.map((method: any) => (
           <>
@@ -22,7 +22,7 @@ const PaymentMethodsRadio = (props: any) => {
                   value={String(method.id)}
                   checked={checked}
                   onChange={(e) => {
-                    setPaymentMethod(e.currentTarget.value)
+                    setPaymentMethod(e.currentTarget.value);
                     changeValue(e.currentTarget.value);
                   }}
                   {...otherProps}

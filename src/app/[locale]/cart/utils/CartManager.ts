@@ -43,8 +43,8 @@ export class CartManager {
         .then((response) => {
           this.cart = response.data.data;
           this.cartWidget = response.data.widget;
-          if (typeof window !== 'undefined') {
-            cache.set('cartWidget', response.data.data.widget);
+          if (typeof window !== "undefined") {
+            cache.set("cartWidget", response.data.data.widget);
           }
           this.trigger("loading", false);
 
@@ -104,10 +104,14 @@ export class CartManager {
           variation_id: options,
         })
         .then((response) => {
-          this.cart = response.data.data;
+          const atomCart = cartItemAtom.value.cart;
 
           cartItemAtom.update({
-            cart: this.cart,
+            cart: {
+              cart_item: response.data.data.cart_item,
+              count: response.data.data.count,
+              data: [...(atomCart?.data ?? []), response.data.data],
+            },
           } as any);
 
           resolve(this);
@@ -126,7 +130,8 @@ export class CartManager {
       axiosInstance
         .delete(`cart/delete/${cartId}`)
         .then((response) => {
-          this.cart = response.data.data; 
+          console.log(response.data.data);
+          this.cart = response.data.data;
 
           cartItemAtom.update({
             cart: this.cart,
@@ -145,10 +150,7 @@ export class CartManager {
   /**
    * Update item quantity
    */
-  public updateQuantity(
-    quantity: number,
-    productId: number
-  ) {
+  public updateQuantity(quantity: number, productId: number) {
     this.trigger("makingAction", true);
 
     return new Promise((resolve, reject) => {
@@ -178,17 +180,6 @@ export class CartManager {
   /**
    * Clear cart
    */
-  // public flush(): Promise<any> {
-  //   return new Promise((resolve, reject) => {
-  //     flushCart()
-  //       .then(() => {
-  //         this.cart = null;
-
-  //         resolve(this);
-  //       })
-  //       .catch(reject);
-  //   });
-  // }
 
   public get items(): any[] {
     return this.cart?.items || [];
@@ -260,6 +251,7 @@ export class CartManager {
 
   public get atom() {
     const atomCart = cartItemAtom.useValue().cart;
+
     return {
       cartItemId: atomCart?.cart_item,
       items: atomCart?.data,

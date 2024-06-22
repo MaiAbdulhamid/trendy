@@ -11,7 +11,7 @@ import {
 import theme from "../../../utils/theme";
 import Link from "next/link";
 import { Menu } from "@mantine/core";
-import { authActions } from "../../../../store";
+import { authActions } from "@/app/[locale]/store";
 import { Flex } from "@/app/[locale]/components/Grids";
 import { P4 } from "@/app/[locale]/components/Typography";
 import { useTranslations } from "next-intl";
@@ -34,7 +34,11 @@ const Sidebar = () => {
     <Menu shadow="md" width={250}>
       <WrapperDropdown>
         <div className="bg">
-          <Menu.Item component={Link} href={URLS.account.orders} className="active">
+          <Menu.Item
+            component={Link}
+            href={URLS.account.orders}
+            className="active"
+          >
             <Flex className="item" gap="0.5rem" justify="center">
               <div className="icon">
                 <OrdersIcon color={theme.colors.primaryColor} />
@@ -42,17 +46,17 @@ const Sidebar = () => {
               <P4>{trans("orders")}</P4>
             </Flex>
           </Menu.Item>
-          <Hr />
-          <Menu.Item component={Link} href={URLS.account.addressBook}>
-            <Flex className="item" gap="0.5rem" justify="center">
-              <div className="icon">
-                <AddressesIcon color={theme.colors.primaryColor} />
-              </div>
-              <P4>{trans("addresses")}</P4>
-            </Flex>
-          </Menu.Item>
           {token && (
-            <>            
+            <>
+              <Hr />
+              <Menu.Item component={Link} href={URLS.account.addressBook}>
+                <Flex className="item" gap="0.5rem" justify="center">
+                  <div className="icon">
+                    <AddressesIcon color={theme.colors.primaryColor} />
+                  </div>
+                  <P4>{trans("addresses")}</P4>
+                </Flex>
+              </Menu.Item>
               <Hr />
               <Menu.Item component={Link} href={URLS.account.wallet}>
                 <Flex className="item" gap="0.5rem" justify="center">

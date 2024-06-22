@@ -41,5 +41,4 @@ export { default as StatusLineIcon } from "./StatusLineIcon";
 export { default as MenuIcon } from "./MenuIcon";
 export { default as MainPageIcon } from "./MainPageIcon";
 export { default as ErrorIcon } from "./ErrorIcon";
-
-
+export { default as SuccessIcon } from "./SuccessIcon";

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Flex } from "../../components/Grids";
 import axiosInstance from "../../lib/axios";
 import { FiltersWrapper } from "./style";
@@ -6,12 +6,19 @@ import Filter from "./Filter";
 import Sort from "./Sort";
 import cache from "@mongez/cache";
 
-const Filters = ({ getProductsFilters, setFilteredProducts }: any) => {
+const Filters = ({
+  getProductsFilters,
+  setFilteredProducts,
+  categoryId,
+  filterId,
+}: any) => {
   const [filters, setFilters] = useState<any>([]);
 
   const fetchFilters = async () => {
+    let params = "";
+    params += `&${new URLSearchParams(filterId).toString()}`;
     try {
-      const response: any = await axiosInstance.get("filter");
+      const response: any = await axiosInstance.get(`filter?${params}`);
       const data = response.data.data.data;
       setFilters(data);
     } catch (error: any) {
@@ -28,24 +35,27 @@ const Filters = ({ getProductsFilters, setFilteredProducts }: any) => {
     const preparedType = type === "sort" ? type : `${type}[]`;
 
     if (value) {
-      cache.set("filters", [
-        ...cache.get("filters", []),
-        {
-          [preparedType]: preparedFlag,
-        },
-      ]);
+      cache.set("filters", {
+        ...cache.get("filters"),
+        "category_id[]": categoryId,
+        [preparedType]: preparedFlag,
+      });
     } else {
-      const filtered = cache
-        .get("filters", [])
-        .filter((item: any) => item[preparedType] !== preparedFlag);
-      cache.set("filters", filtered);
+      const filters = cache.get("filters", {});
+
+      const filteredFilters = Object.fromEntries(
+        Object.entries(filters).filter(([key, value]: any) => {
+          return value !== preparedFlag;
+        })
+      );
+      cache.set("filters", filteredFilters);
     }
     getProductsFilters(cache.get("filters", []));
   };
 
   useEffect(() => {
     fetchFilters();
-  }, []);
+  }, [filterId]);
 
   return (
     <FiltersWrapper>
@@ -58,6 +68,7 @@ const Filters = ({ getProductsFilters, setFilteredProducts }: any) => {
               filter={filter}
               onChangeFilters={onChangeFilters}
               setFilteredProducts={setFilteredProducts}
+              categoryId={categoryId}
             />
           );
         })}

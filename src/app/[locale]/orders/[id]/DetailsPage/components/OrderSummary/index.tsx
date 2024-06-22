@@ -1,18 +1,9 @@
-import React, { useState } from "react";
-import {
-  OrderSummaryWrapper,
-  PromoCode,
-  PromoCodeWrapper,
-  Wrapper,
-} from "./style";
-import Button from "@/app/[locale]/components/Button/Button";
+import React from "react";
+import { OrderSummaryWrapper, Wrapper } from "./style";
 import { H6, P4 } from "@/app/[locale]/components/Typography";
 import { useTranslations } from "next-intl";
-import axiosInstance from "@/app/[locale]/lib/axios";
-import { showNotification } from "@/app/[locale]/components/Notifications/showNotification";
 import { Flex } from "@/app/[locale]/components/Grids";
 import { Line } from "@/app/[locale]/components/shapes/Lines";
-import SubmitButton from "@/app/[locale]/components/Form/SubmitButton";
 
 const OrderSummary = ({ orderSummary }: any) => {
   const trans = useTranslations("Checkout");

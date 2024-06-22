@@ -13,12 +13,9 @@ import { RemoveIcon } from "@/app/[locale]/assets/svgs";
 import { Line } from "@/app/[locale]/components/shapes/Lines";
 import { useTranslations } from "next-intl";
 import cart from "../../utils/CartManager";
+import Is from "@mongez/supportive-is";
 
-export default function CartItem({
-  product: cartItem,
-  lastItem,
-}: any) {
-
+export default function CartItem({ product: cartItem, lastItem }: any) {
   const trans = useTranslations("Cart");
 
   const {
@@ -31,6 +28,10 @@ export default function CartItem({
     qty: quantityItem,
     variation,
     name,
+    delivery_time,
+    images,
+    variation_id,
+    stock,
   } = cartItem;
 
   const [isLoadingAction, setIsLoadingAction] = useState(false);
@@ -45,33 +46,38 @@ export default function CartItem({
 
   const updateProductQuantity = (quantity: any) => {
     setIsLoadingAction(true);
-    // cart.updateQuantity(quantity, product_id);
-    // setIsLoadingAction(false);
-    axiosInstance
-      .post("cart/AddOrUpdate", { product_id: product_id, qty: quantity })
-      .then((response) => {
-        setIsLoadingAction(false);
-        showNotification({
-          type: "success",
-          message: response.data.message,
-        });
-      })
-      .catch((error) => {
-        setIsLoadingAction(false);
+    if (quantity === 0) {
+      cart.delete(id);
+    } else {
+      axiosInstance
+        .post("cart/AddOrUpdate", {
+          product_id: product_id,
+          qty: quantity,
+          variation_id,
+        })
+        .then((response) => {
+          setIsLoadingAction(false);
+          showNotification({
+            type: "success",
+            message: response.data.message,
+          });
+        })
+        .catch((error) => {
+          setIsLoadingAction(false);
 
-        showNotification({
-          type: "danger",
-          message: error.response.data.errors,
+          showNotification({
+            type: "danger",
+            message: error?.response?.data?.errors,
+          });
         });
-      });
+    }
   };
 
   return (
     <CartItemWrapper>
-      {/* <LoadingOverlay visible={isLoadingAction} /> */}
       <Wrapper fullWidth gap="20px">
         <div className="product--img">
-          <img src={image} width={170} height={144} alt="product" />
+          <img src={image ?? images} width={170} height={144} alt="product" />
         </div>
         <div className="product--description">
           <Flex
@@ -79,20 +85,26 @@ export default function CartItem({
             gap="15px"
             justify="space-between"
             fullWidth
-            style={{flexWrap: "wrap"}}
+            style={{ flexWrap: "wrap" }}
           >
             <Flex direction="column">
               <H6 className="product--name"> {name}</H6>
               {variation && <P4>{variation.name}</P4>}
+              {delivery_time && (
+                <P4 color={theme.colors.primaryColor}>
+                  {trans("deliveryTime")} : {delivery_time}
+                </P4>
+              )}
             </Flex>
             <Flex direction="column">
-              <H6 color={theme.colors.primaryColor}>
-                {Format(price_after)}
-              </H6>
+              <H6 color={theme.colors.primaryColor}>{Format(price_after)}</H6>
               <Flex align="center" gap="0.5rem">
-                <P4 opacity="0.5" textDecoration="line-through">
-                  {Format(price_before)}
-                </P4>
+                {price_before !== 0 ||
+                  (!Is.empty(price_before) && (
+                    <P4 opacity="0.5" textDecoration="line-through">
+                      {Format(price_before)}
+                    </P4>
+                  ))}
                 {discount_percentage && (
                   <PercentCard>{discount_percentage}%</PercentCard>
                 )}
@@ -119,10 +131,12 @@ export default function CartItem({
             <P4 color={theme.colors.primaryColor}>{trans("remove")}</P4>
           </Flex>
         </Button>
+
         <QuantityInput
           defaultValue={quantityItem}
           onChange={updateProductQuantity}
-          min={1}
+          min={0}
+          max={stock}
         />
       </Flex>
       {!lastItem && <Line />}
