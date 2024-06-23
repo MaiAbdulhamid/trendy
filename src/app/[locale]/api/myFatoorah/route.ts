@@ -1,5 +1,6 @@
 import axios from "axios";
 import { NextRequest } from "next/server";
+import { getMyFatoorahBaseURL } from "../../utils/myFatoorahBaseUrls";
 
 // MyFatoorah API credentials
 const SECURE_KEY = process.env.MYFATOORAH_SECURE_KEY;
@@ -7,6 +8,8 @@ const SECURE_KEY = process.env.MYFATOORAH_SECURE_KEY;
 export async function POST(request: NextRequest) {
   const { totalAmount, phoneNumber, countryCode, currency, customerName } =
     await request.json();
+
+  const baseUrl = getMyFatoorahBaseURL(currency);
 
   const paymentData = {
     NotificationOption: "SMS",
@@ -27,9 +30,11 @@ export async function POST(request: NextRequest) {
 
   try {
     const response = await axios.post(
-      "https://api.myfatoorah.com/v2/SendPayment",
+      `${baseUrl}/v2/SendPayment`,
       paymentData,
-      { headers }
+      {
+        headers,
+      }
     );
 
     const paymentUrl = response.data.Data.InvoiceURL;
