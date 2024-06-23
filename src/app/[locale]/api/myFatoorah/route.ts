@@ -2,7 +2,7 @@ import axios from "axios";
 import { NextRequest } from "next/server";
 
 // MyFatoorah API credentials
-const SECURE_KEY = process.env.NEXT_PUBLIC_MYFATOORAH_SECURE_KEY;
+const SECURE_KEY = process.env.MYFATOORAH_SECURE_KEY;
 
 export async function POST(request: NextRequest) {
   const { totalAmount, phoneNumber, countryCode, currency, customerName } =
