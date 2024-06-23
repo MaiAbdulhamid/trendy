@@ -25,7 +25,7 @@ export async function GET(request: NextRequest) {
     console.log(response.data.Data.InvoiceId);
     // Send the payment URL back to the client
     return NextResponse.redirect(
-      `http://localhost:3000/checkout?invoiceId=${response.data.Data.InvoiceId}`
+      `https://trendy-qa.com/checkout?invoiceId=${response.data.Data.InvoiceId}`
     );
   } catch (error) {
     console.error("MyFatoorah Callback error:", error);
